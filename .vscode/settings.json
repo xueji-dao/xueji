@@ -1,0 +1,20 @@
+{
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  // 折叠显示
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "*.ts": "$(capture).test.ts, $(capture).test.tsx",
+    "*.tsx": "$(capture).test.ts, $(capture).test.tsx",
+    "*.env": "$(capture).env.*",
+    "package.json": "nx.json,docker-compose.*,app.json,pnpm-*.yaml,CHANGELOG*,CNAME,.gitattributes,.eslintrc-auto-import.json,prettier.*,stylelint.config.js,*.config.mjs,.prettierignore,.eslintrc.json,.gitignore,.editorconfig,code_of_conduct.md,.npmrc,.dockerignore,Dockerfile,jest.config.ts,jest.preset.js"
+  },
+  "i18n-ally.localesPaths": ["apps/webui/messages", "apps/webui/src/i18n"],
+  "cSpell.words": ["conventionalcommits", "webui", "xueji"]
+}
