@@ -1,3 +1,6 @@
+const { pathsToModuleNameMapper } = require('ts-jest')
+const { compilerOptions } = require('./tsconfig.json')
+
 const config = {
   displayName: '@xueji/webui',
   preset: '../../jest.preset.js',
@@ -6,6 +9,11 @@ const config = {
     '^.+\\.[tj]sx?$': ['babel-jest', { presets: ['@nx/next/babel'] }],
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
+  moduleNameMapper: {
+    ...pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }),
+    // 处理 Next.js 特殊模块（如 next/font）
+    'next/font': require.resolve('next/dist/build/jest/__mocks__/nextFontMock.js'),
+  },
   coverageDirectory: 'test-output/jest/coverage',
 }
 
