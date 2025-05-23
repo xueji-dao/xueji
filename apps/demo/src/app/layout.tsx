@@ -1,4 +1,5 @@
 import '@/styles/global.css'
+import '@/styles/style.scss'
 
 export const metadata = {
   title: 'Welcome to demo',

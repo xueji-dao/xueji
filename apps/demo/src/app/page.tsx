@@ -1,4 +1,5 @@
 import { lusitana } from '@/styles/fonts'
+import HelloWorld from '@/app/components/hello-world'
 
 export default function Index() {
   /*
@@ -20,6 +21,9 @@ export default function Index() {
           {/* 示例：环境变量 */}
           <div>服务端环境变量（服务端组件及api中可用）：{process.env.ENV_VARIABLE}</div>
           <div>公共环境变量：{process.env.NEXT_PUBLIC_ENV_VARIABLE}</div>
+          <div className="app">
+            <HelloWorld />
+          </div>
           <div id="hero" className="rounded">
             <div className="text-container">
               <h2>
