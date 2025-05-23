@@ -18,7 +18,7 @@ export default function Index() {
             </h1>
           </div>
           {/* 示例：环境变量 */}
-          <div>服务端环境变量（服务端组件及api中可用）：{process.env.ENV_VARIABLE}</div>
+          <div>服务端环境变量：{process.env.ENV_VARIABLE}</div>
           <div>公共环境变量：{process.env.NEXT_PUBLIC_ENV_VARIABLE}</div>
 
           <p id="love">

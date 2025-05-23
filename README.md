@@ -3,10 +3,11 @@
 ## 技术选型
 
 - [Nx](https://github.com/nrwl/nx) - 基于插件的[单一代码库构建管理系统](./docs/nx.md)。
-- [Next.js](https://nextjs.org/) - 开发框架，采用 [App Router 模式](./docs/nextjs.md)
+- [Next.js 15](https://nextjs.org/) - 开发框架，采用 [App Router 模式](./docs/nextjs.md)
+- [ESlint 9](https://eslint.org/) + [Prettier](https://prettier.io/) - 代码检查及自动格式化
 - [Prisma ORM](https://www.prisma.io/): 支持多数据库的 Node.js and TypeScript ORM
 - [Material UI](https://github.com/mui/material-ui) - 组件库
-- [Tailwindcss](https://github.com/tailwindlabs/tailwindcss) - 原子化 CSS 样式方案
+- [Tailwindcss v4](https://github.com/tailwindlabs/tailwindcss) - 原子化 CSS 样式方案
 - [Typescript](https://github.com/Microsoft/TypeScript) - 基于 Javascript 的编程语言
 - [react-three-fiber](https://github.com/pmndrs/react-three-fiber) - Three.js 组件
 - [tunnel-rat](https://github.com/pmndrs/tunnel-rat) 挖掘隧道，让 React 元素可以渲染进 @react-three/fiber
@@ -17,7 +18,7 @@
 - [Next Auth](https://github.com/nextauthjs/next-auth) - Web 认证
 - [GraphQL Code Generator](https://the-guild.dev/graphql/codegen)- 基于 GraphQL Schema 生成代码的工具
 - [icons-react](https://github.com/tabler/tabler-icons/tree/main/packages/icons-react)-Tabler Icons for React
-- 其他: jest eslint commitlint prettier WebAssembly WebWorker semantic-release
+- 其他: jest commitlint WebAssembly WebWorker semantic-release
 
 ## 开发
 
