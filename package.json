@@ -7,10 +7,12 @@
     "commitlint": "commitlint --edit",
     "check-types": "tsc --noEmit --pretty",
     "commit": "git-cz",
-    "release": "semantic-release --dry-run"
+    "release": "semantic-release --dry-run",
+    "analyze": "cross-env ANALYZE=true nx build webui"
   },
   "private": true,
   "dependencies": {
+    "@next/env": "^15.1.8",
     "next": "~15.2.5",
     "react": "19.0.0",
     "react-dom": "19.0.0"
@@ -24,6 +26,7 @@
     "@eslint/js": "^9.27.0",
     "@hyoban/eslint-plugin-tailwindcss": "4.0.0-alpha.11",
     "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
+    "@next/bundle-analyzer": "^15.3.2",
     "@next/eslint-plugin-next": "^15.3.2",
     "@nx/devkit": "21.1.0",
     "@nx/eslint": "21.1.0",
@@ -50,6 +53,7 @@
     "autoprefixer": "10.4.13",
     "babel-jest": "^29.7.0",
     "commitizen": "^4.3.1",
+    "cross-env": "^7.0.3",
     "eslint": "^9.27.0",
     "eslint-config-next": "^15.3.2",
     "eslint-config-prettier": "^10.1.5",

@@ -12,11 +12,14 @@ export default function Index() {
         <div className="container">
           <div id="welcome">
             <h1
-              className={`${lusitana.className} m-4 h-24 border-2 border-gray-300 p-3 text-2xl  text-blue-500 lg:m-4 lg:p-4`}>
+              className={`${lusitana.className} m-4 h-44 border-2 border-gray-300 p-3 text-2xl  text-blue-500 lg:m-4 lg:p-4`}>
               <span> Hello there, </span>
               Welcome XueJi 👋
             </h1>
           </div>
+          {/* 示例：环境变量 */}
+          <div>服务端环境变量（服务端组件及api中可用）：{process.env.ENV_VARIABLE}</div>
+          <div>公共环境变量：{process.env.NEXT_PUBLIC_ENV_VARIABLE}</div>
           <div id="hero" className="rounded">
             <div className="text-container">
               <h2>
