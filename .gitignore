@@ -64,8 +64,8 @@ Thumbs.db
 .github/instructions/nx.instructions.md
 
 # Next.js
-.next/
-out/
+.next
+out
 test-output
 
 
@@ -77,4 +77,3 @@ test-output
 
 # typescript
 *.tsbuildinfo
-
