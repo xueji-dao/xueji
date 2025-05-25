@@ -1,8 +1,14 @@
+import { Metadata } from 'next'
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import { HelloServer, SemanticUi } from '@xueji/ui'
 
 import { lusitana } from '@/styles/fonts'
 import HelloWorld from '@/app/components/hello-world'
+
+export const metadata: Metadata = {
+  title: '示例页面',
+  description: '示例页面',
+}
 
 export default function Index() {
   /*
