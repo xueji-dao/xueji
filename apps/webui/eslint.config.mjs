@@ -2,6 +2,7 @@ import { dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { FlatCompat } from '@eslint/eslintrc'
 import js from '@eslint/js'
+import tailwind from '@hyoban/eslint-plugin-tailwindcss'
 import nx from '@nx/eslint-plugin'
 import jestDom from 'eslint-plugin-jest-dom'
 import testingLibrary from 'eslint-plugin-testing-library'
@@ -16,11 +17,10 @@ const compat = new FlatCompat({
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-console.log(__dirname)
-
 const config = [
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
   ...baseConfig,
+  ...tailwind.configs['flat/recommended'],
   ...nx.configs['flat/react-typescript'],
   ...nx.configs['flat/react-jsx'],
   {

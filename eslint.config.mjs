@@ -1,4 +1,3 @@
-import tailwind from '@hyoban/eslint-plugin-tailwindcss'
 import nx from '@nx/eslint-plugin'
 import eslintPluginPrettier from 'eslint-plugin-prettier/recommended'
 
@@ -8,7 +7,6 @@ const config = [
   ...nx.configs['flat/base'],
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
-  ...tailwind.configs['flat/recommended'],
   eslintPluginPrettier,
   {
     ignores: eslintIgnores,
@@ -41,7 +39,7 @@ const config = [
       'import/resolver': {
         typescript: {
           alwaysTryTypes: true,
-          project: './tsconfig.base.json',
+          project: ['./tsconfig.base.json', 'libs/ui/tsconfig.storybook.json'],
         },
         node: true,
       },
