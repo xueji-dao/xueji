@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
     svgr: false,
   },
   rewrites: async () => [
+    { source: '/blog', destination: '/news' },
     { source: '/health', destination: '/api/health' },
     { source: '/ping', destination: '/api/health' },
   ],

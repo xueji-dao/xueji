@@ -1,7 +1,9 @@
 import { Metadata } from 'next'
 // eslint-disable-next-line @nx/enforce-module-boundaries
-import { HelloServer, SemanticUi } from '@xueji/ui'
+import { Button, HelloServer, SemanticUi } from '@xueji/ui'
 
+import { LP_GRID_ITEMS } from '@/components/lp-items'
+import Nav from '@/components/Nav'
 import { lusitana } from '@/styles/fonts'
 import HelloWorld from '@/app/components/hello-world'
 
@@ -20,6 +22,7 @@ export default function Index() {
     <div>
       <div className="wrapper">
         <div className="container">
+          <Nav />
           <div id="welcome">
             <h1
               className={`${lusitana.className} m-4 h-44 border-2 border-gray-300 p-3 text-2xl  text-blue-500 lg:m-4 lg:p-4`}>
@@ -56,7 +59,36 @@ export default function Index() {
               </svg>
             </div>
           </div>
-
+          <section className="bg-white dark:bg-gray-900">
+            <div className="mx-auto grid max-w-(--breakpoint-xl) px-4 py-8 text-center lg:py-16">
+              <div className="mx-auto place-self-center">
+                <h1 className="mb-4 max-w-2xl text-4xl leading-none font-extrabold tracking-tight md:text-5xl xl:text-6xl dark:text-white">
+                  Next.js Enterprise Boilerplate
+                </h1>
+                <p className="mb-6 max-w-2xl font-light text-gray-500 md:text-lg lg:mb-8 lg:text-xl dark:text-gray-400">
+                  Next.js boilerplate!
+                </p>
+                <Button intent="primary" href="https://github.com/xueji-dao/xueji" className="mr-3">
+                  GitHub
+                </Button>
+              </div>
+            </div>
+          </section>
+          <section className="bg-white dark:bg-gray-900">
+            <div className="mx-auto max-w-(--breakpoint-xl) px-4 py-8 sm:py-16 lg:px-6">
+              <div className="justify-center space-y-8 md:grid md:grid-cols-2 md:gap-12 md:space-y-0 lg:grid-cols-3">
+                {LP_GRID_ITEMS.map((singleItem) => (
+                  <div key={singleItem.title} className="flex flex-col items-center justify-center text-center">
+                    <div className="bg-primary-100 dark:bg-primary-900 mb-4 flex size-10 items-center justify-center rounded-full p-1.5 text-blue-700 lg:size-12">
+                      {singleItem.icon}
+                    </div>
+                    <h3 className="mb-2 text-xl font-bold dark:text-white">{singleItem.title}</h3>
+                    <p className="text-gray-500 dark:text-gray-400">{singleItem.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
           <div id="middle-content">
             <div id="learning-materials" className="rounded shadow">
               <h2>Learning materials</h2>

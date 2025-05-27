@@ -18,7 +18,7 @@ jobs:
         with:
           filter: tree:0
           fetch-depth: 0
-
+      - run: echo "node_version=$(cat .github/nodejs.version)" >> $GITHUB_ENV
       - uses: pnpm/action-setup@v4
         name: Install pnpm
         with:
@@ -32,7 +32,8 @@ jobs:
       # - run: pnpm dlx nx-cloud start-ci-run --distribute-on="3 linux-medium-js" --stop-agents-after="e2e-ci"
 
       # Cache node_modules
-      - uses: actions/setup-node@v4
+      - name: "use node ${{ env.node_version }}"
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'pnpm'

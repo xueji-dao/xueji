@@ -68,24 +68,6 @@ body {
   line-height: inherit;
   margin: 0;
 }
-h1,
-h2,
-p,
-pre {
-  margin: 0;
-}
-*,
-::before,
-::after {
-  box-sizing: border-box;
-  border-width: 0;
-  border-style: solid;
-  border-color: currentColor;
-}
-a {
-  color: inherit;
-  text-decoration: inherit;
-}
 pre {
   font-family:
     ui-monospace,

@@ -2,3 +2,4 @@
 
 export * from './components/semantic-ui'
 export * from './components/hello-server'
+export * from './components/Button/Button'
