@@ -1,6 +1,9 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { getPostWords, readingTime } from '@xueji/utils'
+
 import { getAllPosts, getPostBySlug } from '@/lib/blog/api'
+import markdownToHtml from '@/lib/blog/markdownToHtml'
 import { CMS_NAME } from '@/lib/constants'
 
 import Alert from '../../_components/alert'
@@ -8,7 +11,6 @@ import Container from '../../_components/container'
 import Header from '../../_components/header'
 import { PostBody } from '../../_components/post-body'
 import { PostHeader } from '../../_components/post-header'
-import { getPostWords, readingTime } from '@xueji/utils'
 
 type Params = {
   params: {
@@ -17,8 +19,7 @@ type Params = {
 }
 
 export default async function Post({ params }: Params) {
-  // import markdownToHtml from '@/lib/blog/markdownToHtml'
-  // const content = await markdownToHtml(post.content || '')
+  const content = await markdownToHtml(post.content || '')
   const post = getPostBySlug(params.slug)
 
   if (!post) {
@@ -42,7 +43,8 @@ export default async function Post({ params }: Params) {
         <Header />
         <article className="mb-32">
           <PostHeader {...meta} />
-          <PostBody content={post.content} />
+          {/* <PostBody content={post.content} /> */}
+          <PostBody content={content} />
         </article>
       </Container>
     </main>

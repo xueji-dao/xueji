@@ -3,6 +3,9 @@
   "include": [],
   "references": [
     {
+      "path": "../../apps/webui"
+    },
+    {
       "path": "./tsconfig.lib.json"
     },
     {

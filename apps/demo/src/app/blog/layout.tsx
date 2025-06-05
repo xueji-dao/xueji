@@ -36,7 +36,7 @@ export default function RootLayout({
       {/* <ScrollYIndicator />
         <ThemeSwitcher />
         <LocaleSwitcher /> */}
-      <div className="">{children}</div>
+      <div className="min-h-screen">{children}</div>
       <Footer />
     </main>
   )

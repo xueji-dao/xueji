@@ -1,8 +1,9 @@
+import { type Author } from '@/types/author'
+
 import Avatar from './avatar'
 import CoverImage from './cover-image'
 import DateFormatter from './date-formatter'
 import { PostTitle } from './post-title'
-import { type Author } from '@/types/author'
 
 type Props = {
   title: string
@@ -18,7 +19,7 @@ export function PostHeader({ title, coverImage, date, author, words, readTime }:
     <>
       <PostTitle>{title}</PostTitle>
       <div className="mb-12 flex ">
-        <p className="mr-12 mt-2 text-[13px] text-gray-500 dark:text-gray-300">字数：{words}</p>
+        <p className="mt-2 mr-12 text-[13px] text-gray-500 dark:text-gray-300">字数：{words}</p>
         <p className="mt-2 text-[13px] text-gray-500 dark:text-gray-300">预计阅读时间：{readTime}分钟</p>
       </div>
       <div className="hidden md:mb-12 md:block">

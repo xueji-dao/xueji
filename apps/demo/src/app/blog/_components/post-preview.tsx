@@ -1,6 +1,8 @@
-import { type Author } from '@/types/author'
 // import Link from 'next/link'
 import { Link } from 'next-view-transitions'
+
+import { type Author } from '@/types/author'
+
 import Avatar from './avatar'
 import CoverImage from './cover-image'
 import DateFormatter from './date-formatter'
@@ -28,7 +30,7 @@ export function PostPreview({ title, coverImage, date, excerpt, author, slug }: 
       <div className="mb-4 text-lg text-gray-500">
         <DateFormatter dateString={date} />
       </div>
-      <p className="mb-4 text-pretty text-lg leading-relaxed">{excerpt}</p>
+      <p className="mb-4 text-lg leading-relaxed text-pretty">{excerpt}</p>
       <Avatar name={author.name} picture={author.picture} />
     </div>
   )

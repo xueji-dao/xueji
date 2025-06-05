@@ -1,12 +1,12 @@
 // import Link from 'next/link'
-import { Link } from 'next-view-transitions'
 import { useTranslations } from 'next-intl'
+import { Link } from 'next-view-transitions'
 
 const Header = () => {
   const t = useTranslations('blog')
 
   return (
-    <h2 className="mb-20 mt-8 flex items-center text-2xl font-bold leading-tight tracking-tight md:text-4xl md:tracking-tighter">
+    <h2 className="mt-8 mb-20 flex items-center text-2xl leading-tight font-bold tracking-tight md:text-4xl md:tracking-tighter">
       <Link href="/blog" className="o-blog-title hover:scale-[1.02] hover:underline">
         🗺️{t('title')}
       </Link>

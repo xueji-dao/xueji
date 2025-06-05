@@ -13,7 +13,7 @@ ogImage:
 
 ## 组件
 
-<Counter />
+<!-- <Counter /> -->
 
 This is an example post, with a [link](https://nextjs.org) and a React component:
 

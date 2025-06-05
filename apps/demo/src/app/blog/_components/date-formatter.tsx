@@ -1,4 +1,6 @@
+// import { parseISO, format } from 'date-fns'
 import { parseISO } from 'date-fns'
+// eslint-disable-next-line import/named
 import { useFormatter, useNow } from 'next-intl'
 
 type Props = {
@@ -9,7 +11,6 @@ const DateFormatter = ({ dateString }: Props) => {
   const format = useFormatter()
   const now = useNow()
   const date = parseISO(dateString)
-  // import { parseISO, format } from 'date-fns'
   // return <time dateTime={dateString}>{format(date, 'LLLL	d, yyyy')}</time>
   return (
     <time dateTime={dateString}>

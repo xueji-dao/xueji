@@ -1,7 +1,8 @@
-import { cn } from '@/lib/utils'
-import { Link } from 'next-view-transitions'
 // import Link from 'next/link'
 import Image from 'next/image'
+import { Link } from 'next-view-transitions'
+
+import { cn } from '@/lib/utils'
 
 type Props = {
   title: string
@@ -15,7 +16,7 @@ const CoverImage = ({ title, src, slug }: Props) => {
       src={src}
       priority={true}
       alt={`Cover Image for ${title}`}
-      className={cn('shadow-sm w-full', {
+      className={cn('w-full shadow-sm', {
         'hover:shadow-lg transition-shadow duration-200': slug,
       })}
       width={1300}
