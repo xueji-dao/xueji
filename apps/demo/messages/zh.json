@@ -1,0 +1,59 @@
+{
+  "AppLayout": {
+    "home": "首页",
+    "logout": "退出",
+    "profile": "简介"
+  },
+  "HomePage": {
+    "title": "首页",
+    "name": "学记助理",
+    "slogan": "一款基于语义对话生成式的学习与知识管理工具!",
+    "start": "开始使用",
+    "blog": {
+      "title": "博客",
+      "desc": "了解产品及社区的最新动态"
+    },
+    "demo": {
+      "title": "示例",
+      "desc": "通过示例学习开发"
+    },
+    "csdn": {
+      "title": "CSDN",
+      "desc": "个人博客"
+    },
+    "dao": {
+      "title": "学记 DAO",
+      "desc": "加入开放知识社区"
+    }
+  },
+  "LocaleSwitcher": {
+    "zh": "中文",
+    "en": "English",
+    "label": "语言"
+  },
+  "LoginPage": {
+    "credentials": "用户名密码: jane@doe.com / next-intl",
+    "description": "请输入详情",
+    "email": "Email",
+    "invalidCredentials": "用户名密码错误",
+    "invalidEmail": "邮箱错误",
+    "invalidPassword": "密码错误",
+    "login": "登录",
+    "password": "密码",
+    "title": "欢迎回来"
+  },
+  "AboutPage": {
+    "title": "关于",
+    "message": "{name}，你好! (e.g. '{name'})",
+    "followers": "你{count, plural, =0 {还没有} =1 {有一个} other {有 # } }关注者。",
+    "birthday": "这是{gender, select, female {她} male {他} other {他们}} {year, selectordinal, one {#st} two {#nd} few {#rd} other {#th}} birthday!",
+    "guidelines": "Please refer to <guidelines>the guidelines</guidelines>. Go to <profile>my blog</profile>",
+    "ordered": "下单日期 {orderDate, date, medium} {orderDate, date, ::yyyyMMddmmss}"
+  },
+  "blog": {
+    "title": "AaronZZH."
+  },
+  "demo": {
+    "play": "点击播放"
+  }
+}

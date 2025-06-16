@@ -1,6 +1,6 @@
 'use client'
 
-import React, { PropsWithChildren, useEffect, useState } from 'react'
+import { PropsWithChildren, useEffect, useState } from 'react'
 import Link, { LinkProps } from 'next/link'
 import { usePathname } from 'next/navigation'
 

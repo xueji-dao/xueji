@@ -1,6 +1,8 @@
 import { Metadata } from 'next'
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import { Button, HelloServer, SemanticUi } from '@xueji/ui'
+import clsx from 'clsx'
+import { useTranslations } from 'next-intl'
 
 import { LP_GRID_ITEMS } from '@/components/lp-items'
 import Nav from '@/components/Nav'
@@ -13,6 +15,8 @@ export const metadata: Metadata = {
 }
 
 export default function Index() {
+  const t = useTranslations('HomePage')
+
   /*
    * Replace the elements below with your own.
    *
@@ -25,8 +29,11 @@ export default function Index() {
           <Nav />
           <div id="welcome">
             <h1
-              className={`${lusitana.className} m-4 h-44 border-2 border-gray-300 p-3 text-2xl  text-blue-500 lg:m-4 lg:p-4`}>
-              <span> Hello there, </span>
+              className={clsx(
+                lusitana.className,
+                'm-4 h-44 border-2 border-gray-300 p-3 text-2xl  text-blue-500 lg:m-4 lg:p-4',
+              )}>
+              <span> Hello there, {t('title')}</span>
               Welcome XueJi 👋
             </h1>
           </div>

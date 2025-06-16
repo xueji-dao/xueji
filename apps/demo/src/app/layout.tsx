@@ -1,7 +1,16 @@
 import type { Metadata, Viewport } from 'next'
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter'
+import { ThemeProvider } from '@mui/material/styles'
+import { NextIntlClientProvider } from 'next-intl'
+import { getLocale } from 'next-intl/server'
+
+import { roboto } from '@/styles/fonts'
 
 import '@/styles/global.css'
 import '@/styles/style.scss'
+
+import theme from './theme'
 
 export const viewport: Viewport = {
   themeColor: 'black',
@@ -58,10 +67,18 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const locale = await getLocale()
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang={locale == 'en' ? 'en' : 'zh-Hans-CN'} className={roboto.variable}>
+      <body>
+        <NextIntlClientProvider>
+          {/* enableCssLayer=true：生成的样式在 @layer mui 层中，CSS Modules、Tailwind CSS 或无@layer的纯CSS时，会覆盖生成的样式。 */}
+          <AppRouterCacheProvider options={{ enableCssLayer: false }}>
+            <ThemeProvider theme={theme}>{children}</ThemeProvider>
+          </AppRouterCacheProvider>
+        </NextIntlClientProvider>
+      </body>
     </html>
   )
 }

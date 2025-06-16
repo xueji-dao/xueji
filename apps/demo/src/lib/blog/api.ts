@@ -14,7 +14,7 @@ function checkFileExists(path: string) {
   try {
     fs.accessSync(path)
     return true
-  } catch (error) {
+  } catch {
     return false
   }
 }
@@ -28,7 +28,7 @@ export function getPostBySlug(slug: string) {
   let fileContents = null
   try {
     fileContents = fs.readFileSync(fullPath, 'utf8')
-  } catch (error) {
+  } catch {
     return null
   }
   const { data, content } = matter(fileContents)
