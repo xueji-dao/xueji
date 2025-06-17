@@ -19,8 +19,9 @@ type Params = {
 }
 
 export default async function Post({ params }: Params) {
-  const content = await markdownToHtml(post.content || '')
-  const post = getPostBySlug(params.slug)
+  const { slug } = await params
+  const post = getPostBySlug(slug)
+  const content = await markdownToHtml(post?.content || '')
 
   if (!post) {
     return notFound()
@@ -43,7 +44,7 @@ export default async function Post({ params }: Params) {
         <Header />
         <article className="mb-32">
           <PostHeader {...meta} />
-          {/* <PostBody content={post.content} /> */}
+          <PostBody content={post.content} />
           <PostBody content={content} />
         </article>
       </Container>
@@ -52,7 +53,8 @@ export default async function Post({ params }: Params) {
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const post = getPostBySlug(params.slug)
+  const { slug } = await params
+  const post = getPostBySlug(slug)
   if (!post) {
     return notFound()
   }

@@ -28,6 +28,28 @@ const nextConfig: NextConfig = {
     { source: '/health', destination: '/api/health' },
     { source: '/ping', destination: '/api/health' },
   ],
+  async headers() {
+    return [
+      {
+        source: '/about',
+        headers: [
+          {
+            key: 'X-About-Custom-Header',
+            value: 'about_header_value',
+          },
+        ],
+      },
+      {
+        source: '/demo/news/:id',
+        headers: [
+          {
+            key: 'X-News-Custom-Header',
+            value: 'news_header_value',
+          },
+        ],
+      },
+    ]
+  },
 }
 
 const plugins = [withNx, withNextIntl]

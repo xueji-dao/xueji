@@ -16,9 +16,7 @@ function Code({ children }: CodeProps) {
 export default function About() {
   const t = useTranslations('AboutPage') // t('About.title');
   const format = useFormatter()
-  const now = useNow({
-    updateInterval: 1000 * 10,
-  })
+  const now = useNow()
   const dateTime = new Date('2024-09-04T07:12:52.516Z')
   const items = ['HTML', 'CSS', 'JavaScript']
   return (
