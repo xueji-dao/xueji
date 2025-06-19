@@ -1,5 +1,3 @@
-import './blog-styles.css'
-
 import type { Metadata } from 'next'
 import { ViewTransitions } from 'next-view-transitions'
 
@@ -10,8 +8,7 @@ import LocaleSwitcher from '@/components/LocaleSwitcher'
 import ScrollYIndicator from '@/components/motion/ScrollYIndicator'
 
 import Footer from './_components/footer'
-
-// import { ThemeSwitcher } from './_components/theme-switcher'
+import { ThemeSwitcher } from './_components/theme-switcher'
 
 export const metadata: Metadata = {
   title: `Blog Example with ${CMS_NAME}`,
@@ -31,7 +28,7 @@ export default function RootLayout({
       <main className={cn(inter.className, 'dark:bg-slate-900 dark:text-slate-400')}>
         <ScrollYIndicator />
 
-        {/* <ThemeSwitcher /> */}
+        <ThemeSwitcher />
         <LocaleSwitcher />
         <div className="min-h-screen">{children}</div>
         <Footer />
