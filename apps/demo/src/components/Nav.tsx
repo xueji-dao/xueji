@@ -34,6 +34,16 @@ const Nav = () => (
           Dynamic Route
         </ActiveLink>
       </li>
+      <li>
+        <ActiveLink activeClassName="active" className="nav-link" href="/lang/en">
+          Lang
+        </ActiveLink>
+      </li>
+      <li>
+        <ActiveLink activeClassName="active" className="nav-link" href="/img">
+          nextImage
+        </ActiveLink>
+      </li>
     </ul>
   </nav>
 )

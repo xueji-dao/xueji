@@ -81,6 +81,19 @@ body {
   line-height: inherit;
   margin: 0;
 }
+
+a {
+  cursor: pointer;
+  color: #0076ff;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-bottom: none;
+}
+
+a:hover {
+  border-bottom: 1px solid #0076ff;
+}
+
 pre {
   font-family:
     ui-monospace,
