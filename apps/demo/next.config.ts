@@ -7,6 +7,16 @@ const withNextIntl = createNextIntlPlugin()
 const nextConfig: NextConfig = {
   // See: https://nx.dev/recipes/next/next-config-setup
   images: {
+    localPatterns: [
+      {
+        pathname: '/api/image/**',
+        search: '',
+      },
+      {
+        pathname: '/images/**',
+        search: '',
+      },
+    ],
     remotePatterns: [
       {
         protocol: 'https',

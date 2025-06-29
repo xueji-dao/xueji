@@ -3,11 +3,6 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme {
   --font-display: 'Satoshi', 'sans-serif';
   --breakpoint-3xl: 1920px;
@@ -33,6 +28,10 @@
   --font-mono: var(--font-geist-mono);
 }
 
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -50,9 +49,18 @@
   width: fit-content;
 }
 
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
+  font-family: inherit;
+  line-height: inherit;
+  margin: 0;
 }
 
 html {
@@ -76,15 +84,10 @@ html {
   tab-size: 4;
   scroll-behavior: smooth;
 }
-body {
-  font-family: inherit;
-  line-height: inherit;
-  margin: 0;
-}
 
 a {
   cursor: pointer;
-  color: #0076ff;
+  color: inherit;
   text-decoration: none;
   transition: all 0.2s ease;
   border-bottom: none;
