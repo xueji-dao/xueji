@@ -1,11 +1,17 @@
 import type { NextConfig } from 'next'
+import createMDXPlugin from '@next/mdx'
 import { composePlugins, withNx } from '@nx/next'
 import createNextIntlPlugin from 'next-intl/plugin'
 
 const withNextIntl = createNextIntlPlugin()
+const withMDX = createMDXPlugin()
 
 const nextConfig: NextConfig = {
   // See: https://nx.dev/recipes/next/next-config-setup
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
+  experimental: {
+    mdxRs: true,
+  },
   images: {
     localPatterns: [
       {
@@ -14,6 +20,10 @@ const nextConfig: NextConfig = {
       },
       {
         pathname: '/images/**',
+        search: '',
+      },
+      {
+        pathname: '/blog/**',
         search: '',
       },
     ],
@@ -69,6 +79,6 @@ const nextConfig: NextConfig = {
   },
 }
 
-const plugins = [withNx, withNextIntl]
+const plugins = [withNx, withNextIntl, withMDX]
 
 module.exports = composePlugins(...plugins)(nextConfig)
