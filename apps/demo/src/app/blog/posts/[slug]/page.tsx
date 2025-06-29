@@ -44,7 +44,7 @@ export default async function Post({ params }: Params) {
         <Header />
         <article className="mb-32">
           <PostHeader {...meta} />
-          <PostBody content={post.content} />
+          {/* <PostBody content={post.content} /> */}
           <PostBody content={content} />
         </article>
       </Container>

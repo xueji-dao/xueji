@@ -2,9 +2,16 @@ import type { NextConfig } from 'next'
 import createMDXPlugin from '@next/mdx'
 import { composePlugins, withNx } from '@nx/next'
 import createNextIntlPlugin from 'next-intl/plugin'
+import remarkMath from 'remark-math'
 
 const withNextIntl = createNextIntlPlugin()
-const withMDX = createMDXPlugin()
+const withMDX = createMDXPlugin({
+  extension: /\.(md|mdx)$/,
+  options: {
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [],
+  },
+})
 
 const nextConfig: NextConfig = {
   // See: https://nx.dev/recipes/next/next-config-setup
