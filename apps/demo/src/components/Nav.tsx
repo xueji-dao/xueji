@@ -7,13 +7,14 @@ const Nav = () => (
     <style jsx global>{`
       .nav-link {
         text-decoration: none;
+        padding: 4px 10px;
       }
 
       .active:after {
         content: ' (current page)';
       }
     `}</style>
-    <ul className="nav">
+    <ul className="flex items-center">
       <li>
         <ActiveLink activeClassName="active" className="nav-link" href="/">
           Home

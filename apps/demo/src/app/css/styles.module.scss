@@ -1,0 +1,16 @@
+.btnSkeuomorphic {
+  --text-opacity: 1;
+  background-image: linear-gradient(180deg,#fff,#f5f5fa);
+  border-radius: 9999px;
+  box-shadow: 0 4px 11px 0 rgba(37,44,97,.15),0 1px 3px 0 rgba(93,100,148,.2);
+  color: #484c7a;
+  color: rgba(72,76,122,var(--text-opacity));
+  cursor: pointer;
+  font-family: Hind,system-ui,BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+  font-weight: 600;
+  transition: all .2s ease-out;
+
+  &:hover {
+    box-shadow: 0 8px 22px 0 rgba(37,44,97,.15),0 4px 6px 0 rgba(93,100,148,.2);
+  }
+}

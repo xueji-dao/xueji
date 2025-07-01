@@ -15,7 +15,7 @@ function Code({ children }: CodeProps) {
 
 export default function About() {
   console.log('test log from page.tsx')
-  console.error('test error log from page.tsx')
+  // console.error('test error log from page.tsx')
 
   const t = useTranslations('AboutPage') // t('About.title');
   const format = useFormatter()
