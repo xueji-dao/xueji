@@ -15,9 +15,8 @@ ogImage:
 
 This is an example post, with a [link](https://nextjs.org) and a React component:
 
-<TestComponent name="next-mdx-remote" />
-
 <Greeting person={{ name: "Alice" }}/>
+1 + 1 = {1+1}
 
 The title and description are pulled from the MDX file and processed using `gray-matter`. Additionally, links are rendered using a custom component passed to `next-mdx-remote`.
 
@@ -31,7 +30,7 @@ Here is also some **styled text**.
 This is another inline expression $$\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$$ followed by a normal expression, which align to the **_middle_** of the content:
 
 $$
-\begin{array}{c}
+\begin{array}{c c c}
 \nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} &
 = \frac{4\pi}{c}\vec{\mathbf{j}}    \nabla \cdot \vec{\mathbf{E}} & = 4 \pi \rho \\
 \nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} & = \vec{\mathbf{0}} \\

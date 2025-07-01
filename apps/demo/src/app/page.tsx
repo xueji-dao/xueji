@@ -12,6 +12,12 @@ import HelloWorld from '@/app/components/hello-world'
 export const metadata: Metadata = {
   title: '示例页面',
   description: '示例页面',
+  openGraph: {
+    title: 'Next.js',
+    description: 'The React Framework for the Web',
+    url: 'https://nextjs.org',
+    siteName: 'Next.js',
+  },
 }
 
 export default function Index() {
