@@ -14,6 +14,9 @@ function Code({ children }: CodeProps) {
 }
 
 export default function About() {
+  console.log('test log from page.tsx')
+  console.error('test error log from page.tsx')
+
   const t = useTranslations('AboutPage') // t('About.title');
   const format = useFormatter()
   const now = useNow()
@@ -23,7 +26,11 @@ export default function About() {
     <div className={styles.container}>
       <LocaleSwitcher />
       <h1 className="text-4xl font-semibold tracking-tight">{t('title')}</h1>
-
+      <div data-test-id="1" data-custom="1a">
+        <div data-custom="2">
+          <h1 data-testid="3">Hello World!</h1>
+        </div>
+      </div>
       <div className={styles.card}>
         <h1>Path: /about</h1>
         <hr className={styles.hr} />

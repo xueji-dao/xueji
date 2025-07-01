@@ -19,6 +19,20 @@ const nextConfig: NextConfig = {
   experimental: {
     mdxRs: true,
   },
+  compiler: {
+    // Remove properties matching the default regex ^data-test
+    // Or, specify a custom list of regular expressions to match properties to remove.
+    // The regexes defined here are processed in Rust so the syntax is different from
+    // JavaScript `RegExp`s. See https://docs.rs/regex.
+    // reactRemoveProperties: { properties: ['^data-custom$'] },
+    // https://nextjs.org/docs/architecture/nextjs-compiler#remove-react-properties
+    reactRemoveProperties: true,
+
+    // Remove `console.*` output except `console.error`
+    // removeConsole: {
+    //   exclude: ['error'],
+    // },
+  },
   images: {
     localPatterns: [
       {
@@ -58,7 +72,7 @@ const nextConfig: NextConfig = {
     svgr: false,
   },
   rewrites: async () => [
-    { source: '/blog', destination: '/news' },
+    { source: '/posts', destination: '/blog' },
     { source: '/health', destination: '/api/health' },
     { source: '/ping', destination: '/api/health' },
   ],
