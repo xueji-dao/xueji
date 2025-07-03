@@ -1,5 +1,6 @@
 'use client'
 
+//Lazy load Client Components and libraries
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 

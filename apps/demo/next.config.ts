@@ -32,6 +32,7 @@ const nextConfig: NextConfig = {
     // removeConsole: {
     //   exclude: ['error'],
     // },
+    emotion: true,
   },
   images: {
     localPatterns: [

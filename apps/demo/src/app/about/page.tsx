@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useFormatter, useNow, useTranslations } from 'next-intl'
 
 import LocaleSwitcher from '@/components/LocaleSwitcher'
+import Nav from '@/components/Nav'
 
 type CodeProps = {
   children: React.ReactNode
@@ -25,6 +26,7 @@ export default function About() {
   return (
     <div className={styles.container}>
       <LocaleSwitcher />
+      <Nav />
       <h1 className="text-4xl font-semibold tracking-tight">{t('title')}</h1>
       <div data-test-id="1" data-custom="1a">
         <div data-custom="2">
