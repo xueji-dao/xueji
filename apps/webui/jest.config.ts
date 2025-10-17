@@ -1,7 +1,9 @@
+import type { Config } from 'jest'
+
 const { pathsToModuleNameMapper } = require('ts-jest')
 const { compilerOptions } = require('./tsconfig.json')
 
-const config = {
+const config: Config = {
   displayName: '@xueji/webui',
   preset: '../../jest.preset.js',
   transform: {

@@ -24,7 +24,7 @@ const config = [
   ...nx.configs['flat/react-typescript'],
   ...nx.configs['flat/react-jsx'],
   {
-    ignores: ['.next/**/*'],
+    ignores: ['.next/**/*', '**/out-tsc'],
   },
   // --- Testing Rules ---
   {
