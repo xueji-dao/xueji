@@ -17,5 +17,6 @@
   },
   "i18n-ally.localesPaths": ["apps/webui/messages", "apps/webui/src/i18n", "apps/demo/messages", "apps/demo/src/i18n"],
   "cSpell.words": ["conventionalcommits", "webui", "xueji"],
-  "tailwindCSS.experimental.classRegex": [["className\\s*:\\s*['\"]([^'\"]*)['\"]"]]
+  "tailwindCSS.experimental.classRegex": [["className\\s*:\\s*['\"]([^'\"]*)['\"]"]],
+  "yaml.maxItemsComputed": 8000
 }
