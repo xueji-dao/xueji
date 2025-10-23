@@ -32,7 +32,11 @@ export default async function GuestbookPage({ entries }: { entries: EntryType[] 
         <EntryForm />
       </div>
 
-      <div className="mt-4 space-y-8 px-2">{entries?.map((entry) => <EntryItem key={entry.id} entry={entry} />)}</div>
+      <div className="mt-4 space-y-8 px-2">
+        {entries?.map((entry) => (
+          <EntryItem key={entry.id} entry={entry} />
+        ))}
+      </div>
     </main>
   )
 }

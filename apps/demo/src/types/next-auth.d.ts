@@ -1,4 +1,5 @@
 import 'next-auth/jwt'
+
 import { NextRequest } from 'next/server'
 
 // Read more at: https://next-auth.js.org/getting-started/typescript#module-augmentation
@@ -10,8 +11,8 @@ declare module 'next-auth/jwt' {
   }
 }
 
-declare module "next/server" {
+declare module 'next/server' {
   interface NextRequest {
-      auth: any
+    auth: any
   }
 }
