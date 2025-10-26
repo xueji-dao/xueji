@@ -9,6 +9,10 @@ declare namespace NodeJS {
     readonly EMAIL_SERVER: string
     readonly EMAIL_FROM: string
 
+    readonly NEO4J_URI: string
+    readonly NEO4J_USER: string
+    readonly NEO4J_PASSWORD: string
+
     readonly ANALYZE: string
   }
 }

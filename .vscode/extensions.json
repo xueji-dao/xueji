@@ -4,6 +4,21 @@
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
     "ms-playwright.playwright",
-    "firsttris.vscode-jest-runner"
+    "firsttris.vscode-jest-runner",
+    "bradlc.vscode-tailwindcss",
+    "dsznajder.es7-react-js-snippets",
+    "prisma.prisma",
+    "graphql.vscode-graphql",
+    "apollographql.vscode-apollo",
+    "christian-kohler.npm-intellisense",
+    "zignd.html-css-class-completion",
+    "eamodio.gitlens",
+    "streetsidesoftware.code-spell-checker",
+    "editorconfig.editorconfig",
+    "aaron-bond.better-comments",
+    "formulahendry.auto-close-tag",
+    "formulahendry.auto-rename-tag",
+    "yzhang.markdown-all-in-one",
+    "davidanson.vscode-markdownlint"
   ]
 }
