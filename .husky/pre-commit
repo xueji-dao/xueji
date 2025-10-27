@@ -1,1 +1,1 @@
-npx nx affected -t lint --projects=webui
+npx nx affected -t webui:lint
