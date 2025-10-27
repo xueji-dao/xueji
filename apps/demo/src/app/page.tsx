@@ -1,5 +1,4 @@
 import { Metadata } from 'next'
-// eslint-disable-next-line @nx/enforce-module-boundaries
 import { Button, HelloServer, SemanticUi } from '@xueji/ui'
 import clsx from 'clsx'
 import { useTranslations } from 'next-intl'

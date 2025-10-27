@@ -1,10 +1,12 @@
 import type { Metadata, Viewport } from 'next'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter'
+import CssBaseline from '@mui/material/CssBaseline'
 import { ThemeProvider } from '@mui/material/styles'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale } from 'next-intl/server'
 
 import { SWRProvider } from '@/lib/swr-config'
+import { GlobalState } from '@/components/global-state'
 import { roboto } from '@/styles/fonts'
 
 import '@/styles/global.css'
@@ -76,7 +78,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <SWRProvider>
             {/* enableCssLayer=true：生成的样式在 @layer mui 层中，CSS Modules、Tailwind CSS 或无@layer的纯CSS时，会覆盖生成的样式。 */}
             <AppRouterCacheProvider options={{ enableCssLayer: false }}>
-              <ThemeProvider theme={theme}>{children}</ThemeProvider>
+              <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <GlobalState>{children}</GlobalState>
+              </ThemeProvider>
             </AppRouterCacheProvider>
           </SWRProvider>
         </NextIntlClientProvider>
