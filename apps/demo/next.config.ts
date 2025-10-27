@@ -60,9 +60,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  nx: {
-    svgr: false,
-  },
   rewrites: async () => [
     { source: '/posts', destination: '/blog' },
     { source: '/health', destination: '/api/health' },
@@ -80,7 +77,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: '/demo/news/:id',
+        source: '/news/:id',
         headers: [
           {
             key: 'X-News-Custom-Header',

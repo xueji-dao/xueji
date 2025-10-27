@@ -4,6 +4,7 @@ import { ThemeProvider } from '@mui/material/styles'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale } from 'next-intl/server'
 
+import { SWRProvider } from '@/lib/swr-config'
 import { roboto } from '@/styles/fonts'
 
 import '@/styles/global.css'
@@ -72,10 +73,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang={locale == 'en' ? 'en' : 'zh-Hans-CN'} className={roboto.variable}>
       <body>
         <NextIntlClientProvider>
-          {/* enableCssLayer=true：生成的样式在 @layer mui 层中，CSS Modules、Tailwind CSS 或无@layer的纯CSS时，会覆盖生成的样式。 */}
-          <AppRouterCacheProvider options={{ enableCssLayer: false }}>
-            <ThemeProvider theme={theme}>{children}</ThemeProvider>
-          </AppRouterCacheProvider>
+          <SWRProvider>
+            {/* enableCssLayer=true：生成的样式在 @layer mui 层中，CSS Modules、Tailwind CSS 或无@layer的纯CSS时，会覆盖生成的样式。 */}
+            <AppRouterCacheProvider options={{ enableCssLayer: false }}>
+              <ThemeProvider theme={theme}>{children}</ThemeProvider>
+            </AppRouterCacheProvider>
+          </SWRProvider>
         </NextIntlClientProvider>
       </body>
     </html>
