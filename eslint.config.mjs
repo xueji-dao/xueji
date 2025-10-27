@@ -1,3 +1,4 @@
+import js from '@eslint/js'
 import nx from '@nx/eslint-plugin'
 import eslintPluginPrettier from 'eslint-plugin-prettier/recommended'
 
@@ -7,6 +8,7 @@ const config = [
   ...nx.configs['flat/base'],
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
+  js.configs.recommended,
   eslintPluginPrettier,
   {
     ignores: eslintIgnores,

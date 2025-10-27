@@ -1,35 +1,51 @@
+import { Suspense } from 'react'
+
 import { lusitana } from '@/styles/fonts'
 
-export default function Index() {
-  /*
-   * Replace the elements below with your own.
-   *
-   * Note: The corresponding styles are in the ./index.tailwind file.
-   */
-  return (
-    <div>
-      <div className="wrapper">
-        <div className="container">
-          <div id="welcome">
-            <h1
-              className={`${lusitana.className} m-4 h-44 border-2 border-gray-300 p-3 text-2xl  text-blue-500 lg:m-4 lg:p-4`}>
-              <span> Hello there, </span>
-              Welcome XueJi 👋
-            </h1>
-          </div>
-          {/* 示例：环境变量 */}
-          <div>服务端环境变量：{process.env.ENV_VARIABLE}</div>
-          <div>公共环境变量：{process.env.NEXT_PUBLIC_ENV_VARIABLE}</div>
+import { CachedTime } from './components/cached-time'
+import { DynamicTime } from './components/dynamic-time'
 
-          <p id="love">
+export default function Index() {
+  return (
+    <div className="min-h-screen bg-gray-50 py-8">
+      <div className="mx-auto max-w-4xl px-4">
+        <div id="welcome" className="mb-8 text-center">
+          <h1 className={`${lusitana.className} mb-4 text-4xl font-bold text-blue-600`}>Welcome XueJi 👋</h1>
+          <p className="text-gray-600">Next.js 16 Cache Components 演示</p>
+        </div>
+
+        <div className="mb-8 grid gap-6 md:grid-cols-2">
+          <Suspense fallback={<div className="rounded-lg border bg-gray-100 p-4">加载中...</div>}>
+            <CachedTime />
+          </Suspense>
+
+          <Suspense fallback={<div className="rounded-lg border bg-gray-100 p-4">加载中...</div>}>
+            <DynamicTime />
+          </Suspense>
+        </div>
+
+        <div className="rounded-lg bg-white p-6 shadow-sm">
+          <h2 className="mb-4 text-xl font-semibold">环境变量</h2>
+          <div className="space-y-2 text-sm">
+            <div>服务端环境变量：{process.env.ENV_VARIABLE}</div>
+            <div>公共环境变量：{process.env.NEXT_PUBLIC_ENV_VARIABLE}</div>
+          </div>
+        </div>
+
+        <div className="mt-8 space-y-4 text-center">
+          <div className="rounded-lg bg-white p-4 shadow-sm">
+            <h3 className="mb-2 font-semibold">演示页面</h3>
+            <a
+              href="/cache-demo"
+              className="inline-block rounded bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700">
+              查看完整 Cache Components 演示
+            </a>
+          </div>
+
+          <p className="flex items-center justify-center gap-2 text-gray-500">
             Carefully crafted with
-            <svg fill="currentColor" stroke="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-              />
+            <svg className="h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
             </svg>
           </p>
         </div>

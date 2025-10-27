@@ -5,9 +5,9 @@ import withBundleAnalyzer from '@next/bundle-analyzer'
 import { composePlugins, withNx } from '@nx/next'
 
 const nextConfig: NextConfig = {
-  // See: https://nx.dev/recipes/next/next-config-setup
-  nx: {
-    svgr: false,
+  // Enable Cache Components for advanced caching strategies
+  experimental: {
+    cacheComponents: true,
   },
   rewrites: async () => [
     { source: '/health', destination: '/api/health' },
