@@ -1,6 +1,5 @@
 import styles from './styles.module.scss'
 import Link from 'next/link'
-// eslint-disable-next-line import/named
 import { useFormatter, useNow, useTranslations } from 'next-intl'
 
 import LocaleSwitcher from '@/components/LocaleSwitcher'

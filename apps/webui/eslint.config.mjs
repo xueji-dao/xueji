@@ -2,6 +2,7 @@ import { dirname } from 'path'
 import { fileURLToPath } from 'url'
 import tailwind from '@hyoban/eslint-plugin-tailwindcss'
 import nextVitals from 'eslint-config-next/core-web-vitals'
+import nextTs from 'eslint-config-next/typescript'
 import jestDom from 'eslint-plugin-jest-dom'
 import testingLibrary from 'eslint-plugin-testing-library'
 import { defineConfig, globalIgnores } from 'eslint/config'
@@ -14,6 +15,7 @@ const __dirname = dirname(__filename)
 const config = defineConfig([
   ...baseConfig,
   ...nextVitals,
+  ...nextTs,
   ...tailwind.configs['flat/recommended'],
   globalIgnores([
     // Default ignores of eslint-config-next:
