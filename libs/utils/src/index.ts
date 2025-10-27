@@ -1,3 +1,3 @@
-export * from './lib/utils.ts'
-export * from './lib/zod.ts'
-export * from './lib/polyfilsResolver.ts'
+export * from './lib/utils'
+export * from './lib/zod'
+export * from './lib/polyfilsResolver'
