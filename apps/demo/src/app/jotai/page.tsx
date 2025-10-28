@@ -9,7 +9,6 @@
  * 7. 原子存储 - 持久化到 localStorage
  */
 
-import styles from './page.module.css'
 import { Suspense } from 'react'
 import { Metadata } from 'next'
 
@@ -26,16 +25,22 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>With Jotai example</h1>
-      <main className={styles.main}>
-        <Canvas />
-        <Counter />
-        <ReadonlyAtomExample />
-        <Suspense fallback={<div className="p-4 text-center">Loading async atom...</div>}>
-          <AsyncAtomExample />
-        </Suspense>
-        <ResetAtomExample />
+    <div className="min-h-screen">
+      <h1 className="mb-8 text-center text-4xl font-bold">With Jotai example</h1>
+      <main className="flex flex-col items-center gap-8 py-8">
+        <div className="h-96 w-full overflow-hidden rounded-lg border border-gray-300">
+          <Canvas />
+        </div>
+        <div className="mb-8">按住鼠标拖动生成点</div>
+
+        <div className="p-4">
+          <Counter />
+          <ReadonlyAtomExample />
+          <Suspense fallback={<div className="p-4 text-center">Loading async atom...</div>}>
+            <AsyncAtomExample />
+          </Suspense>
+          <ResetAtomExample />
+        </div>
       </main>
     </div>
   )

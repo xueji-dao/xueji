@@ -52,7 +52,7 @@ export default function Canvas() {
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
       onMouseMove={(e) => {
-        handleMouseMove([e.clientX, e.clientY - 150])
+        handleMouseMove([e.clientX, e.clientY - 104])
       }}>
       <rect width="100vw" height="100vh" fill="#eee" />
       <SvgDots />
