@@ -1,12 +1,13 @@
 'use client'
 
-import Link from './Link'
-// import ActiveLink from '@/components/ActiveLink'
-import { signIn, signOut, useSession } from 'next-auth/react'
-import { useApolloClient } from '@apollo/client'
 // import { getServerSession } from "next-auth/next"
 // import { authOptions } from 'app/api/auth/options'
 import styles from './header.module.css'
+import { useApolloClient } from '@apollo/client'
+// import ActiveLink from '@/components/ActiveLink'
+import { signIn, signOut, useSession } from 'next-auth/react'
+
+import Link from './Link'
 
 export default function Header() {
   const { data: session, status } = useSession() // 服务端组件中无法使用 useSession

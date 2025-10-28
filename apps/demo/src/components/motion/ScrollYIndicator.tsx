@@ -1,4 +1,5 @@
 'use client'
+
 import { motion, useScroll, useSpring } from 'framer-motion'
 
 export default function ScrollYIndicator() {
@@ -10,7 +11,7 @@ export default function ScrollYIndicator() {
   })
   return (
     <>
-      <motion.div className="fixed inset-x-0 top-0 h-2 origin-left bg-black opacity-50" style={{ scaleX }} />
+      <motion.div className="fixed inset-x-0 top-0 h-1 origin-left bg-black opacity-50" style={{ scaleX }} />
     </>
   )
 }

@@ -23,9 +23,7 @@ export default function Index() {
   function PersonComponent({ person }: PersonProps) {
     return (
       <li>
-        <Link href="/person/[id]" as={`/person/${person.id}`}>
-          {person.name}
-        </Link>
+        <Link href={`/person/${person.id}`}>{person.name}</Link>
       </li>
     )
   }
@@ -35,10 +33,10 @@ export default function Index() {
       <AppErrorBoundary>
         <ErrorTestComponent />
       </AppErrorBoundary>
-      
+
       <DedupeTest />
       <DedupeManualTest />
-      
+
       <h2 className="mt-6 text-xl font-bold">人员列表</h2>
       <ul>
         {data.map((p) => (
