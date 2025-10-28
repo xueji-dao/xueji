@@ -1,5 +1,3 @@
-import { ThemeSwitcher } from '../blog/_components/theme-switcher'
-
 export const metadata = {
   title: 'Image Component with Next.js',
   description:
@@ -7,10 +5,5 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="dark:bg-slate-900 dark:text-slate-400">
-      <ThemeSwitcher />
-      {children}
-    </div>
-  )
+  return <div className="dark:bg-slate-900 dark:text-slate-400">{children}</div>
 }

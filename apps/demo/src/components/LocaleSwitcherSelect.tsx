@@ -56,9 +56,9 @@ export default function LocaleSwitcherSelect({ defaultValue, items, label }: Pro
             <MenuItem value={item.value} key={item.value}>
               <div className="flex">
                 <div className="mr-2 w-4">
-                  {item.value === defaultValue && <CheckIcon className="size-5 text-slate-600" />}
+                  {item.value === defaultValue && <CheckIcon className="size-5 text-slate-600 dark:text-slate-400" />}
                 </div>
-                <span className="text-slate-900">{item.label}</span>
+                <span className="text-slate-900 dark:text-slate-100">{item.label}</span>
               </div>
             </MenuItem>
           ))}

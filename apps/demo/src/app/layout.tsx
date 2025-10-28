@@ -1,18 +1,17 @@
 import type { Metadata, Viewport } from 'next'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter'
-import CssBaseline from '@mui/material/CssBaseline'
-import { ThemeProvider } from '@mui/material/styles'
+// 移除 jotai 导入，使用客户端 Provider
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale } from 'next-intl/server'
 
+import { JotaiProvider } from '@/lib/jotai-provider'
 import { SWRProvider } from '@/lib/swr-config'
+import { ThemeProvider, ThemeSwitcher } from '@/lib/theme'
 import { GlobalState } from '@/components/global-state'
 import { roboto } from '@/styles/fonts'
 
 import '@/styles/global.css'
 import '@/styles/style.scss'
-
-import theme from './theme'
 
 export const viewport: Viewport = {
   themeColor: 'black',
@@ -78,10 +77,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <SWRProvider>
             {/* enableCssLayer=true：生成的样式在 @layer mui 层中，CSS Modules、Tailwind CSS 或无@layer的纯CSS时，会覆盖生成的样式。 */}
             <AppRouterCacheProvider options={{ enableCssLayer: false }}>
-              <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <GlobalState>{children}</GlobalState>
-              </ThemeProvider>
+              <GlobalState>
+                <JotaiProvider>
+                  <ThemeProvider>
+                    <ThemeSwitcher />
+                    {children}
+                  </ThemeProvider>
+                </JotaiProvider>
+              </GlobalState>
             </AppRouterCacheProvider>
           </SWRProvider>
         </NextIntlClientProvider>

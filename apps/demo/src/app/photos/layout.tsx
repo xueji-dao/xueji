@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import type { Metadata } from 'next'
 
-import GithubCorner from '@/components/github-corner'
+import { GithubCorner } from '@/components/github-corner'
 
 export const metadata: Metadata = {
   title: '动态路由拦截',
