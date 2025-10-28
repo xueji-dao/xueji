@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography'
 import { SemanticUi } from '@xueji/ui'
 
 import { UIContext } from '@/lib/context'
+import TsParticles from '@/components/motion/TsParticles'
 
 import { MotionMuiCard } from './_components/MotionMuiCard'
 import { MuiAnimatedCard } from './_components/MuiAnimatedCard'
@@ -24,6 +25,7 @@ const Page = () => {
   setIsDemo(true)
   return (
     <Container maxWidth="md">
+      <TsParticles />
       <Box
         sx={{
           my: 4,
