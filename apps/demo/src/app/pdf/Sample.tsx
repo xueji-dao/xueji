@@ -1,4 +1,3 @@
-/* eslint-disable @nx/enforce-module-boundaries */
 'use client'
 
 import { useCallback, useState } from 'react'
@@ -64,12 +63,17 @@ export default function Sample() {
           <label htmlFor="file">Load from file:</label> <input onChange={onFileChange} type="file" />
         </div>
         <div className={styles.Example__container__document} ref={setContainerRef}>
-          <Document file={file} onLoadSuccess={onDocumentLoadSuccess} options={options}>
+          <Document
+            file={file}
+            onLoadSuccess={onDocumentLoadSuccess}
+            options={options}
+            className="flex flex-col items-center">
             {Array.from(new Array(numPages), (_el, index) => (
               <Page
                 key={`page_${index + 1}`}
                 pageNumber={index + 1}
                 width={containerWidth ? Math.min(containerWidth, maxWidth) : maxWidth}
+                className="mx-auto my-4 shadow-lg"
               />
             ))}
           </Document>

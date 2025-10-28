@@ -1,7 +1,7 @@
 import styles from '../styles.module.css'
 import Image, { ImageProps } from 'next/image'
 
-import ViewSource from '@/app/components/view-source'
+import ViewSource from '../_components/view-source'
 
 // Note: we cannot use `priority` or `loading="eager"
 // because we depend on the default `loading="lazy"`

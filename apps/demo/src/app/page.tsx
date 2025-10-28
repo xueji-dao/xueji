@@ -3,10 +3,10 @@ import { Button, HelloServer, SemanticUi } from '@xueji/ui'
 import clsx from 'clsx'
 import { useTranslations } from 'next-intl'
 
+import HelloWorld from '@/components/hello-world'
 import { LP_GRID_ITEMS } from '@/components/lp-items'
 import Nav from '@/components/Nav'
 import { lusitana } from '@/styles/fonts'
-import HelloWorld from '@/app/components/hello-world'
 
 export const metadata: Metadata = {
   title: '示例页面',

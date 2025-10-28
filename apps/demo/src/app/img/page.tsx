@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import vercel from '../../../public/images/vercel.png'
-import ViewSource from '../components/view-source'
+import ViewSource from './_components/view-source'
 
 const Code = (props: PropsWithChildren<{}>) => <code className={styles.inlineCode} {...props} />
 
