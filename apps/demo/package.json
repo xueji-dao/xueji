@@ -8,6 +8,9 @@
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@heroicons/react": "^2.2.0",
+    "@lexical/react": "^0.38.1",
+    "@lexical/utils": "^0.38.1",
+    "@lexical/yjs": "^0.38.1",
     "@next/mdx": "^15.5.6",
     "@tsparticles/engine": "^3.9.1",
     "@tsparticles/react": "^3.0.0",
@@ -15,6 +18,7 @@
     "date-fns": "^4.1.0",
     "fuse.js": "^7.1.0",
     "gsap": "^3.13.0",
+    "lexical": "^0.38.1",
     "neo4j-driver": "^6.0.0",
     "rehype-katex": "^7.0.1",
     "rehype-pretty-code": "^0.14.1",
@@ -28,6 +32,9 @@
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
     "shiki": "^3.14.0",
-    "unified": "^11.0.5"
+    "unified": "^11.0.5",
+    "y-webrtc": "^10.3.0",
+    "y-websocket": "^3.0.0",
+    "yjs": "^13.6.27"
   }
 }
