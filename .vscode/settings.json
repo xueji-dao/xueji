@@ -16,7 +16,7 @@
     "package.json": "nx.json,docker-compose.*,app.json,pnpm-*.yaml,CHANGELOG*,CNAME,.gitattributes,.eslintrc-auto-import.json,prettier.*,stylelint.config.js,*.config.mjs,.prettierignore,.eslintrc.json,.gitignore,.editorconfig,code_of_conduct.md,.npmrc,.dockerignore,Dockerfile,jest.config.ts,jest.preset.js"
   },
   "i18n-ally.localesPaths": ["apps/webui/messages", "apps/webui/src/i18n", "apps/demo/messages", "apps/demo/src/i18n"],
-  "cSpell.words": ["conventionalcommits", "webui", "xueji"],
+  "cSpell.words": ["conventionalcommits", "iconify", "webui", "xueji"],
   "tailwindCSS.experimental.classRegex": [["className\\s*:\\s*['\"]([^'\"]*)['\"]"]],
   "yaml.maxItemsComputed": 8000
 }

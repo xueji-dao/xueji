@@ -17,6 +17,9 @@ importers:
       '@emotion/styled':
         specifier: ^11.14.1
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@19.2.0))(@types/react@19.2.2)(react@19.2.0)
+      '@iconify/react':
+        specifier: ^5.1.0
+        version: 5.2.1(react@19.2.0)
       '@mui/material':
         specifier: ^7.3.4
         version: 7.3.4(@emotion/react@11.14.0(@types/react@19.2.2)(react@19.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@19.2.0))(@types/react@19.2.2)(react@19.2.0))(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -330,6 +333,9 @@ importers:
       '@heroicons/react':
         specifier: ^2.2.0
         version: 2.2.0(react@19.2.0)
+      '@iconify/react':
+        specifier: ^5.2.1
+        version: 5.2.1(react@19.2.0)
       '@lexical/extension':
         specifier: ^0.38.1
         version: 0.38.1
@@ -372,6 +378,9 @@ importers:
       '@stripe/stripe-js':
         specifier: ^8.2.0
         version: 8.2.0
+      '@tabler/icons-react':
+        specifier: ^3.35.0
+        version: 3.35.0(react@19.2.0)
       '@tsparticles/engine':
         specifier: ^3.9.1
         version: 3.9.1
@@ -393,6 +402,9 @@ importers:
       lexical:
         specifier: ^0.38.1
         version: 0.38.1
+      lottie-web:
+        specifier: ^5.13.0
+        version: 5.13.0
       neo4j-driver:
         specifier: ^6.0.0
         version: 6.0.0
@@ -1804,6 +1816,14 @@ packages:
         optional: true
       prettier-plugin-ember-template-tag:
         optional: true
+
+  '@iconify/react@5.2.1':
+    resolution: {integrity: sha512-37GDR3fYDZmnmUn9RagyaX+zca24jfVOMY8E1IXTqJuE8pxNtN51KWPQe3VODOWvuUurq7q9uUu3CFrpqj5Iqg==}
+    peerDependencies:
+      react: '>=16'
+
+  '@iconify/types@2.0.0':
+    resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
 
   '@img/colour@1.0.0':
     resolution: {integrity: sha512-A5P/LfWGFSl6nsckYtjw9da+19jB8hkJ6ACTGcDfEJ0aE+l2n2El7dsVM7UVHZQ9s2lmYMWlrS21YLy2IR1LUw==}
@@ -3946,6 +3966,14 @@ packages:
   '@szmarczak/http-timer@5.0.1':
     resolution: {integrity: sha512-+PmQX0PiAYPMeVYe237LJAYvOMYW1j2rH5YROyS3b4CTVJum34HfRvKvAzozHAQG0TnHNdUfY9nCeUyRAs//cw==}
     engines: {node: '>=14.16'}
+
+  '@tabler/icons-react@3.35.0':
+    resolution: {integrity: sha512-XG7t2DYf3DyHT5jxFNp5xyLVbL4hMJYJhiSdHADzAjLRYfL7AnjlRfiHDHeXxkb2N103rEIvTsBRazxXtAUz2g==}
+    peerDependencies:
+      react: '>= 16'
+
+  '@tabler/icons@3.35.0':
+    resolution: {integrity: sha512-yYXe+gJ56xlZFiXwV9zVoe3FWCGuZ/D7/G4ZIlDtGxSx5CGQK110wrnT29gUj52kEZoxqF7oURTk97GQxELOFQ==}
 
   '@tailwindcss/node@4.1.15':
     resolution: {integrity: sha512-HF4+7QxATZWY3Jr8OlZrBSXmwT3Watj0OogeDvdUY/ByXJHQ+LBtqA2brDb3sBxYslIFx6UP94BJ4X6a4L9Bmw==}
@@ -9210,6 +9238,9 @@ packages:
   loose-envify@1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
     hasBin: true
+
+  lottie-web@5.13.0:
+    resolution: {integrity: sha512-+gfBXl6sxXMPe8tKQm7qzLnUy5DUPJPKIyRHwtpCpyUEYjHYRJC/5gjUvdkuO2c3JllrPtHXH5UJJK8LRYl5yQ==}
 
   loupe@3.2.1:
     resolution: {integrity: sha512-CdzqowRJCeLU72bHvWqwRBBlLcMEtIvGrlvef74kMnV2AolS9Y8xUv1I0U/MNAWMhBlKIoyuEgoJ0t/bbwHbLQ==}
@@ -14966,6 +14997,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@iconify/react@5.2.1(react@19.2.0)':
+    dependencies:
+      '@iconify/types': 2.0.0
+      react: 19.2.0
+
+  '@iconify/types@2.0.0': {}
+
   '@img/colour@1.0.0':
     optional: true
 
@@ -17936,6 +17974,13 @@ snapshots:
   '@szmarczak/http-timer@5.0.1':
     dependencies:
       defer-to-connect: 2.0.1
+
+  '@tabler/icons-react@3.35.0(react@19.2.0)':
+    dependencies:
+      '@tabler/icons': 3.35.0
+      react: 19.2.0
+
+  '@tabler/icons@3.35.0': {}
 
   '@tailwindcss/node@4.1.15':
     dependencies:
@@ -24514,6 +24559,8 @@ snapshots:
   loose-envify@1.4.0:
     dependencies:
       js-tokens: 4.0.0
+
+  lottie-web@5.13.0: {}
 
   loupe@3.2.1: {}
 

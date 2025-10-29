@@ -31,7 +31,7 @@ const Nav = () => (
         </ActiveLink>
       </li>
       <li>
-        <ActiveLink activeClassName="active" className="nav-link" href="/dynamic-route">
+        <ActiveLink activeClassName="active" className="nav-link" href="/dynamic">
           Dynamic Route
         </ActiveLink>
       </li>

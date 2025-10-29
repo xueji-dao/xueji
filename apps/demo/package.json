@@ -8,6 +8,7 @@
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@heroicons/react": "^2.2.0",
+    "@iconify/react": "^5.2.1",
     "@lexical/extension": "^0.38.1",
     "@lexical/history": "^0.38.1",
     "@lexical/list": "^0.38.1",
@@ -22,6 +23,7 @@
     "@react-three/fiber": "^9.4.0",
     "@stripe/react-stripe-js": "^5.3.0",
     "@stripe/stripe-js": "^8.2.0",
+    "@tabler/icons-react": "^3.35.0",
     "@tsparticles/engine": "^3.9.1",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.9.1",
@@ -29,6 +31,7 @@
     "fuse.js": "^7.1.0",
     "gsap": "^3.13.0",
     "lexical": "^0.38.1",
+    "lottie-web": "^5.13.0",
     "neo4j-driver": "^6.0.0",
     "rehype-katex": "^7.0.1",
     "rehype-pretty-code": "^0.14.1",
