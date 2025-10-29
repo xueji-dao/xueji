@@ -1,7 +1,8 @@
 'use client'
 
 import { useParams } from 'next/navigation'
-import { usePerson } from '@/api'
+
+import { usePerson } from '@/lib/api'
 
 export default function PersonPage() {
   const query = useParams()

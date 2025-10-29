@@ -1,9 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import { usePersonList } from '@/api'
 
 import type { Person } from '@/types/person'
+import { usePersonList } from '@/lib/api'
 import { AppErrorBoundary } from '@/components/ErrorBoundary'
 
 import { DedupeManualTest } from './_components/DedupeManualTest'

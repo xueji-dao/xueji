@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { usePersonList } from '@/api'
+
+import { usePersonList } from '@/lib/api'
 
 export function DedupeManualTest() {
   const [showHooks, setShowHooks] = useState(false)
