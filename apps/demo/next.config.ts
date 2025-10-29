@@ -28,10 +28,6 @@ const nextConfig: NextConfig = {
   images: {
     localPatterns: [
       {
-        pathname: '/api/image/**',
-        search: '',
-      },
-      {
         pathname: '/images/**',
         search: '',
       },
@@ -39,24 +35,15 @@ const nextConfig: NextConfig = {
         pathname: '/blog/**',
         search: '',
       },
+      {
+        pathname: '/icons/**',
+        search: '',
+      },
     ],
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 's3.amazonaws.com',
-        port: '',
-        pathname: '/my-bucket/**',
-      },
-      {
-        protocol: 'https',
         hostname: 'avatars.githubusercontent.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'assets.vercel.com',
-        port: '',
-        pathname: '/image/upload/**',
-        search: '',
       },
     ],
   },
