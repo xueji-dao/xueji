@@ -1,5 +1,5 @@
-// eslint-disable-next-line @nx/enforce-module-boundaries
 import type { AddModuleExports } from '@/lib/wasm/wasm'
+
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import addWasm from '../../../../public/add.wasm?module'
