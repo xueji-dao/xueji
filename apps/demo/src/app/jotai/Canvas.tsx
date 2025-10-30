@@ -1,7 +1,8 @@
 'use client'
 
-import { handleMouseDownAtom, handleMouseMoveAtom, handleMouseUpAtom, type Point } from '@/store'
 import { useAtom } from 'jotai'
+
+import { handleMouseDownAtom, handleMouseMoveAtom, handleMouseUpAtom, type Point } from '@/lib/store'
 
 /**
  * 生产环境 Jotai 原子组织规范：
@@ -19,8 +20,8 @@ import { useAtom } from 'jotai'
  * 4. 组件级原子 - 仅该组件使用的可写在组件内
  *
  * 导入规范：
- * ✅ import { dotsAtom } from '@/store'
- * ❌ import { dotsAtom } from '@/store/canvas'
+ * ✅ import { dotsAtom } from '@/lib/store'
+ * ❌ import { dotsAtom } from '@/lib/store/canvas'
  */
 
 const SvgDots = () => {
@@ -35,7 +36,7 @@ const SvgDots = () => {
 }
 
 export default function Canvas() {
-  // 使用领域原子：从 @/store 统一导入
+  // 使用派生原子
   const [, handleMouseUp] = useAtom(handleMouseUpAtom)
   const [, handleMouseDown] = useAtom(handleMouseDownAtom)
   const [, handleMouseMove] = useAtom(handleMouseMoveAtom)

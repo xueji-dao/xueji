@@ -1,8 +1,9 @@
 'use client'
 
 import { useEffect, useMemo } from 'react'
-import { resolvedThemeAtom, systemThemeAtom, themeModeAtom } from '@/store'
 import { useAtomValue, useSetAtom } from 'jotai'
+
+import { resolvedThemeAtom, systemThemeAtom, themeModeAtom } from '@/lib/store'
 
 /**
  * 同步主题到 DOM

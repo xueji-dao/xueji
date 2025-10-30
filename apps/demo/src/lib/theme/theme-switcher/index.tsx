@@ -1,8 +1,9 @@
 'use client'
 
 import styles from './switch.module.css'
-import { themeModeAtom, type ThemeMode } from '@/store'
 import { useAtom } from 'jotai'
+
+import { themeModeAtom, type ThemeMode } from '@/lib/store'
 
 const modes: ThemeMode[] = ['system', 'light', 'dark']
 

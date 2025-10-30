@@ -4,7 +4,7 @@
  * 生产环境 Jotai 原子组织规范：
  * 1. 按领域(domain)创建单个文件：canvas.ts, user.ts, theme.ts
  * 2. 文件内按类型分组：基础原子 → 派生原子 → 动作原子
- * 3. 统一导入：import { dotsAtom } from '@/store'
+ * 3. 统一导入：import { dotsAtom } from '@/lib/store'
  */
 
 import { atom } from 'jotai'
