@@ -5,6 +5,13 @@
   "nx": {
     "name": "demo"
   },
+  "scripts": {
+    "db:migrate:dev": "dotenv -e .env.local -- prisma migrate dev",
+    "db:seed": "dotenv -e .env.local -- prisma db seed",
+    "db:push": "dotenv -e .env.local -- prisma db push",
+    "db:studio": "dotenv -e .env.local -- prisma studio",
+    "db:generate": "prisma generate"
+  },
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@heroicons/react": "^2.2.0",

@@ -17,8 +17,8 @@ const inputClasses = cn(
 )
 
 const initialState = {
-  successMessage: null,
-  errorMessage: null,
+  successMessage: null as string | null,
+  errorMessage: null as string | null,
 }
 
 export default function EntryForm() {
@@ -37,7 +37,7 @@ export default function EntryForm() {
         />
         <input
           required
-          className={cn(inputClasses, 'flex-grow pr-32 pl-4')}
+          className={cn(inputClasses, 'grow pr-32 pl-4')}
           aria-label="Your message"
           placeholder="Your message..."
           name="message"

@@ -78,5 +78,7 @@ test-output
 # typescript
 *.tsbuildinfo
 
+# prisma
+**/prisma/generated/
 
 storybook-static

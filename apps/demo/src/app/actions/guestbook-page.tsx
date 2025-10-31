@@ -7,7 +7,7 @@ import { EntryType } from './page'
 
 const EntryItem = ({ entry }: { entry: EntryType }) => (
   <div className="flex flex-col space-y-2">
-    <div className="prose dark:prose-dark w-full">{entry.message}</div>
+    <div className="prose dark:prose-invert w-full">{entry.message}</div>
     <div className="flex items-center space-x-3">
       <p className="text-sm text-gray-500">{entry.name}</p>
       <span className="text-gray-200 dark:text-gray-800">/</span>
@@ -25,7 +25,7 @@ export default async function GuestbookPage({ entries }: { entries: EntryType[] 
         className={cn(
           'rounded border border-blue-200 p-6',
           'my-4 w-full bg-blue-50 dark:border-gray-800',
-          'dark:bg-blue-opaque',
+          'dark:bg-gray-900',
         )}>
         <h5 className={cn('text-lg font-bold md:text-xl', 'text-gray-900')}>Sign the Guestbook</h5>
         <p className="my-1 text-gray-800">Share a message for a future visitor.</p>
