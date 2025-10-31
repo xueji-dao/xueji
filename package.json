@@ -8,7 +8,9 @@
     "check-types": "tsc --noEmit --pretty",
     "commit": "git-cz",
     "release": "semantic-release --dry-run",
-    "analyze": "cross-env ANALYZE=true nx build webui"
+    "analyze": "cross-env ANALYZE=true nx build webui",
+    "image:resize": "ts-node tools/image-resize.ts",
+    "server:ws": "cross-env HOST=localhost PORT=1234 npx y-websocket"
   },
   "private": true,
   "dependencies": {
@@ -39,8 +41,10 @@
     "react-dom": "^19.2.0",
     "react-error-boundary": "^6.0.0",
     "react-pdf": "^10.2.0",
+    "sharp": "^0.34.4",
     "swr": "^2.3.6",
     "tailwind-merge": "^3.3.1",
+    "y-websocket": "^3.0.0",
     "zod": "^3.25.76",
     "zustand": "^5.0.8"
   },

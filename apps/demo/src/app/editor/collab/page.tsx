@@ -1,6 +1,8 @@
 'use client'
 
 import { Fragment, useCallback, useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import { LexicalCollaboration } from '@lexical/react/LexicalCollaborationContext'
 import { CollaborationPlugin } from '@lexical/react/LexicalCollaborationPlugin'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
@@ -33,13 +35,17 @@ const editorConfig = {
 }
 
 export default function App() {
-  // const providerName = new URLSearchParams(window.location.search).get('provider') ?? 'webrtc'
-  const providerName = 'webrtc'
+  const searchParams = useSearchParams()
+  // 协作模式选择:
+  // webrtc (默认) - 适用于同一网络/局域网内的协作，P2P 直连，低延迟，无需服务器
+  // wss - 适用于跨网络/互联网协作，需要 WebSocket 服务器中转，支持更多用户
+  const providerName = searchParams.get('provider') ?? 'webrtc'
   const [userProfile, setUserProfile] = useState(() => getRandomUserProfile())
   const containerRef = useRef<HTMLDivElement | null>(null)
   const [yjsProvider, setYjsProvider] = useState<null | Provider>(null)
   const [connected, setConnected] = useState(false)
   const [activeUsers, setActiveUsers] = useState<ActiveUserProfile[]>([])
+  const [serverStatus, setServerStatus] = useState<'checking' | 'online' | 'offline'>('checking')
 
   const handleAwarenessUpdate = useCallback(() => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -63,6 +69,28 @@ export default function App() {
       yjsProvider.connect()
     }
   }
+
+  // 检查 WebSocket 服务器状态
+  useEffect(() => {
+    if (providerName === 'webrtc') {
+      setServerStatus('online')
+      return
+    }
+
+    const checkServer = async () => {
+      try {
+        const response = await fetch('http://localhost:1234')
+        setServerStatus(response.ok ? 'online' : 'offline')
+      } catch {
+        setServerStatus('offline')
+      }
+    }
+
+    checkServer()
+    const interval = setInterval(checkServer, 5000) // 每5秒检查一次
+
+    return () => clearInterval(interval)
+  }, [providerName])
 
   useEffect(() => {
     if (yjsProvider == null) {
@@ -104,18 +132,41 @@ export default function App() {
           ? 'WebRTC (within browser communication via BroadcastChannel fallback, unless run locally)'
           : 'Websockets (cross-browser communication)'}
         <br />
-        {/* {window && window.location.hostname === 'localhost' ? (
-          providerName === 'webrtc' ? (
-            <a href="/app?provider=wss">Enable WSS</a>
-          ) : (
-            <a href="/app">Enable WebRTC</a>
-          )
-        ) : null}{' '} */}
+        {providerName === 'webrtc' ? (
+          <Link href="/editor/collab?provider=wss">切换到 WebSocket 模式</Link>
+        ) : (
+          <Link href="/editor/collab">切换到 WebRTC 模式</Link>
+        )}{' '}
         {/* WebRTC provider doesn't implement disconnect correctly */}
         {providerName !== 'webrtc' ? (
           <button onClick={handleConnectionToggle}>{connected ? 'Disconnect' : 'Connect'}</button>
         ) : null}
       </p>
+
+      {/* 服务器状态提示 */}
+      {providerName === 'wss' && (
+        <div
+          style={{
+            padding: '10px',
+            marginBottom: '10px',
+            borderRadius: '4px',
+            backgroundColor: serverStatus === 'online' ? '#d4edda' : '#f8d7da',
+            border: `1px solid ${serverStatus === 'online' ? '#c3e6cb' : '#f5c6cb'}`,
+            color: serverStatus === 'online' ? '#155724' : '#721c24',
+          }}>
+          <b>WebSocket 服务器状态:</b> {serverStatus === 'checking' && '检查中...'}
+          {serverStatus === 'online' && '✅ 在线 (ws://localhost:1234)'}
+          {serverStatus === 'offline' && (
+            <>
+              ❌ 离线 - 请先启动服务器:
+              <br />
+              <code style={{ backgroundColor: '#f1f1f1', padding: '2px 4px', borderRadius: '2px' }}>
+                pnpm server:ws
+              </code>
+            </>
+          )}
+        </div>
+      )}
       <p>
         <b>My Name:</b>{' '}
         <input

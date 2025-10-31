@@ -1,7 +1,7 @@
 {
-  "name": "学记助理",
-  "short_name": "学记",
-  "description": "学记助理",
+  "name": "Nextjs Demo",
+  "short_name": "NextDemo",
+  "description": "Nextjs",
   "icons": [
     {
       "src": "/images/android-chrome-192x192.png",
