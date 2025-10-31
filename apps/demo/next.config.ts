@@ -1,8 +1,15 @@
 import type { NextConfig } from 'next'
 import { composePlugins, withNx } from '@nx/next'
+import withSerwistInit from '@serwist/next'
 import createNextIntlPlugin from 'next-intl/plugin'
 
 const withNextIntl = createNextIntlPlugin()
+
+const withSerwist = withSerwistInit({
+  swSrc: 'src/app/sw.ts',
+  swDest: 'public/sw.js',
+  disable: process.env.NODE_ENV !== 'production', // 开发环境禁用
+})
 
 const nextConfig: NextConfig = {
   // See: https://nx.dev/recipes/next/next-config-setup
@@ -76,6 +83,6 @@ const nextConfig: NextConfig = {
   },
 }
 
-const plugins = [withNx, withNextIntl]
+const plugins = [withNx, withNextIntl, withSerwist]
 
-module.exports = composePlugins(...plugins)(nextConfig)
+export default composePlugins(...plugins)(nextConfig)
