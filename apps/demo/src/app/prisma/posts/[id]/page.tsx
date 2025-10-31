@@ -1,6 +1,8 @@
-import { notFound, redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 
 import prisma from '@/lib/prisma'
+
+import { deletePostAction } from '../../actions'
 
 export const dynamic = 'force-dynamic'
 
@@ -17,19 +19,6 @@ export default async function Post({ params }: { params: Promise<{ id: string }>
 
   if (!post) {
     notFound()
-  }
-
-  // Server action to delete the post
-  async function deletePost() {
-    'use server'
-
-    await prisma.post.delete({
-      where: {
-        id: postId,
-      },
-    })
-
-    redirect('/prisma/posts')
   }
 
   return (
@@ -54,7 +43,7 @@ export default async function Post({ params }: { params: Promise<{ id: string }>
       </article>
 
       {/* Delete Button */}
-      <form action={deletePost} className="mt-6">
+      <form action={deletePostAction.bind(null, postId)} className="mt-6">
         <button
           type="submit"
           className="rounded-lg bg-red-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-red-600">

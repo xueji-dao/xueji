@@ -27,28 +27,25 @@ export async function createPostAction(prevState: ActionState, formData: FormDat
     fieldErrors.title = 'Title is required'
   }
 
+  if (!authorEmail?.trim()) {
+    fieldErrors.authorEmail = 'Author email is required'
+  }
+
   if (Object.keys(fieldErrors).length > 0) {
     return { fieldErrors }
   }
 
   try {
-    const postData = authorEmail
-      ? {
-          title,
-          content,
-          author: {
-            connect: {
-              email: authorEmail,
-            },
-          },
-        }
-      : {
-          title,
-          content,
-        }
-
     await prisma.post.create({
-      data: postData,
+      data: {
+        title,
+        content,
+        author: {
+          connect: {
+            email: authorEmail,
+          },
+        },
+      },
     })
   } catch (error) {
     console.error('Error creating post:', error)
@@ -67,6 +64,28 @@ export async function createPostAction(prevState: ActionState, formData: FormDat
   }
 
   // 成功后重定向（会抛出 NEXT_REDIRECT 异常，这是正常的）
+  revalidatePath('/prisma/posts')
+  redirect('/prisma/posts')
+}
+
+export async function deletePostAction(postId: number) {
+  console.log('Deleting post with ID:', postId)
+
+  try {
+    const result = await prisma.post.delete({
+      where: {
+        id: postId,
+      },
+    })
+
+    console.log('Post deleted successfully:', result)
+  } catch (error) {
+    console.error('Error deleting post:', error)
+    throw new Error('Failed to delete post')
+  }
+
+  // 在 try-catch 外部执行重定向
+  console.log('Redirecting to /prisma')
   revalidatePath('/prisma/posts')
   redirect('/prisma/posts')
 }

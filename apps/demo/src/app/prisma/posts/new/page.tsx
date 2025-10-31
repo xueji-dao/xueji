@@ -3,7 +3,7 @@
 import { useActionState } from 'react'
 import Form from 'next/form'
 
-import { createPostAction } from './actions'
+import { createPostAction } from '../../actions'
 
 type ActionState = {
   success?: boolean
