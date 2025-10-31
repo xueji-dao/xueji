@@ -25,3 +25,11 @@ model Post {
   authorId  Int
   author    User     @relation(fields: [authorId], references: [id])
 }
+
+model Todo {
+  id        Int      @id @default(autoincrement())
+  title     String
+  completed Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
