@@ -2,14 +2,14 @@
 
 import { useParams } from 'next/navigation'
 
-import { usePerson } from '@/lib/api'
+import { PersonApi } from '@/lib/api'
 
 export default function PersonPage() {
   const query = useParams()
-  const { data, error, isLoading, isValidating } = usePerson(Array.isArray(query?.id) ? query.id[0] : query?.id || null)
+  const { data, error, isPending, isFetching } = PersonApi.usePerson(Array.isArray(query?.id) ? query.id[0] : query?.id || null)
 
   if (error) return <div>{error.message}</div>
-  if (isLoading) return <div>Loading...</div>
+  if (isPending) return <div>Loading...</div>
   if (!data) return null
 
   return (
@@ -27,7 +27,7 @@ export default function PersonPage() {
       </thead>
       <tbody>
         <tr>
-          {isValidating ? (
+          {isFetching ? (
             <td colSpan={7} align="center">
               Validating...
             </td>

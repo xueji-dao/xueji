@@ -1,109 +1,142 @@
-import { redirect } from 'next/navigation'
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import { UsersIcon } from '@heroicons/react/24/outline'
-// eslint-disable-next-line import/named
-import { useLocale, useTranslations } from 'next-intl'
-import { getTranslations } from 'next-intl/server'
+'use client'
+
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
+import {
+  Alert,
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CircularProgress,
+  IconButton,
+  InputAdornment,
+  TextField,
+  Typography,
+} from '@mui/material'
+import { useTranslations } from 'next-intl'
 import { z } from 'zod'
 
-import Button from '@/components/Button'
-import FormField from '@/components/FormField'
+import { useAuth } from '@/lib/auth'
 import LocaleSwitcher from '@/components/LocaleSwitcher'
 
-import LoginForm from './LoginForm'
-
-export async function loginUser(credentials: { email: string; password: string }) {
-  // In a real app, the credentials would be checked against a
-  // database and potentially a session token set in a cookie
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(credentials.email === 'jane@doe.com' && credentials.password === 'next-intl')
-    }, 1000)
-  })
-}
-
-const loginFormSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(1),
+const loginSchema = z.object({
+  email: z.string().min(1).email(),
+  password: z.string().min(6),
 })
 
-type LoginFormInput = z.infer<typeof loginFormSchema>
+type LoginForm = z.infer<typeof loginSchema>
 
-export type LoginFormErrors = z.typeToFlattenedError<LoginFormInput>
+export default function NewLoginPage() {
+  const { isAuthenticated, login, isLoggingIn, loginError } = useAuth()
+  const [formData, setFormData] = useState<LoginForm>({ email: '', password: '' })
+  const [showPassword, setShowPassword] = useState(false)
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({})
 
-export type LoginFormResult =
-  | {
-      success: true
-    }
-  | {
-      success: false
-      errors: LoginFormErrors
-    }
-
-async function loginAction(prev: unknown, data: FormData): Promise<LoginFormResult> {
-  'use server'
-  const t = await getTranslations('LoginPage')
-  const values = Object.fromEntries(data)
-  console.log('loginAction values', values)
-  const result = await loginFormSchema
-    .refine(async (credentials) => loginUser(credentials), {
-      message: t('invalidCredentials'),
-    })
-    .safeParseAsync(values, {
-      errorMap(issue, ctx) {
-        let message
-
-        if (issue.path[0] == 'email') {
-          message = t('invalidEmail')
-        } else if (issue.path[0] == 'password') {
-          message = t('invalidPassword')
-        }
-        return { message: message || ctx.defaultError }
-      },
-    })
-
-  if (!result.success) {
-    return {
-      success: false,
-      errors: result.error.flatten(),
-    }
-  } else {
-    redirect('/about')
-  }
-}
-
-export default function LoginPage() {
   const t = useTranslations('LoginPage')
-  const locale = useLocale()
+  const router = useRouter()
+
+  // 已登录用户重定向
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.replace('/dashboard')
+    }
+  }, [isAuthenticated, router])
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setValidationErrors({})
+
+    // Zod 验证
+    const result = loginSchema.safeParse(formData)
+    if (!result.success) {
+      const errors: Record<string, string> = {}
+      result.error.errors.forEach((err) => {
+        if (err.path[0] === 'email') {
+          errors.email = err.code === 'invalid_string' ? t('invalidEmail') : t('invalidEmail')
+        } else if (err.path[0] === 'password') {
+          errors.password = t('invalidPassword')
+        }
+      })
+      setValidationErrors(errors)
+      return
+    }
+
+    // 使用 useAuth 的 login mutation
+    login(formData)
+  }
 
   return (
-    <>
-      <div className="absolute top-8 right-8">
-        <LocaleSwitcher />
-      </div>
-      <LoginForm
-        key={locale}
-        action={loginAction}
-        fields={
-          <div className="flex flex-col gap-5">
-            <FormField label={t('email')} name="email" placeholder="jane@doe.com" required type="email" />
-            <FormField label={t('password')} name="password" placeholder="••••••••" required type="password" />
-          </div>
-        }
-        header={
-          <div className="text-center">
-            <UsersIcon className="mx-auto h-14 w-14 text-slate-900" />
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-900">{t('title')}</h1>
-            <p className="mt-2 text-slate-700">{t('description')}</p>
-          </div>
-        }
-        submit={
-          <div>
-            <Button type="submit">{t('login')}</Button>
-            <p className="mt-4 text-center text-sm text-slate-700">{t('credentials')}</p>
-          </div>
-        }
-      />
-    </>
+    <Box
+      sx={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        p: 2,
+      }}>
+      <Card sx={{ maxWidth: 400, width: '100%', boxShadow: 3 }}>
+        <CardContent sx={{ p: 4 }}>
+          {/* 语言切换 */}
+          <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
+            <LocaleSwitcher />
+          </Box>
+
+          {/* 标题 */}
+          <Typography variant="h4" component="h1" gutterBottom textAlign="center" color="primary">
+            {t('title')}
+          </Typography>
+
+          {/* 错误提示 */}
+          {loginError && (
+            <Alert severity="error" sx={{ mb: 2 }}>
+              {loginError.message || t('invalidCredentials')}
+            </Alert>
+          )}
+
+          {/* 登录表单 */}
+          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
+            <TextField
+              fullWidth
+              label={t('email')}
+              type="email"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              error={!!validationErrors.email}
+              helperText={validationErrors.email}
+              margin="normal"
+              variant="outlined"
+            />
+
+            <TextField
+              fullWidth
+              label={t('password')}
+              type={showPassword ? 'text' : 'password'}
+              value={formData.password}
+              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+              error={!!validationErrors.password}
+              helperText={validationErrors.password}
+              margin="normal"
+              variant="outlined"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                      {showPassword ? <EyeSlashIcon className="h-5 w-5" /> : <EyeIcon className="h-5 w-5" />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+
+            <Button type="submit" fullWidth variant="contained" disabled={isLoggingIn} sx={{ mt: 3, mb: 2, py: 1.5 }}>
+              {isLoggingIn ? <CircularProgress size={24} /> : t('login')}
+            </Button>
+          </Box>
+        </CardContent>
+      </Card>
+    </Box>
   )
 }

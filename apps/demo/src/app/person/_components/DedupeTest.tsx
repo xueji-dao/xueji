@@ -1,11 +1,11 @@
 'use client'
 
-import { usePersonList } from '@/lib/api'
+import { PersonApi } from '@/lib/api'
 
 export function DedupeTest() {
-  const { data: data1, isLoading: loading1 } = usePersonList()
-  const { data: data2, isLoading: loading2 } = usePersonList()
-  const { data: data3, isLoading: loading3 } = usePersonList()
+  const { data: data1, isPending: loading1 } = PersonApi.usePersonList()
+  const { data: data2, isPending: loading2 } = PersonApi.usePersonList()
+  const { data: data3, isPending: loading3 } = PersonApi.usePersonList()
 
   return (
     <div>

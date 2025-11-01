@@ -1,8 +1,9 @@
 'use client'
 
 import { createContext, useContext, useRef, type PropsWithChildren } from 'react'
-import { createClockStore, type ClockState, type ClockStore } from '@/stores/clock'
 import { useStore } from 'zustand'
+
+import { createClockStore, type ClockState, type ClockStore } from '../stores/clock'
 
 // Zustand Store 创建及传递参数流程:
 // 1. createClockStore() - 创建 vanilla store 实例

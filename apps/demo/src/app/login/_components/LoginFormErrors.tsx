@@ -1,9 +1,8 @@
-// eslint-disable-next-line @nx/enforce-module-boundaries
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
 import { useFormStatus } from 'react-dom'
 
-import type { LoginFormErrors } from './page'
+import type { LoginFormErrors } from '../page'
 
 export default function LoginFormErrors({ errors }: { errors: LoginFormErrors }) {
   const { pending } = useFormStatus()

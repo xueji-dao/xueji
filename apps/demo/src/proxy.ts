@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
+import { verifyToken } from '@/lib/auth/utils/server'
 import { i18n } from '@/lib/lang/i18n-config'
 
 /**
@@ -38,6 +39,13 @@ function getLocale(request: NextRequest): string | undefined {
 export function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname
 
+  console.log(pathname)
+  // 1. API 路由认证检查
+  if (pathname.startsWith('/api/') && !pathname.startsWith('/api/proxy/') && !pathname.startsWith('/api/public/')) {
+    return checkApiAuth(request)
+  }
+
+  // 2. 国际化处理
   if (!pathname.includes('lang')) return
 
   // Check if there is any supported locale in the pathname
@@ -55,7 +63,25 @@ export function proxy(request: NextRequest) {
   return
 }
 
+// Nextjs API 认证检查
+async function checkApiAuth(request: NextRequest) {
+  const authHeader = request.headers.get('authorization')
+  if (!authHeader?.startsWith('Bearer ')) {
+    console.log('Invalid token:')
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
+  const token = authHeader.substring(7)
+  const user = await verifyToken(token)
+  if (!user) {
+    console.log('Invalid token:', token)
+    return NextResponse.json({ error: 'Invalid token' }, { status: 401 })
+  }
+
+  // 认证通过，继续处理请求
+  return NextResponse.next()
+}
+
 export const config = {
-  // Matcher ignoring `/_next/` and `/api/`
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
 }

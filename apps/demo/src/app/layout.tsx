@@ -3,8 +3,10 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale } from 'next-intl/server'
 
-import { JotaiProvider } from '@/lib/jotai-provider'
-import { SWRProvider } from '@/lib/swr-config'
+import '@/lib/api/request' // 引入拦截器
+
+import { QueryProvider } from '@/lib/api/query-provider'
+import { JotaiProvider } from '@/lib/store/jotai-provider'
 import { ThemeProvider, ThemeSwitcher } from '@/lib/theme'
 import { GlobalState } from '@/components/global-state'
 import { roboto } from '@/styles/fonts'
@@ -101,7 +103,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang={locale == 'en' ? 'en' : 'zh-Hans-CN'} className={roboto.variable}>
       <body>
         <NextIntlClientProvider>
-          <SWRProvider>
+          <QueryProvider>
             {/* enableCssLayer=true：生成的样式在 @layer mui 层中，CSS Modules、Tailwind CSS 或无@layer的纯CSS时，会覆盖生成的样式。 */}
             <AppRouterCacheProvider options={{ enableCssLayer: false }}>
               <GlobalState>
@@ -113,7 +115,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                 </JotaiProvider>
               </GlobalState>
             </AppRouterCacheProvider>
-          </SWRProvider>
+          </QueryProvider>
         </NextIntlClientProvider>
       </body>
     </html>

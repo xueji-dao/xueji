@@ -1,8 +1,9 @@
 'use client'
 
 import { createContext, useContext, useRef, type PropsWithChildren } from 'react'
-import { createCounterStore, type CounterState, type CounterStore } from '@/stores/counter'
 import { useStore } from 'zustand'
+
+import { createCounterStore, type CounterState, type CounterStore } from '../stores/counter'
 
 export type CounterStoreApi = ReturnType<typeof createCounterStore>
 

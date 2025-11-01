@@ -7,8 +7,6 @@ export type ClockState = {
 
 export type ClockActions = {
   tick: (lastUpdate: number) => void
-  toggleLight: () => void
-  setLight: (light: boolean) => void
 }
 
 export type ClockStore = ClockState & ClockActions

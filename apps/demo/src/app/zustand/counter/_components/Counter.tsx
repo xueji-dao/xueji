@@ -1,7 +1,8 @@
 'use client'
 
-import { useCounterStore } from '@/providers'
 import { useShallow } from 'zustand/react/shallow'
+
+import { useCounterStore } from '@/lib/store/providers'
 
 export function Counter() {
   // 方式 1: 只获取单个值 - 不需要 useShallow（基本类型自动优化）

@@ -3,7 +3,7 @@
 import Link from 'next/link'
 
 import type { Person } from '@/types/person'
-import { usePersonList } from '@/lib/api'
+import { PersonApi } from '@/lib/api'
 import { AppErrorBoundary } from '@/components/ErrorBoundary'
 
 import { DedupeManualTest } from './_components/DedupeManualTest'
@@ -15,9 +15,9 @@ type PersonProps = {
 }
 
 export default function Index() {
-  const { data, error, isLoading } = usePersonList()
-  if (error) return <div>Failed to load</div>
-  if (isLoading) return <div>Loading...</div>
+  const { data, error, isPending } = PersonApi.usePersonList()
+  if (error) return <div>Failed to load: {error.message}</div>
+  if (isPending) return <div>Loading...</div>
   if (!data) return null
 
   function PersonComponent({ person }: PersonProps) {

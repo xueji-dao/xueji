@@ -32,10 +32,10 @@
     "label": "语言"
   },
   "LoginPage": {
-    "credentials": "用户名密码: jane@doe.com / next-intl",
+    "credentials": "用户名密码: jane@qq.com / 123456",
     "description": "请输入详情",
     "email": "Email",
-    "invalidCredentials": "用户名密码错误",
+    "invalidCredentials": "用户名/密码错误",
     "invalidEmail": "邮箱错误",
     "invalidPassword": "密码错误",
     "login": "登录",

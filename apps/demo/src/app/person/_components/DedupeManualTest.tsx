@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 
-import { usePersonList } from '@/lib/api'
+import { PersonApi } from '@/lib/api'
 
 export function DedupeManualTest() {
   const [showHooks, setShowHooks] = useState(false)
@@ -26,11 +26,11 @@ export function DedupeManualTest() {
 }
 
 function HookInstance({ name }: { name: string }) {
-  const { data, isLoading } = usePersonList()
+  const { data, isPending } = PersonApi.usePersonList()
 
   return (
     <div className="mt-2 ml-4 border-l-4 border-blue-300 p-2">
-      <strong>{name}</strong>: {isLoading ? '加载中...' : `${data?.length || 0} 条数据`}
+      <strong>{name}</strong>: {isPending ? '加载中...' : `${data?.length || 0} 条数据`}
     </div>
   )
 }

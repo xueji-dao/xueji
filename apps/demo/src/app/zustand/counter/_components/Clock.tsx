@@ -1,8 +1,8 @@
 'use client'
 
-import { useClockStore } from '@/providers/clock'
 import { useShallow } from 'zustand/react/shallow'
 
+import { useClockStore } from '@/lib/store/providers'
 import useInterval from '@/hooks/useInterval'
 
 function useClock() {
