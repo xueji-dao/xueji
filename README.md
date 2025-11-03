@@ -44,3 +44,61 @@ BREAKING CHANGE: use JavaScript features not available in Node 6.
 | feat:              | minor    | 新增功能（即使手动 tag 是 v2.0.0，新 feat 会生成 v2.1.0） |
 | fix:               | patch    | 问题修复                                                  |
 | perf:/docs:/chore: | 无变化   | 除非包含 BREAKING CHANGE，否则不会触发版本升级            |
+
+## TODO
+
+### Demo 示例
+
+- apollo client
+- react-hook-form
+- react-flow
+- AG-UI CopilotKit
+- authjs
+- excalidraw
+-
+
+### AutoDev
+
+- claude agent
+- spec-kit
+- claude-code/common-workflows
+- subagents mcp
+- vercel/ai-chat-bot
+
+### 原型
+
+#### 3D 知识地图 (Knowledge Map 3D)
+
+**核心需求**:
+
+- 2D/3D 视图切换的知识点可视化
+- 类似地图的缩放、平移、旋转交互
+- 支持 UI 组件层 (编辑器、弹窗等)
+- 无限画板体验 (类似 Excalidraw/Figma)
+- 智能布局算法 (自动排列知识点)
+- 实时协作
+
+**技术方案**:
+
+```typescript
+// 核心架构
+const UnifiedCanvas = () => {
+  const { mode, elements } = useCanvasStore()
+  return (
+    <>
+      {/* 无限画板背景 */}
+      <InfiniteBackground />
+      {/* 2D/3D 内容层 D3.js 智能布局*/}
+      {mode === '3d' ? (
+        <Canvas3DLayer elements={elements} />
+      ) : (
+        <Canvas2DLayer elements={elements} />
+      )}
+      {/*3D 场景中嵌入 React 组件 UI 组件层 - tunnel-rat */}
+      <UIOverlayLayer elements={elements} />
+      {/* 控制面板 */}
+      <CanvasControls />
+    </>
+  )
+}
+```

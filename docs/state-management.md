@@ -2,24 +2,25 @@
 
 ## 1. 概述
 
-本项目采用多层状态管理架构，结合三种工具的优势：
+本项目采用多层状态管理架构，结合多种工具的优势：
 
 - **Zustand**: 客户端状态管理
-- **TanStack Query**: 服务端状态管理  
+- **TanStack Query**: REST API 服务端状态管理  
+- **Apollo Client**: GraphQL 服务端状态管理
 - **Jotai**: 原子化状态管理
 
 ### 架构原则
 
 ```
-┌─────────────────┬─────────────────┬─────────────────┐
-│   客户端状态     │   服务端状态     │   原子化状态     │
-│   (Zustand)     │ (TanStack Query)│   (Jotai)       │
-├─────────────────┼─────────────────┼─────────────────┤
-│ • 认证状态       │ • 用户信息       │ • 组件间共享     │
-│ • UI 状态        │ • 业务数据       │ • 计算派生       │
-│ • 应用配置       │ • 实时数据       │ • 复杂表单       │
-│ • 用户偏好       │ • 缓存管理       │ • 异步组合       │
-└─────────────────┴─────────────────┴─────────────────┘
+┌─────────────────┬─────────────────┬─────────────────┬─────────────────┐
+│   客户端状态     │   REST API      │   GraphQL       │   原子化状态     │
+│   (Zustand)     │ (TanStack Query)│ (Apollo Client) │   (Jotai)       │
+├─────────────────┼─────────────────┼─────────────────┼─────────────────┤
+│ • 认证状态       │ • REST 接口     │ • GraphQL 查询   │ • 组件间共享     │
+│ • UI 状态        │ • 分页数据       │ • 实时订阅       │ • 计算派生       │
+│ • 应用配置       │ • 文件上传       │ • 乐观更新       │ • 复杂表单       │
+│ • 用户偏好       │ • 简单缓存       │ • 规范化缓存     │ • 异步组合       │
+└─────────────────┴─────────────────┴─────────────────┴─────────────────┘
 ```
 
 ### 选择决策树
@@ -27,14 +28,17 @@
 ```mermaid
 graph TD
     A[需要管理状态] --> B{数据来源}
-    B -->|服务端| C[TanStack Query]
+    B -->|服务端| C{API 类型}
     B -->|客户端| D{作用域}
-    D -->|全局/持久化| E[Zustand]
-    D -->|组件间/计算| F[Jotai]
+    C -->|REST API| E[TanStack Query]
+    C -->|GraphQL| F[Apollo Client]
+    D -->|全局/持久化| G[Zustand]
+    D -->|组件间/计算| H[Jotai]
     
-    C --> C1[用户信息<br/>业务数据<br/>API 响应]
-    E --> E1[认证状态<br/>主题配置<br/>用户偏好]
-    F --> F1[表单状态<br/>派生计算<br/>组件通信]
+    E --> E1[REST 接口<br/>分页数据<br/>文件上传]
+    F --> F1[GraphQL 查询<br/>实时订阅<br/>关联数据]
+    G --> G1[认证状态<br/>主题配置<br/>用户偏好]
+    H --> H1[表单状态<br/>派生计算<br/>组件通信]
 ```
 
 ## 2. Zustand - 客户端状态管理
@@ -42,12 +46,14 @@ graph TD
 ### 2.1 适用场景
 
 #### ✅ 推荐使用
+
 - **认证状态**: token、用户ID、登录状态
 - **UI 状态**: 主题、语言、侧边栏状态
 - **应用配置**: 用户偏好、设置项
 - **持久化数据**: 需要跨会话保存的状态
 
 #### ❌ 不推荐使用
+
 - 服务端数据（用 TanStack Query）
 - 频繁变化的计算状态（用 Jotai）
 - 组件内部状态（用 useState）
@@ -55,6 +61,7 @@ graph TD
 ### 2.2 Store 设计模式
 
 #### 认证 Store
+
 ```typescript
 // lib/store/stores/auth.ts
 export type AuthState = {
@@ -96,6 +103,7 @@ export const createAuthStore = () => {
 ```
 
 #### UI Store
+
 ```typescript
 // lib/store/stores/ui.ts
 export type UIState = {
@@ -152,6 +160,7 @@ export const useAuthStore = <T,>(selector: (store: AuthStore) => T): T => {
 ### 3.1 适用场景
 
 #### ✅ 推荐使用
+
 - **用户数据**: 个人信息、权限、角色
 - **业务数据**: 文章、评论、订单、产品
 - **列表数据**: 分页、搜索、筛选结果
@@ -159,6 +168,7 @@ export const useAuthStore = <T,>(selector: (store: AuthStore) => T): T => {
 - **关联数据**: 需要缓存和同步的服务端数据
 
 #### ❌ 不推荐使用
+
 - 纯客户端状态（用 Zustand/Jotai）
 - 一次性请求（直接用 fetch）
 - 文件上传进度（用 useState）
@@ -166,6 +176,7 @@ export const useAuthStore = <T,>(selector: (store: AuthStore) => T): T => {
 ### 3.2 查询封装模式
 
 #### 用户查询
+
 ```typescript
 // lib/auth/queries.ts
 export const useUserQuery = (userId: string | null) => {
@@ -200,6 +211,7 @@ export const useUpdateUserMutation = () => {
 ```
 
 #### 列表查询
+
 ```typescript
 // lib/api/posts.ts
 export const usePostsQuery = (params: PostsParams) => {
@@ -241,11 +253,247 @@ export const queryClient = new QueryClient({
 })
 ```
 
-## 4. Jotai - 原子化状态管理
+## 4. Apollo Client - GraphQL 状态管理
 
 ### 4.1 适用场景
 
 #### ✅ 推荐使用
+
+- **GraphQL API**: 统一的 GraphQL 端点
+- **关联数据**: 复杂的数据关系和嵌套查询
+- **实时订阅**: WebSocket 订阅和实时更新
+- **乐观更新**: 需要立即 UI 反馈的操作
+- **规范化缓存**: 复杂的缓存依赖和更新
+
+#### ❌ 不推荐使用
+
+- REST API（用 TanStack Query）
+- 纯客户端状态（用 Zustand/Jotai）
+- 简单的数据获取（用 fetch）
+- 文件上传（用专门的上传库）
+
+### 4.2 客户端配置
+
+```typescript
+// lib/apollo/client.ts
+import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client'
+import { setContext } from '@apollo/client/link/context'
+
+const httpLink = createHttpLink({
+  uri: '/api/graphql',
+})
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('auth-token')
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  }
+})
+
+export const apolloClient = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache({
+    typePolicies: {
+      User: {
+        fields: {
+          posts: {
+            merge(existing = [], incoming) {
+              return [...existing, ...incoming]
+            },
+          },
+        },
+      },
+    },
+  }),
+  defaultOptions: {
+    watchQuery: {
+      errorPolicy: 'all',
+    },
+  },
+})
+```
+
+### 4.3 查询和变更
+
+#### 基础查询
+
+```typescript
+// lib/graphql/queries/user.ts
+import { gql } from '@apollo/client'
+
+export const GET_USER = gql`
+  query GetUser($id: ID!) {
+    user(id: $id) {
+      id
+      name
+      email
+      posts {
+        id
+        title
+        createdAt
+      }
+    }
+  }
+`
+
+export const useUserQuery = (userId: string) => {
+  return useQuery(GET_USER, {
+    variables: { id: userId },
+    skip: !userId,
+    errorPolicy: 'all',
+  })
+}
+```
+
+#### 变更操作
+
+```typescript
+// lib/graphql/mutations/user.ts
+export const UPDATE_USER = gql`
+  mutation UpdateUser($id: ID!, $input: UserInput!) {
+    updateUser(id: $id, input: $input) {
+      id
+      name
+      email
+    }
+  }
+`
+
+export const useUpdateUserMutation = () => {
+  return useMutation(UPDATE_USER, {
+    update(cache, { data }) {
+      if (data?.updateUser) {
+        cache.writeQuery({
+          query: GET_USER,
+          variables: { id: data.updateUser.id },
+          data: { user: data.updateUser },
+        })
+      }
+    },
+    optimisticResponse: (variables) => ({
+      updateUser: {
+        __typename: 'User',
+        id: variables.id,
+        ...variables.input,
+      },
+    }),
+  })
+}
+```
+
+#### 实时订阅
+
+```typescript
+// lib/graphql/subscriptions/messages.ts
+export const MESSAGE_SUBSCRIPTION = gql`
+  subscription OnMessageAdded($chatId: ID!) {
+    messageAdded(chatId: $chatId) {
+      id
+      content
+      user {
+        id
+        name
+      }
+      createdAt
+    }
+  }
+`
+
+export const useMessageSubscription = (chatId: string) => {
+  return useSubscription(MESSAGE_SUBSCRIPTION, {
+    variables: { chatId },
+    onData: ({ client, data }) => {
+      if (data.data?.messageAdded) {
+        // 更新缓存中的消息列表
+        client.cache.modify({
+          id: client.cache.identify({ __typename: 'Chat', id: chatId }),
+          fields: {
+            messages(existing = []) {
+              return [...existing, data.data.messageAdded]
+            },
+          },
+        })
+      }
+    },
+  })
+}
+```
+
+### 4.4 缓存管理
+
+#### 缓存策略
+
+```typescript
+// 不同的获取策略
+const { data } = useQuery(GET_USER, {
+  variables: { id: userId },
+  fetchPolicy: 'cache-first', // 优先使用缓存
+  // fetchPolicy: 'network-only', // 总是从网络获取
+  // fetchPolicy: 'cache-and-network', // 缓存和网络并行
+})
+```
+
+#### 手动缓存更新
+
+```typescript
+// 添加新项目到列表
+const [addPost] = useMutation(ADD_POST, {
+  update(cache, { data }) {
+    if (data?.addPost) {
+      cache.modify({
+        fields: {
+          posts(existingPosts = []) {
+            const newPostRef = cache.writeFragment({
+              data: data.addPost,
+              fragment: gql`
+                fragment NewPost on Post {
+                  id
+                  title
+                  content
+                }
+              `,
+            })
+            return [newPostRef, ...existingPosts]
+          },
+        },
+      })
+    }
+  },
+})
+```
+
+### 4.5 错误处理
+
+```typescript
+// 全局错误处理
+import { onError } from '@apollo/client/link/error'
+
+const errorLink = onError(({ graphQLErrors, networkError, operation, forward }) => {
+  if (graphQLErrors) {
+    graphQLErrors.forEach(({ message, locations, path }) => {
+      console.error(`GraphQL error: ${message}`)
+    })
+  }
+
+  if (networkError) {
+    if (networkError.statusCode === 401) {
+      // 清除认证状态
+      localStorage.removeItem('auth-token')
+      window.location.href = '/login'
+    }
+  }
+})
+```
+
+## 5. Jotai - 原子化状态管理
+
+### 4.1 适用场景
+
+#### ✅ 推荐使用
+
 - **组件间通信**: 跨组件的细粒度状态
 - **计算派生**: 基于其他状态的计算值
 - **复杂表单**: 多步骤、动态表单状态
@@ -253,6 +501,7 @@ export const queryClient = new QueryClient({
 - **临时状态**: 不需要持久化的共享状态
 
 #### ❌ 不推荐使用
+
 - 全局应用状态（用 Zustand）
 - 服务端数据（用 TanStack Query）
 - 简单组件状态（用 useState）
@@ -260,6 +509,7 @@ export const queryClient = new QueryClient({
 ### 4.2 原子定义模式
 
 #### 基础原子
+
 ```typescript
 // lib/atoms/counter.ts
 export const countAtom = atom(0)
@@ -273,6 +523,7 @@ export const incrementAtom = atom(
 ```
 
 #### 异步原子
+
 ```typescript
 // lib/atoms/weather.ts
 export const cityAtom = atom('Beijing')
@@ -284,6 +535,7 @@ export const weatherAtom = atom(async (get) => {
 ```
 
 #### 原子家族
+
 ```typescript
 // lib/atoms/todos.ts
 export const todoAtomFamily = atomFamily((id: string) =>
@@ -328,9 +580,71 @@ export const isFormValidAtom = atom((get) => {
 })
 ```
 
-## 5. 集成使用模式
+## 6. 集成使用模式
 
-### 5.1 认证流程集成
+### 6.1 认证流程集成
+
+#### 混合架构示例
+
+```typescript
+// hooks/useAuth.ts
+export const useAuth = () => {
+  // Zustand: 认证状态
+  const { isAuthenticated, userId, setAuth, clearAuth } = useAuthStore()
+  
+  // Apollo Client: GraphQL 用户数据
+  const { data: user, loading } = useQuery(GET_USER, {
+    variables: { id: userId },
+    skip: !userId,
+  })
+  
+  // TanStack Query: REST API 数据
+  const { data: preferences } = useQuery({
+    queryKey: ['user-preferences', userId],
+    queryFn: () => fetchUserPreferences(userId),
+    enabled: !!userId,
+  })
+  
+  // Jotai: 权限计算
+  const [permissions] = useAtom(userPermissionsAtom)
+  
+  return {
+    isAuthenticated,
+    user,
+    preferences,
+    permissions,
+    isLoading: loading,
+    login: setAuth,
+    logout: clearAuth,
+  }
+}
+```
+
+#### GraphQL + REST 混合使用
+
+```typescript
+// 组件中同时使用 Apollo 和 TanStack Query
+function UserDashboard() {
+  // GraphQL: 复杂关联数据
+  const { data: userData } = useQuery(GET_USER_WITH_POSTS)
+  
+  // REST: 简单配置数据
+  const { data: settings } = useQuery({
+    queryKey: ['settings'],
+    queryFn: fetchSettings,
+  })
+  
+  // Zustand: UI 状态
+  const { theme } = useUIStore()
+  
+  return (
+    <div className={theme}>
+      <UserProfile user={userData?.user} />
+      <UserSettings settings={settings} />
+    </div>
+  )
+}
+```
 
 ```typescript
 // hooks/useAuth.ts
@@ -355,7 +669,7 @@ export const useAuth = () => {
 }
 ```
 
-### 5.2 数据流示例
+### 6.2 数据流示例
 
 ```typescript
 // 1. 用户登录 (Zustand)
@@ -374,29 +688,76 @@ const userPermissionsAtom = atom((get) => {
 })
 ```
 
-## 6. 最佳实践
+## 7. 最佳实践
 
-### 6.1 状态分类指南
+### 7.1 状态分类指南
 
 | 状态类型 | 工具选择 | 理由 |
 |---------|---------|------|
 | 认证 token | Zustand | 需要持久化，全局访问 |
-| 用户信息 | TanStack Query | 服务端数据，需要缓存同步 |
+| GraphQL 数据 | Apollo Client | 复杂关联，实时订阅 |
+| REST API 数据 | TanStack Query | 简单接口，分页列表 |
 | 主题设置 | Zustand | 用户偏好，需要持久化 |
 | 表单验证 | Jotai | 计算派生，组件间共享 |
-| API 数据 | TanStack Query | 服务端状态，自动管理 |
 | 临时 UI 状态 | useState | 组件内部，简单状态 |
 
-### 6.2 性能优化
+### 7.2 API 选择指南
+
+| 场景 | 推荐方案 | 原因 |
+|------|---------|------|
+| 用户信息 + 文章列表 | Apollo Client | 一次查询获取关联数据 |
+| 文件上传 | TanStack Query | 支持进度跟踪 |
+| 实时聊天 | Apollo Client | GraphQL 订阅 |
+| 简单配置获取 | TanStack Query | 轻量级，缓存简单 |
+| 复杂表单提交 | Apollo Client | 乐观更新，错误处理 |
+
+
+
+### 7.3 性能优化
 
 #### Zustand 优化
+
 ```typescript
 // 使用选择器避免不必要的重渲染
 const theme = useUIStore((state) => state.theme) // ✅ 只订阅 theme
 const { theme } = useUIStore() // ❌ 订阅整个 store
 ```
 
+#### Apollo Client 优化
+
+```typescript
+// 使用 Fragment 避免重复查询
+const USER_FRAGMENT = gql`
+  fragment UserInfo on User {
+    id
+    name
+    email
+  }
+`
+
+// 分页查询优化
+const { data, fetchMore } = useQuery(GET_POSTS, {
+  variables: { first: 10 },
+  notifyOnNetworkStatusChange: true,
+})
+
+const loadMore = () => {
+  fetchMore({
+    variables: { after: data.posts.pageInfo.endCursor },
+    updateQuery: (prev, { fetchMoreResult }) => {
+      return {
+        posts: {
+          ...fetchMoreResult.posts,
+          edges: [...prev.posts.edges, ...fetchMoreResult.posts.edges],
+        },
+      }
+    },
+  })
+}
+```
+
 #### TanStack Query 优化
+
 ```typescript
 // 合理设置缓存时间
 const { data } = useQuery({
@@ -408,12 +769,13 @@ const { data } = useQuery({
 ```
 
 #### Jotai 优化
+
 ```typescript
 // 使用 selectAtom 避免不必要的计算
 const nameAtom = selectAtom(userAtom, (user) => user.name)
 ```
 
-### 6.3 错误处理
+### 7.4 错误处理
 
 ```typescript
 // TanStack Query 错误处理
@@ -429,10 +791,27 @@ const { data, error, isError } = useQuery({
   },
 })
 
+// Apollo Client 错误处理
+const { data, error, loading } = useQuery(GET_USER, {
+  errorPolicy: 'all', // 部分数据也返回
+  onError: (error) => {
+    if (error.networkError?.statusCode === 401) {
+      clearAuth()
+    }
+  },
+})
+
 // Jotai 异步错误处理
 const weatherAtom = atom(async (get) => {
   try {
     const city = get(cityAtom)
+    const response = await fetch(`/api/weather/${city}`)
+    return response.json()
+  } catch (error) {
+    console.error('Weather fetch failed:', error)
+    throw error
+  }
+}) city = get(cityAtom)
     return await fetchWeather(city)
   } catch (error) {
     throw new Error(`获取天气失败: ${error.message}`)
