@@ -14,6 +14,8 @@ import { roboto } from '@/styles/fonts'
 import '@/styles/global.css'
 import '@/styles/style.scss'
 
+import { ConditionalHeader } from '@/components/ConditionalHeader'
+
 const APP_NAME = '学记助理'
 const APP_DEFAULT_TITLE = '学记助理 - 智能学习助手'
 const APP_TITLE_TEMPLATE = '%s - 学记助理'
@@ -109,6 +111,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               <GlobalState>
                 <JotaiProvider>
                   <ThemeProvider>
+                    <ConditionalHeader />
                     <ThemeSwitcher />
                     {children}
                   </ThemeProvider>

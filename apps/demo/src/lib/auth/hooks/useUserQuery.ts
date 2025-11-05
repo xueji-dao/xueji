@@ -11,7 +11,7 @@ export const useUserQuery = () => {
 
   return useQuery({
     queryKey: ['user', 'me'],
-    queryFn: () => UserApi.fetchUser,
+    queryFn: UserApi.fetchUser,
     enabled: isAuthenticated,
     staleTime: 5 * 60 * 1000,
     retry: (failureCount, error: any) => {

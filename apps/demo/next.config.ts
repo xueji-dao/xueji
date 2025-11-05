@@ -52,6 +52,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'avatars.githubusercontent.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'assets.vercel.com',
+      },
     ],
   },
   rewrites: async () => [

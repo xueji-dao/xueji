@@ -1,14 +1,22 @@
 'use client'
 
 import styles from './header.module.css'
+import { useEffect, useState } from 'react'
 
-import { useAuth } from '@/hooks/useAuth'
-
+import { useAuth } from '@/lib/auth'
 import ActiveLink from '@/components/ActiveLink'
 
 export default function Header() {
-  const { data: session, status, logout } = useAuth() // 服务端组件中无法使用 useAuth
-  const loading = status === 'loading'
+  const { user, isAuthenticated, logout } = useAuth() // 服务端组件中无法使用 useAuth
+  const [isLoading, setIsLoading] = useState(true)
+
+  // TODO 模拟 isLoading
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 1000)
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
     <header>
@@ -16,32 +24,30 @@ export default function Header() {
         <style>{`.no-js-show { opacity: 1; top: 0; }`}</style>
       </noscript>
       <div className={styles.signedInStatus}>
-        <p className={`no-js-show ${!session && loading ? styles.loading : styles.loaded}`}>
-          {!session && (
+        <p className={`no-js-show ${!user && isLoading ? styles.loading : styles.loaded}`}>
+          {!isAuthenticated && (
             <>
               <span className={styles.notSignedInText}>当前未登录</span>
-              <ActiveLink href="/login" className={styles.buttonPrimary}>
+              <ActiveLink activeClassName="active" href="/login" className={styles.buttonPrimary}>
                 登录
               </ActiveLink>
             </>
           )}
-          {session?.user && (
+          {user && (
             <>
-              {session.user.image && (
-                <span style={{ backgroundImage: `url('${session.user.image}')` }} className={styles.avatar} />
-              )}
+              {user.avatar && <span style={{ backgroundImage: `url('${user.avatar}')` }} className={styles.avatar} />}
               <span className={styles.signedInText}>
-                <strong>{session.user.email ?? session.user.name}</strong>
+                <strong>{user.email ?? user.nickname}</strong>
               </span>
-              <button className={styles.button} onClick={logout}>
+              <button className={styles.button} onClick={() => logout()}>
                 退出
               </button>
             </>
           )}
         </p>
       </div>
-      <nav className="m-2 flex font-bold">
-        <ul className={styles.navItems}>
+      <nav className="m-2 font-bold">
+        <ul className="flex list-none space-x-6">
           <li>
             <ActiveLink activeClassName="active" href="/">
               Home

@@ -6,7 +6,7 @@ interface Props {
   children: React.ReactNode
 }
 
-export function AuthGuard({ children }: Props) {
+export function AuthProvider({ children }: Props) {
   const { checkAuth } = useAuth()
 
   useEffect(() => {

@@ -5,7 +5,6 @@ import { useTranslations } from 'next-intl'
 
 import HelloWorld from '@/components/hello-world'
 import { LP_GRID_ITEMS } from '@/components/lp-items'
-import Nav from '@/components/Nav'
 import { lusitana } from '@/styles/fonts'
 
 export const metadata: Metadata = {
@@ -31,7 +30,6 @@ export default function Index() {
     <div>
       <div className="wrapper">
         <div className="container">
-          <Nav />
           <div id="welcome">
             <h1
               className={clsx(

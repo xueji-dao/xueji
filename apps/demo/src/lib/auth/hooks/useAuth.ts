@@ -10,6 +10,7 @@ import { useLogin } from './useLogin'
 import { useLogout } from './useLogout'
 import { useUserQuery } from './useUserQuery'
 
+// TODO 拆分
 export const useAuth = () => {
   const { isAuthenticated, accessToken, setAuth, clearAuth } = useAuthStore((state) => state)
   const queryClient = useQueryClient()
@@ -20,6 +21,7 @@ export const useAuth = () => {
   // const { data: authData, isLoading: isPermissionsLoading } = usePermissionsQuery()
 
   const checkAuth = useCallback(() => {
+    console.log('checkAuth', accessToken)
     if (accessToken && isValidToken(accessToken)) {
       // token 有效，设置 axios 认证头
       setAxiosAuth(accessToken)

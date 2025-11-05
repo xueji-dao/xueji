@@ -26,6 +26,6 @@ export interface LoginResponse {
   refreshToken: string
 }
 
-export async function fetchUser(userId: string): Promise<User> {
-  return api.get(`/users/${userId}`)
+export async function fetchUser(): Promise<User> {
+  return api.get(`/user/info`)
 }

@@ -2,6 +2,8 @@
 @import 'tailwindcss';
 /* @source "@lexical/tailwind"; */
 @source "../../node_modules/@lexical/tailwind/**/*.{js,mjs}";
+/* Scan libs/ui components for Tailwind classes */
+@source "../../../../libs/ui/src/**/*.{js,ts,jsx,tsx}";
 
 @custom-variant dark (&:where(.dark, .dark *));
 

@@ -11,17 +11,17 @@ const button = cva(
     'border',
     'border-blue-400',
     'transition-colors',
-    'delay-50',
+    'duration-150',
   ],
   {
     variants: {
       intent: {
-        primary: ['bg-blue-400', 'text-white', 'hover:enabled:bg-blue-700'],
-        secondary: ['bg-transparent', 'text-blue-400', 'hover:enabled:bg-blue-400', 'hover:enabled:text-white'],
+        primary: ['bg-blue-400', 'text-white', 'hover:bg-blue-700'],
+        secondary: ['bg-transparent', 'text-blue-400', 'hover:bg-blue-400', 'hover:text-white'],
       },
       size: {
-        sm: ['min-w-20', 'h-full', 'min-h-10', 'text-sm', 'py-1.5', 'px-4'],
-        lg: ['min-w-32', 'h-full', 'min-h-12', 'text-lg', 'py-2.5', 'px-6'],
+        sm: ['min-w-20', 'min-h-10', 'text-sm', 'py-1.5', 'px-4'],
+        lg: ['min-w-32', 'min-h-12', 'text-lg', 'py-2.5', 'px-6'],
       },
       underline: { true: ['underline'], false: [] },
     },

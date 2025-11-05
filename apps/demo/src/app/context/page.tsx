@@ -3,8 +3,6 @@
 import type { MouseEvent } from 'react'
 import Link from 'next/link'
 
-import Nav from '@/components/Nav'
-
 import { useCount, useDispatchCount } from './_components/Counter'
 
 export default function ContextPage() {
@@ -27,7 +25,6 @@ export default function ContextPage() {
 
   return (
     <div className="container">
-      <Nav />
       <p className="mt-4">Counter: {count}</p>
       <button onClick={handleIncrease}>Increase</button>
       <br />
