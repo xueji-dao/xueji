@@ -3,68 +3,68 @@
 import { useCallback } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
 
-import { clearAxiosAuth, isValidToken, setAxiosAuth } from '@/lib/auth/utils'
+import { UserApi } from '@/lib/api'
+import { isValidToken, setAxiosAuth } from '@/lib/auth/utils'
+import { clearAuthData } from '@/lib/auth/utils/clearAuthData'
 import { useAuthStore } from '@/lib/store/stores/auth'
 
 import { useLogin } from './useLogin'
 import { useLogout } from './useLogout'
-import { useUserQuery } from './useUserQuery'
 
-// TODO 拆分
 export const useAuth = () => {
-  const { isAuthenticated, accessToken, setAuth, clearAuth } = useAuthStore((state) => state)
+  const { isAuthenticated, accessToken, isChecking, setChecking } = useAuthStore((state) => state)
   const queryClient = useQueryClient()
+  const clearAuthState = useCallback(() => clearAuthData(queryClient), [queryClient])
 
-  const { data: user, isLoading: isUserLoading } = useUserQuery()
-
-  // TODO
-  // const { data: authData, isLoading: isPermissionsLoading } = usePermissionsQuery()
-
-  const checkAuth = useCallback(() => {
+  const checkAuth = useCallback(async () => {
     console.log('checkAuth', accessToken)
-    if (accessToken && isValidToken(accessToken)) {
+    setChecking(true)
+
+    try {
+      if (!accessToken) {
+        return { isValid: false, reason: 'no_token' }
+      }
+
+      if (!isValidToken(accessToken)) {
+        clearAuthData(queryClient)
+        return { isValid: false, reason: 'invalid_token' }
+      }
+
       // token 有效，设置 axios 认证头
       setAxiosAuth(accessToken)
-    } else if (accessToken) {
-      // token 存在但无效，清理状态
-      clearAuth()
-      clearAxiosAuth()
-      queryClient.removeQueries({ queryKey: ['user'] }) // 只清除用户相关缓存
+
+      // 强制执行用户查询来验证 token 有效性
+      await queryClient.fetchQuery({
+        queryKey: ['user', 'me'],
+        queryFn: UserApi.fetchUser,
+        staleTime: 0, // 强制重新查询
+      })
+      return { isValid: true }
+    } catch {
+      clearAuthData(queryClient)
+      return { isValid: false, reason: 'server_rejected' }
+    } finally {
+      setChecking(false)
     }
-    // 没有 token 时什么都不做
-  }, [accessToken, clearAuth, queryClient])
+  }, [accessToken, queryClient, setChecking])
 
   const loginMutation = useLogin()
   const logoutMutation = useLogout()
 
+  // 用户信息和权限需要单独使用 useUserQuery 和 usePermission
   return {
     // 认证状态
     isAuthenticated,
     accessToken,
 
-    // 用户信息
-    user,
-    // permissions: authData?.permissions || [], // 后台返回的实际权限
-    // roles: authData?.roles || [], // 后台返回的角色
-    isLoading: isUserLoading, // || isPermissionsLoading,
-
-    // 权限检查方法
-    hasPermission: (permission: string) => {
-      const permissions = authData?.permissions
-      if (!permissions) return false
-      if (permissions.includes('*')) return true // 超级管理员
-      return permissions.includes(permission)
-    },
-    hasRole: (role: string) => authData?.roles?.includes(role) ?? false,
-    hasAnyRole: (roles: string[]) => roles.some((role) => authData?.roles?.includes(role)) ?? false,
-
-    // 认证操作
     login: loginMutation.mutate,
     logout: logoutMutation.mutate,
 
     checkAuth, // 暴露给 AuthGuard 使用
+    clearAuthState, // 暴露给全局错误处理等使用
 
-    // 操作状态
+    // 状态
+    isChecking,
     isLoggingIn: loginMutation.isPending,
     isLoggingOut: logoutMutation.isPending,
     loginError: loginMutation.error,
