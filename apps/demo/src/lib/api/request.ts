@@ -83,7 +83,8 @@ api.interceptors.response.use(
             window.location.href = '/login'
           }
 
-          return Promise.reject(error)
+          const errorData = error.response?.data || { error: 'Authentication failed' }
+          return Promise.reject(errorData)
         }
       } catch (refreshError) {
         // 刷新异常，清除认证状态
@@ -91,13 +92,16 @@ api.interceptors.response.use(
         clearAxiosAuth()
         requestQueue.forEach((callback) => callback(''))
         requestQueue = []
-        return Promise.reject(refreshError)
+        const errorData = { error: (refreshError as Error)?.message || 'Token refresh failed' }
+        return Promise.reject(errorData)
       } finally {
         isRefreshing = false
       }
     }
 
-    return Promise.reject(error)
+    // 统一错误格式
+    const errorData = error.response?.data || { error: error.message || 'Request failed' }
+    return Promise.reject(errorData)
   },
 )
 

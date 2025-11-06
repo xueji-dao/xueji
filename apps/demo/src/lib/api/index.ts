@@ -6,8 +6,8 @@ export const Endpoints = {
   kanban: '/api/kanban',
   calendar: '/api/calendar',
   user: {
-    me: '/api/user/info',
-    roles: '/api/user/roles',
+    me: '/user/info',
+    roles: '/user/roles',
   },
   auth: {
     signIn: '/api/proxy/auth/login',

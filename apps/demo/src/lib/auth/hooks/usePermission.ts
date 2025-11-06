@@ -15,7 +15,7 @@ export const usePermission = () => {
     queryFn: async () => {
       // TODO: 实现权限查询 API
       // return PermissionApi.fetchPermissions()
-      return { permissions: [], roles: [] }
+      return { permissions: ['*'], roles: ['system-user'] }
     },
     enabled: isAuthenticated,
     staleTime: 5 * 60 * 1000, // 5分钟缓存
@@ -29,12 +29,14 @@ export const usePermission = () => {
 
     // 权限检查方法
     hasPermission: (permission: string) => {
+      if (!isAuthenticated) return false // 未认证用户无权限
       const permissions = authData?.permissions
       if (!permissions) return false
       if (permissions.includes('*')) return true // 超级管理员
       return permissions.includes(permission)
     },
-    hasRole: (role: string) => authData?.roles?.includes(role) ?? false,
-    hasAnyRole: (roles: string[]) => roles.some((role) => authData?.roles?.includes(role)) ?? false,
+    hasRole: (role: string) => isAuthenticated && (authData?.roles?.includes(role) ?? false),
+    hasAnyRole: (roles: string[]) =>
+      isAuthenticated && (roles.some((role) => authData?.roles?.includes(role)) ?? false),
   }
 }

@@ -3,11 +3,12 @@
 import styles from './header.module.css'
 import { useEffect, useState } from 'react'
 
-import { useAuth } from '@/lib/auth'
+import { useAuth, useUserQuery } from '@/lib/auth'
 import ActiveLink from '@/components/ActiveLink'
 
 export default function Header() {
-  const { user, isAuthenticated, logout } = useAuth() // 服务端组件中无法使用 useAuth
+  const { isAuthenticated, logout, isChecking } = useAuth() // 服务端组件中无法使用 useAuth
+  const { data: user, isLoading: loadingUser } = useUserQuery()
   const [isLoading, setIsLoading] = useState(true)
 
   // TODO 模拟 isLoading
@@ -24,7 +25,8 @@ export default function Header() {
         <style>{`.no-js-show { opacity: 1; top: 0; }`}</style>
       </noscript>
       <div className={styles.signedInStatus}>
-        <p className={`no-js-show ${!user && isLoading ? styles.loading : styles.loaded}`}>
+        <p
+          className={`no-js-show ${!user && (isLoading || isChecking || loadingUser) ? styles.loading : styles.loaded}`}>
           {!isAuthenticated && (
             <>
               <span className={styles.notSignedInText}>当前未登录</span>

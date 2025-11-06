@@ -10,10 +10,11 @@ export async function POST(request: NextRequest) {
     }
 
     // 调用后端刷新 token
-    const response = await fetch(`${process.env.BACKEND_URL}/auth/refresh`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVICE_BASE_URL}/api/auth/refresh`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ refreshToken }),
+      signal: AbortSignal.timeout(5000), // 5秒超时
     })
 
     if (!response.ok) {
@@ -22,7 +23,7 @@ export async function POST(request: NextRequest) {
 
     const { accessToken, refreshToken: newRefreshToken } = await response.json()
 
-    // 更新 refresh token cookie（如果后端返回了新的）
+    // 更新 refresh token cookie
     const responseObj = NextResponse.json({ accessToken })
     if (newRefreshToken) {
       responseObj.cookies.set('refresh-token', newRefreshToken, {

@@ -11,7 +11,7 @@ export const usePermissionsQuery = () => {
 
   return useQuery({
     queryKey: ['user', 'permissions'],
-    queryFn: () => UserApi.fetchUserPermissions(),
+    queryFn: UserApi.fetchUserPermissions,
     enabled: isAuthenticated,
     staleTime: 10 * 60 * 1000,
     retry: (failureCount, error: any) => {

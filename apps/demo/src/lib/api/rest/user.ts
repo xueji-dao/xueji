@@ -1,5 +1,3 @@
-import { useQuery } from '@tanstack/react-query'
-
 import api from '@/lib/api/request'
 
 import { Endpoints } from '../index'
@@ -16,16 +14,11 @@ export interface User {
   updatedAt?: string
 }
 
-export interface LoginCredentials {
-  username: string
-  password: string
-}
-
-export interface LoginResponse {
-  accessToken: string
-  refreshToken: string
-}
-
 export async function fetchUser(): Promise<User> {
-  return api.get(`/user/info`)
+  return api.get(Endpoints.user.me)
+}
+
+// TODO
+export async function fetchUserPermissions(): Promise<User> {
+  return api.get(Endpoints.user.roles)
 }

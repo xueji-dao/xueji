@@ -42,7 +42,7 @@ export const useAuth = () => {
       return { isValid: true }
     } catch {
       clearAuthData(queryClient)
-      return { isValid: false, reason: 'server_rejected' }
+      return { isValid: false, reason: 'invalid_token' }
     } finally {
       setChecking(false)
     }

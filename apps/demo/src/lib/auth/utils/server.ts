@@ -3,20 +3,6 @@
 import { cookies } from 'next/headers'
 import { importSPKI, jwtVerify } from 'jose'
 
-export async function authenticateUser(credentials: LoginCredentials): Promise<LoginResponse> {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_SERVICE_BASE_URL}/api/auth/login`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(credentials),
-  })
-
-  if (!response.ok) {
-    throw new Error('Invalid credentials')
-  }
-
-  return await response.json()
-}
-
 const getPublicKey = async () => {
   const publicKeyPem = process.env.JWT_PUBLIC_KEY
   if (!publicKeyPem) {

@@ -1,19 +1,26 @@
 import { NextResponse } from 'next/server'
+import { getTranslations } from 'next-intl/server'
 
-import { authenticateUser } from '@/lib/auth/server'
+import { type LoginResponse } from '@/lib/api/rest/auth'
 
 export async function POST(request: Request) {
   try {
     const credentials = await request.json()
-    const { accessToken, refreshToken } = await authenticateUser(credentials)
-
-    const responseObj = NextResponse.json({
-      ok: true,
-      accessToken,
+    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVICE_BASE_URL}/api/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(credentials),
     })
+    const data: LoginResponse = await response.json()
+    const t = await getTranslations('LoginPage')
 
-    // 设置 refresh token cookie
-    responseObj.cookies.set('refresh-token', refreshToken, {
+    if (!response.ok) {
+      return Response.json({ error: t('invalidCredentials') }, { status: response.status })
+    }
+
+    const responseObj = NextResponse.json({ accessToken: data.accessToken })
+
+    responseObj.cookies.set('refresh-token', data.refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
@@ -24,9 +31,6 @@ export async function POST(request: Request) {
     return responseObj
   } catch (error) {
     console.error('Login error:', error)
-    const status = error instanceof Error && error.message === 'Invalid credentials' ? 401 : 500
-    const message =
-      error instanceof Error && error.message === 'Invalid credentials' ? 'Invalid credentials' : 'Login failed'
-    return Response.json({ error: message }, { status })
+    return Response.json({ error: '服务器异常' }, { status: 500 })
   }
 }
