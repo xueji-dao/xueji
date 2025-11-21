@@ -55,7 +55,6 @@ BREAKING CHANGE: use JavaScript features not available in Node 6.
 - AG-UI CopilotKit
 - authjs
 - excalidraw
--
 
 ### AutoDev
 
@@ -67,7 +66,7 @@ BREAKING CHANGE: use JavaScript features not available in Node 6.
 
 ### 原型
 
-#### 3D 知识地图 (Knowledge Map 3D)
+#### 3D 知识地图 (Knowledge Map 3D) + 智能助理
 
 **核心需求**:
 

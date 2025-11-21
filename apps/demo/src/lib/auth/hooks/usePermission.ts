@@ -1,24 +1,26 @@
 'use client'
 
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 
+import { UserApi } from '@/lib/api'
 import { useAuthStore } from '@/lib/store/stores/auth'
-
-// TODO: 实现权限 API
-// import { PermissionApi } from '@/lib/api'
 
 export const usePermission = () => {
   const { isAuthenticated } = useAuthStore((state) => state)
+  const queryClient = useQueryClient()
 
   const { data: authData, isLoading } = useQuery({
-    queryKey: ['auth', 'permissions'],
-    queryFn: async () => {
-      // TODO: 实现权限查询 API
-      // return PermissionApi.fetchPermissions()
-      return { permissions: ['*'], roles: ['system-user'] }
-    },
+    queryKey: ['user', 'permissions'],
+    queryFn: UserApi.fetchUserPermissions,
     enabled: isAuthenticated,
-    staleTime: 5 * 60 * 1000, // 5分钟缓存
+    staleTime: 10 * 60 * 1000,
+    retry: (failureCount, error: any) => {
+      if (error?.response?.status === 401 || error?.status === 401) {
+        queryClient.removeQueries({ queryKey: ['user'] })
+        return false
+      }
+      return failureCount < 3
+    },
   })
 
   return {
