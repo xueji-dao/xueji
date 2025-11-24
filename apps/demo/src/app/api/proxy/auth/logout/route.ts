@@ -21,10 +21,10 @@ export async function POST(request: NextRequest) {
     } catch (backendError) {
       console.error('Backend logout failed:', backendError)
       backendSuccess = false
-      // 继续清除本地 cookie，不因后端错误阻断退出
     }
   }
 
+  // 继续清除本地 cookie，不因后端错误阻断退出
   await clearAuthCookie()
   return Response.json({
     success: true,

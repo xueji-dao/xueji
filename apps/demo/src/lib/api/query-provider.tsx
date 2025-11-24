@@ -4,23 +4,27 @@ import { useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
+
+
 export function QueryProvider({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(() => {
     const client = new QueryClient({
       defaultOptions: {
         queries: {
-          gcTime: 1000 * 60 * 60 * 24, // 24 hours - 垃圾回收时间（数据在内存中保留时间）
-          staleTime: 1000 * 60 * 5, // 5 minutes - 数据过期时间（多久后重新请求）
+          staleTime: 5 * 60 * 1000, // 5分钟内数据视为新鲜
+          gcTime: 10 * 60 * 1000, // 10分钟后清理缓存
+          retryDelay: (attemptIndex: number) => Math.min(1000 * 2 ** attemptIndex, 30000),
+          refetchOnWindowFocus: false,
+          refetchOnReconnect: true,
+          // 全局特殊处理：401 错误不重试
           retry: (failureCount, error: any) => {
             if (error?.status === 401) return false
             return failureCount < 3
           },
-          refetchOnWindowFocus: false, // 窗口聚焦时不自动重新请求
-          refetchOnReconnect: true, // 网络重连时重新请求
-          refetchOnMount: true, // 组件挂载时重新请求
         },
         mutations: {
-          retry: 1, // 变更操作失败重试次数
+          retry: 1,
+          retryDelay: 1000,
         },
       },
     })

@@ -18,7 +18,7 @@ export async function fetchUser(): Promise<User> {
   return api.get(Endpoints.user.me)
 }
 
-// TODO
+// TODO: 修正返回类型
 export async function fetchUserPermissions(): Promise<User> {
   return api.get(Endpoints.user.roles)
 }

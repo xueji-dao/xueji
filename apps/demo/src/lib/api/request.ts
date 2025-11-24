@@ -11,24 +11,20 @@ const api = axios.create({
   timeout: 10000,
 })
 
-// Next.js API 路由
-export const nextApi = axios.create({
-  baseURL: '/api',
-  timeout: 10000,
-})
-
-// 认证头通过全局设置，无需请求拦截器
-
-// Next.js API 响应拦截器
-nextApi.interceptors.response.use(
-  (response) => response.data,
-  (error) => Promise.reject(error),
-)
+/**
+ * 通用 fetcher 函数 - 备选方案
+ */
+// export const fetcher = async <T = unknown>(args: string | [string, AxiosRequestConfig]): Promise<T> => {
+//   const [url, config] = Array.isArray(args) ? args : [args, {}]
+//   const res = await api.get<T>(url, config)
+//   return res.data
+// }
 
 // Token 刷新队列
 let isRefreshing = false
 let requestQueue: Array<(token: string) => void> = []
 
+// 认证头通过全局设置，无需请求拦截器
 // 外部 api 响应拦截器 - 自动 token 刷新
 api.interceptors.response.use(
   (response) => response.data,

@@ -6,7 +6,9 @@ import { PersonApi } from '@/lib/api'
 
 export default function PersonPage() {
   const query = useParams()
-  const { data, error, isPending, isFetching } = PersonApi.usePerson(Array.isArray(query?.id) ? query.id[0] : query?.id || null)
+  const { data, error, isPending, isFetching } = PersonApi.usePerson(
+    Array.isArray(query?.id) ? query.id[0] : query?.id || null,
+  )
 
   if (error) return <div>{error.message}</div>
   if (isPending) return <div>Loading...</div>
