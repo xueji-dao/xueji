@@ -96,6 +96,7 @@
     "@swc/core": "~1.5.29",
     "@swc/helpers": "~0.5.17",
     "@tailwindcss/postcss": "^4.1.14",
+    "@tanstack/eslint-plugin-query": "^5.91.2",
     "@testing-library/dom": "10.4.0",
     "@testing-library/react": "16.1.0",
     "@types/jest": "30.0.0",

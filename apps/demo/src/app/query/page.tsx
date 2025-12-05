@@ -1,6 +1,7 @@
 'use client'
 
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
+import axios from 'axios'
 
 import { TestApi } from '@/lib/api'
 
@@ -9,11 +10,40 @@ export default function QueryPage() {
 }
 
 function Example() {
-  // 使用默认配置的查询
-  const { isPending, error, data, isFetching } = useQuery({
+  // Access the client
+  // const queryClient = useQueryClient()
+
+  // 使用默认配置的查询 Queries
+  const query = useQuery({
     queryKey: ['repoData'],
     queryFn: TestApi.fetchRepoData,
   })
+
+  // 判别联合类型示例：TypeScript 会根据状态自动推断类型
+  if (query.status === 'success') {
+    // 在这个分支中，TypeScript 知道 data 一定存在且不为 undefined
+    console.log(query.data.full_name) // ✅ 类型安全，无需可选链
+  }
+
+  const { isPending, error, data, isFetching } = query
+  if (axios.isAxiosError(error)) {
+    // error // ^? const error: AxiosError
+  }
+
+  // Mutations
+  // const mutation = useMutation({
+  //   mutationFn: postTodo,
+  //   onSuccess: () => {
+  //     // Invalidate and refetch
+  //     queryClient.invalidateQueries({ queryKey: ['todos'] })
+  //   },
+  // })
+  // const onClick = () => {
+  //   mutation.mutate({
+  //     id: Date.now(),
+  //     title: 'Do Laundry',
+  //   })
+  // }
 
   // 覆盖默认配置的查询示例
   const {
@@ -33,31 +63,30 @@ function Example() {
     enabled: false, // 禁用自动执行，需要手动触发
   })
 
-  if (isPending) return 'Loading...'
+  // 方式1：传统的早期返回
+  // if (isPending) return 'Loading...'
+  // if (error) return 'An error has occurred: ' + error.message
 
-  if (error) return 'An error has occurred: ' + error.message
+  // 方式2：使用 status 进行类型收窄
+  if (query.status === 'pending') return 'Loading with status...'
+  if (query.status === 'error') return `Error with status: ${query.error.message}`
+  // 此时 TypeScript 知道 query.status === 'success'，data 一定存在
 
   return (
     <div className="space-y-6 p-4">
       {/* 默认配置的查询结果 */}
       <div className="rounded border p-4">
         <h2 className="mb-2 text-lg font-bold">默认配置查询 (TanStack Query)</h2>
-        {isPending ? (
-          <p>Loading...</p>
-        ) : error ? (
-          <p>An error has occurred: {error.message}</p>
-        ) : (
-          <div>
-            <h3>{data.full_name}</h3>
-            <p>{data.description}</p>
-            <div className="mt-2 flex gap-4">
-              <strong>👀 {data.subscribers_count}</strong>
-              <strong>✨ {data.stargazers_count}</strong>
-              <strong>🍴 {data.forks_count}</strong>
-            </div>
-            <div className="mt-2 text-sm text-gray-500">{isFetching ? 'Updating...' : 'Data loaded'}</div>
+        <div>
+          <h3>{data.full_name}</h3>
+          <p>{data.description}</p>
+          <div className="mt-2 flex gap-4">
+            <strong>👀 {data.subscribers_count}</strong>
+            <strong>✨ {data.stargazers_count}</strong>
+            <strong>🍴 {data.forks_count}</strong>
           </div>
-        )}
+          <div className="mt-2 text-sm text-gray-500">{isFetching ? 'Updating...' : 'Data loaded'}</div>
+        </div>
       </div>
 
       {/* 自定义配置的查询结果 */}
