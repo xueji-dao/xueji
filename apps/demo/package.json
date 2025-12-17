@@ -10,7 +10,9 @@
     "db:seed": "dotenv -e .env.local -- prisma db seed",
     "db:push": "dotenv -e .env.local -- prisma db push",
     "db:studio": "dotenv -e .env.local -- prisma studio",
-    "db:generate": "prisma generate"
+    "db:generate": "prisma generate",
+    "gql:generate": "graphql-codegen --config ./codegen.ts",
+    "gql:watch": "graphql-codegen --config ./codegen.ts --watch"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

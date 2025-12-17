@@ -59,6 +59,7 @@
     "zustand": "^5.0.8"
   },
   "devDependencies": {
+    "@0no-co/graphqlsp": "^1.15.1",
     "@babel/core": "^7.28.4",
     "@babel/preset-react": "^7.27.1",
     "@commitlint/cli": "^19.8.1",
@@ -67,6 +68,8 @@
     "@eslint/compat": "^1.4.0",
     "@eslint/eslintrc": "^2.1.4",
     "@eslint/js": "^9.37.0",
+    "@graphql-codegen/cli": "^6.1.0",
+    "@graphql-codegen/schema-ast": "^5.0.0",
     "@hyoban/eslint-plugin-tailwindcss": "4.0.0-alpha.11",
     "@ianvs/prettier-plugin-sort-imports": "^4.7.0",
     "@next/bundle-analyzer": "^16.0.0",
@@ -82,6 +85,7 @@
     "@nx/storybook": "22.0.1",
     "@nx/web": "22.0.1",
     "@nx/workspace": "22.0.1",
+    "@parcel/watcher": "^2.5.1",
     "@playwright/test": "^1.56.1",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
