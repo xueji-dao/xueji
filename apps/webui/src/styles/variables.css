@@ -1,0 +1,73 @@
+/* 设计系统 CSS 变量 - 统一使用 OKLCH */
+
+/* 亮色主题 */
+:root {
+  --background: oklch(1 0 0);           /* 纯白 */
+  --foreground: oklch(0.15 0 0);        /* 深灰 */
+  --border: oklch(0.9 0 0);             /* 浅灰边框 */
+  --input: oklch(0.9 0 0);              /* 输入框背景 */
+  --ring: oklch(0.15 0 0);              /* 焦点环 */
+  --primary: oklch(0.09 0 0);           /* 主色 */
+  --primary-foreground: oklch(0.98 0 0); /* 主色文字 */
+  --secondary: oklch(0.96 0 0);         /* 次要色 */
+  --secondary-foreground: oklch(0.09 0 0); /* 次要色文字 */
+  --destructive: oklch(0.6 0.2 25);     /* 危险色 */
+  --destructive-foreground: oklch(0.98 0 0); /* 危险色文字 */
+  --muted: oklch(0.96 0 0);             /* 静音色 */
+  --muted-foreground: oklch(0.45 0 0);  /* 静音色文字 */
+  --accent: oklch(0.96 0 0);            /* 强调色 */
+  --accent-foreground: oklch(0.09 0 0); /* 强调色文字 */
+  --popover: oklch(1 0 0);              /* 弹窗背景 */
+  --popover-foreground: oklch(0.15 0 0); /* 弹窗文字 */
+  --card: oklch(1 0 0);                 /* 卡片背景 */
+  --card-foreground: oklch(0.15 0 0);   /* 卡片文字 */
+  --radius: 0.5rem;
+}
+
+/* 系统暗色模式检测 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: oklch(0.15 0 0);
+    --foreground: oklch(0.98 0 0);
+    --border: oklch(0.25 0 0);
+    --input: oklch(0.25 0 0);
+    --ring: oklch(0.83 0 0);
+    --primary: oklch(0.98 0 0);
+    --primary-foreground: oklch(0.09 0 0);
+    --secondary: oklch(0.25 0 0);
+    --secondary-foreground: oklch(0.98 0 0);
+    --destructive: oklch(0.45 0.15 25);
+    --destructive-foreground: oklch(0.98 0 0);
+    --muted: oklch(0.25 0 0);
+    --muted-foreground: oklch(0.64 0 0);
+    --accent: oklch(0.25 0 0);
+    --accent-foreground: oklch(0.98 0 0);
+    --popover: oklch(0.15 0 0);
+    --popover-foreground: oklch(0.98 0 0);
+    --card: oklch(0.15 0 0);
+    --card-foreground: oklch(0.98 0 0);
+  }
+}
+
+/* 手动暗色主题 (优先级更高) */
+.dark {
+  --background: oklch(0.15 0 0);
+  --foreground: oklch(0.98 0 0);
+  --border: oklch(0.25 0 0);
+  --input: oklch(0.25 0 0);
+  --ring: oklch(0.83 0 0);
+  --primary: oklch(0.98 0 0);
+  --primary-foreground: oklch(0.09 0 0);
+  --secondary: oklch(0.25 0 0);
+  --secondary-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.45 0.15 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.25 0 0);
+  --muted-foreground: oklch(0.64 0 0);
+  --accent: oklch(0.25 0 0);
+  --accent-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.15 0 0);
+  --popover-foreground: oklch(0.98 0 0);
+  --card: oklch(0.15 0 0);
+  --card-foreground: oklch(0.98 0 0);
+}

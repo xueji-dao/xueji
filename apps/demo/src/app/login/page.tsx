@@ -28,7 +28,7 @@ const loginSchema = z.object({
 
 type LoginForm = z.infer<typeof loginSchema>
 
-export default function NewLoginPage() {
+export default function LoginPage() {
   const { isAuthenticated, login, isLoggingIn, loginError } = useAuth()
   const [formData, setFormData] = useState<LoginForm>({ email: '', password: '' })
   const [showPassword, setShowPassword] = useState(false)
@@ -120,14 +120,16 @@ export default function NewLoginPage() {
               helperText={validationErrors.password}
               margin="normal"
               variant="outlined"
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
-                      {showPassword ? <EyeSlashIcon className="h-5 w-5" /> : <EyeIcon className="h-5 w-5" />}
-                    </IconButton>
-                  </InputAdornment>
-                ),
+              slotProps={{
+                input: {
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                        {showPassword ? <EyeSlashIcon className="h-5 w-5" /> : <EyeIcon className="h-5 w-5" />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                },
               }}
             />
 

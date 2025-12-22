@@ -1,0 +1,129 @@
+@layer theme, base, components, utilities;
+@import 'tailwindcss';
+
+/* 扫描组件库 */
+/* @source "@lexical/tailwind"; */
+@source "../../node_modules/@lexical/tailwind/**/*.{js,mjs}";
+/* Scan libs/ui components for Tailwind classes */
+@source "../../../../libs/ui/src/**/*.{js,ts,jsx,tsx}";
+
+/* 自定义变体 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* 使用场景：当你需要在 CSS 中直接使用变量，但不想生成对应的 Tailwind 工具类时。*/
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* 主题配置 */
+@theme {
+  /* 容器配置 */
+  --container-center: true;
+  --container-padding: 32px;
+  --container-screens-2xl: 1400px;
+
+  --font-display: 'Satoshi', 'sans-serif'; /* 生成 font-display 类 */
+  --breakpoint-3xl: 1920px; /* 生成 3xl: 断点 */
+  --color-avocado-100: oklch(0.99 0 0); /* 生成 bg-avocado-100 等 */
+  --color-blue-400: oklch(0.6376 0.1953 255.79); /* 生成 text-blue-400 等 */
+  --ease-fluid: cubic-bezier(0.3, 0, 0, 1); /* 生成 ease-fluid 类 */
+  --grid-13: repeat(13, minmax(0, 1fr)); /* 生成 grid-cols-13 类 */
+
+  /* 自定义颜色 */
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  /* 圆角配置 */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  /* 自定义间距 */
+  --spacing-28: 7rem;
+
+  /* 字体配置 */
+  --letter-spacing-tighter: -0.04em;
+  --line-height-tight: 1.2;
+
+  /* 字体大小 */
+  --font-size-5xl: 2.5rem;
+  --font-size-6xl: 2.75rem;
+  --font-size-7xl: 4.5rem;
+  --font-size-8xl: 6.25rem;
+
+  /* 阴影 */
+  --box-shadow-small: 0 5px 10px rgba(0, 0, 0, 0.12);
+  --box-shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
+
+  /* 动画 - 替代 tailwindcss-animate */
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-in-from-top {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  --animation-accordion-down: accordion-down 0.2s ease-out;
+  --animation-accordion-up: accordion-up 0.2s ease-out;
+  --animation-fade-in: fade-in 0.2s ease-out;
+  --animation-slide-in-from-top: slide-in-from-top 0.3s ease-out;
+}

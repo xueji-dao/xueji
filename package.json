@@ -9,6 +9,7 @@
     "commit": "git-cz",
     "release": "semantic-release --dry-run",
     "analyze": "cross-env ANALYZE=true nx build webui",
+    "serve": "serve ./apps/webui/.next/analyze",
     "image:resize": "ts-node tools/image-resize.ts",
     "server:ws": "cross-env HOST=localhost PORT=1234 npx y-websocket"
   },

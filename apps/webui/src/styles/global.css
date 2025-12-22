@@ -1,45 +1,17 @@
-@import 'tailwindcss';
+@import './variables.css';
+@import './tailwind.css';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme {
-  --font-display: 'Satoshi', 'sans-serif';
-  --breakpoint-3xl: 1920px;
-  --color-avocado-100: oklch(0.99 0 0);
-  --color-blue-400: oklch(0.6376 0.1953 255.79);
-  --color-blue-500: oklch(0.5731 0.2145 258.25);
-  --color-blue-600: oklch(0.5726 0.1989 261.84);
-  --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
-  --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
-  --grid-13: repeat(13, minmax(0, 1fr));
-
-  @keyframes shimmer {
-    100% {
-      transform: translateX(100%);
-    }
-  }
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* 全局样式 */
+* {
+  border-color: var(--border);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+  font-family: inherit;
+  line-height: inherit;
+  margin: 0;
 }
 
 html {
@@ -49,31 +21,24 @@ html {
     system-ui,
     -apple-system,
     BlinkMacSystemFont,
-    Segoe UI,
+    'Segoe UI',
     Roboto,
-    Helvetica Neue,
+    'Helvetica Neue',
     Arial,
-    Noto Sans,
-    sans-serif,
-    Apple Color Emoji,
-    Segoe UI Emoji,
-    Segoe UI Symbol,
-    Noto Color Emoji;
+    'Noto Sans',
+    sans-serif;
   line-height: 1.5;
   tab-size: 4;
   scroll-behavior: smooth;
 }
-body {
-  font-family: inherit;
-  line-height: inherit;
-  margin: 0;
-}
+
 h1,
 h2,
 p,
 pre {
   margin: 0;
 }
+
 *,
 ::before,
 ::after {
@@ -82,6 +47,7 @@ pre {
   border-style: solid;
   border-color: currentColor;
 }
+
 a {
   color: inherit;
   text-decoration: inherit;

@@ -19,7 +19,7 @@ import { ConditionalHeader } from '@/components/ConditionalHeader'
 const APP_NAME = '学记助理'
 const APP_DEFAULT_TITLE = '学记助理 - 智能学习助手'
 const APP_TITLE_TEMPLATE = '%s - 学记助理'
-const APP_DESCRIPTION = '基于 AI 的智能学习助手，提供个性化学习方案和知识管理'
+const APP_DESCRIPTION = '智能学习与知识管理, 知识地图'
 
 export const viewport: Viewport = {
   themeColor: [
