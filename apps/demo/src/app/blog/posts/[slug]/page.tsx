@@ -1,10 +1,10 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { CONFIG } from '@/global-config'
 import { getPostWords, readingTime } from '@xueji/utils'
 
 import { getAllPosts, getPostBySlug } from '@/lib/blog/api'
 import markdownToHtml from '@/lib/blog/markdownToHtml'
-import { CMS_NAME } from '@/lib/constants'
 
 import Alert from '../../_components/alert'
 import Container from '../../_components/container'
@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     return notFound()
   }
 
-  const title = `${post.title} | ${CMS_NAME}`
+  const title = `${post.title} | ${CONFIG.appName}`
 
   return {
     title,

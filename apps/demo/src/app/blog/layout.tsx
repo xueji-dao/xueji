@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
+import { CONFIG } from '@/global-config'
 import { ViewTransitions } from 'next-view-transitions'
 
-import { CMS_NAME, HOME_OG_IMAGE_URL } from '@/lib/constants'
 import { inter } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
 import LocaleSwitcher from '@/components/LocaleSwitcher'
@@ -10,12 +10,12 @@ import ScrollYIndicator from '@/components/motion/ScrollYIndicator'
 import Footer from './_components/footer'
 
 export const metadata: Metadata = {
-  title: `Blog Example with ${CMS_NAME}`,
-  description: `A statically generated blog example using Next.js and ${CMS_NAME}.`,
+  title: `Blog Example with ${CONFIG.site}`,
+  description: `A statically generated blog example using Next.js and ${CONFIG.appName}.`,
   openGraph: {
-    images: [HOME_OG_IMAGE_URL],
+    images: [CONFIG.site.ogImageUrl],
   },
-  metadataBase: new URL(HOME_OG_IMAGE_URL),
+  metadataBase: new URL(CONFIG.site.ogImageUrl),
 }
 
 export default function RootLayout({

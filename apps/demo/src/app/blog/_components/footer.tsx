@@ -1,6 +1,5 @@
+import { CONFIG } from '@/global-config'
 import { Link } from 'next-view-transitions'
-
-import { EXAMPLE_PATH } from '@/lib/constants'
 
 import Container from './container'
 
@@ -18,9 +17,7 @@ export function Footer() {
               className="mx-3 mb-6 border border-black bg-black px-12 py-3 font-bold text-white transition-colors duration-200 hover:bg-white hover:text-black lg:mb-0 lg:px-8">
               Read Documentation
             </a>
-            <a
-              href={`https://github.com/XueJi-DAO/xueji/tree/main/apps/xueji/${EXAMPLE_PATH}`}
-              className="mx-3 font-bold hover:underline">
+            <a href={CONFIG.paths.posts} className="mx-3 font-bold hover:underline">
               View on GitHub
             </a>
           </div>

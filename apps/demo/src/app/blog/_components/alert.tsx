@@ -1,4 +1,5 @@
-import { EXAMPLE_PATH } from '@/lib/constants'
+import { CONFIG } from '@/global-config'
+
 import { cn } from '@/lib/utils'
 
 import Container from './container'
@@ -27,9 +28,7 @@ const Alert = ({ preview }: Props) => {
           ) : (
             <>
               The source code for this blog is{' '}
-              <a
-                href={`https://github.com/XueJi-DAO/xueji/tree/main/apps/xueji/${EXAMPLE_PATH}`}
-                className="underline transition-colors duration-200 hover:text-blue-600">
+              <a href={CONFIG.paths.posts} className="underline transition-colors duration-200 hover:text-blue-600">
                 available on GitHub
               </a>
               .
