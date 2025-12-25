@@ -1,4 +1,4 @@
-export { ThemeProvider } from './provider'
-export { useThemeSync, useThemeValues } from './hooks'
-export { lightTheme, darkTheme } from './config'
-export { ThemeSwitcher } from './theme-switcher'
+export * from './provider'
+export * from './hooks'
+export * from './theme-config'
+export * from './theme-switcher'

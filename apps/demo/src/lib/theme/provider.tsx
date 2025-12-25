@@ -1,27 +1,38 @@
 'use client'
 
-import { useMemo } from 'react'
-import { CssBaseline } from '@mui/material'
-import { createTheme, ThemeProvider as MuiThemeProvider } from '@mui/material/styles'
+import { useEffect, useMemo } from 'react'
+import { getCurrentLang } from '@/i18n'
+import CssBaseline from '@mui/material/CssBaseline'
+import type { ThemeProviderProps as MuiThemeProviderProps, Theme } from '@mui/material/styles'
+import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles'
+import { useLocale } from 'next-intl'
 
-import { darkTheme, lightTheme } from './config'
+import { useSettingsContext } from '@/components/settings'
+
+import { createTheme } from './create-theme'
 import { useThemeSync } from './hooks'
+import { ThemeOptions } from './types'
 
-interface ThemeProviderProps {
-  children: React.ReactNode
+export type ThemeProviderProps = Partial<MuiThemeProviderProps<Theme>> & {
+  themeOverrides?: ThemeOptions
 }
 
-export function ThemeProvider({ children }: ThemeProviderProps) {
-  const { resolvedTheme } = useThemeSync()
+export function ThemeProvider({ themeOverrides, children, ...other }: ThemeProviderProps) {
+  const settings = useSettingsContext()
+  useThemeSync()
+  const locale = useLocale()
 
-  // 创建 MUI 主题
   const muiTheme = useMemo(() => {
-    const themeConfig = resolvedTheme === 'dark' ? darkTheme : lightTheme
-    return createTheme(themeConfig)
-  }, [resolvedTheme])
+    const currentLang = getCurrentLang(locale)
+    return createTheme({
+      settingsState: settings.state,
+      localeComponents: currentLang?.systemValue,
+      themeOverrides,
+    })
+  }, [locale, themeOverrides, settings])
 
   return (
-    <MuiThemeProvider theme={muiTheme}>
+    <MuiThemeProvider disableTransitionOnChange theme={muiTheme} {...other}>
       <CssBaseline />
       {children}
     </MuiThemeProvider>
