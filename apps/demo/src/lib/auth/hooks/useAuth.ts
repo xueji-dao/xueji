@@ -60,7 +60,7 @@ export const useAuth = () => {
     login: loginMutation.mutate,
     logout: logoutMutation.mutate,
 
-    checkAuth, // 暴露给 AuthGuard 使用
+    checkAuth, // 暴露给 AuthProvider 使用
     clearAuthState, // 暴露给全局错误处理等使用
 
     // 状态
