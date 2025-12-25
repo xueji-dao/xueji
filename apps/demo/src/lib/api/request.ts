@@ -7,7 +7,7 @@ import { Endpoints } from './index'
 
 // Java 后端 API
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_SERVICE_BASE_URL || 'http://localhost:8080',
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8080',
   timeout: 10000,
 })
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useRef, type PropsWithChildren } from 'react'
+import { createContext, use, useRef, type PropsWithChildren } from 'react'
 import { useStore } from 'zustand'
 
 import { createClockStore, type ClockState, type ClockStore } from '../stores/clock'
@@ -30,7 +30,7 @@ export const ClockStoreProvider = ({ children, ...props }: PropsWithChildren<Par
 
 // 自定义 hook：从 Context 获取 store 并订阅状态
 export const useClockStore = <T,>(selector: (store: ClockStore) => T): T => {
-  const clockStoreContext = useContext(ClockStoreContext)
+  const clockStoreContext = use(ClockStoreContext)
 
   if (!clockStoreContext) {
     throw new Error(`useClockStore must be used within ClockStoreProvider`)

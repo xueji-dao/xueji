@@ -1,9 +1,11 @@
 import { atom } from 'jotai'
-import { atomWithStorage } from 'jotai/utils'
+
+// import { atomWithStorage } from 'jotai/utils'
 
 export type ThemeMode = 'light' | 'dark' | 'system'
 
-export const themeModeAtom = atomWithStorage<ThemeMode>('theme-mode', 'system')
+// export const themeModeAtom = atomWithStorage<ThemeMode>('theme-mode', 'system')
+export const themeModeAtom = atom<ThemeMode>('system')
 
 // 系统主题检测
 export const systemThemeAtom = atom<'light' | 'dark'>('light')
