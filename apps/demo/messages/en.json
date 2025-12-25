@@ -55,5 +55,19 @@
   },
   "demo": {
     "play": "Toggle Timeline"
+  },
+  "upload": {
+    "dropOrSelectFiles": "Drop or select files",
+    "dropOrSelectFile": "Drop or select a file",
+    "dragFilesHere": "Drag files here",
+    "dragFileHere": "Drag a file here",
+    "orBrowse": "or",
+    "browse": "browse",
+    "yourDevice": "your device",
+    "removeAll": "Remove All",
+    "uploading": "Uploading...",
+    "upload": "Upload",
+    "uploadSuccess": "File uploaded successfully!",
+    "uploadFailed": "File upload failed!"
   }
 }

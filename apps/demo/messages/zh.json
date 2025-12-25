@@ -55,5 +55,19 @@
   },
   "demo": {
     "play": "点击播放"
+  },
+  "upload": {
+    "dropOrSelectFiles": "拖拽或选择文件",
+    "dropOrSelectFile": "拖拽或选择文件",
+    "dragFilesHere": "拖拽文件到这里",
+    "dragFileHere": "拖拽文件到这里",
+    "orBrowse": "或",
+    "browse": "浏览",
+    "yourDevice": "您的设备",
+    "removeAll": "移除全部",
+    "uploading": "上传中...",
+    "upload": "上传",
+    "uploadSuccess": "文件上传成功!",
+    "uploadFailed": "文件上传失败!"
   }
 }
