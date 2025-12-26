@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
   if (refreshToken) {
     // 调用后端让 refresh token 失效（redis 清理）
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_SERVICE_BASE_URL}/api/auth/logout`, {
+      await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/logout`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -21,7 +21,6 @@ import { primaryColorPresets, secondaryColorPresets } from './color-presets'
  */
 export function applySettingsToTheme(theme: ThemeOptions, settingsState?: SettingsState): ThemeOptions {
   const { fontFamily, contrast = 'default', primaryColor = 'default' } = settingsState ?? {}
-  console.log('settingsState', settingsState)
   const isDefaultContrast = contrast === 'default'
   const isDefaultPrimaryColor = primaryColor === 'default'
 

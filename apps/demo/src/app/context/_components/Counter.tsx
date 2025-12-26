@@ -3,7 +3,7 @@
 // useState 的替代方案。它接收一个形如 (state, action) => newState 的 reducer，并返回当前的 state 以及与其配套的 dispatch 方法。
 // 在某些场景下, useReducer 会比 useState 更适用，例如 state 逻辑较复杂且包含多个子值，或者下一个 state 依赖于之前的 state 等。并且，
 // 使用 useReducer 还能给那些会触发深更新的组件做性能优化，因为你可以向子组件传递 dispatch 而不是回调函数 。
-import { createContext, Dispatch, ReactNode, useContext, useReducer } from 'react'
+import { createContext, Dispatch, ReactNode, use, useReducer } from 'react'
 
 type CounterState = number
 type CounterAction =
@@ -15,8 +15,8 @@ type CounterAction =
       payload: number
     }
 
-const CounterStateContext = createContext<CounterState>(0)
-const CounterDispatchContext = createContext<Dispatch<CounterAction>>(() => null)
+const CounterStateContext = createContext<CounterState | undefined>(undefined)
+const CounterDispatchContext = createContext<Dispatch<CounterAction> | undefined>(undefined)
 
 const reducer = (state: CounterState, action: CounterAction) => {
   switch (action.type) {
@@ -45,5 +45,14 @@ export const CounterProvider = ({ children, initialValue = 0 }: CounterProviderP
   )
 }
 
-export const useCount = () => useContext(CounterStateContext)
-export const useDispatchCount = () => useContext(CounterDispatchContext)
+export function useCount() {
+  const context = use(CounterStateContext)
+  if (context === undefined) throw new Error('useCount must be used inside CounterProvider')
+  return context
+}
+
+export function useDispatchCount() {
+  const context = use(CounterDispatchContext)
+  if (!context) throw new Error('useDispatchCount must be used inside CounterProvider')
+  return context
+}

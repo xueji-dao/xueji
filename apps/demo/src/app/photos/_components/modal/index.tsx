@@ -1,7 +1,8 @@
 'use client'
 
 import { ReactNode, useCallback, useEffect, useRef } from 'react'
-import { useRouter } from 'next/navigation'
+
+import { useRouter } from '@/lib/routes'
 
 export default function Modal({ children }: { children: ReactNode }) {
   const overlay = useRef<HTMLDivElement>(null)

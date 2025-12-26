@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
 import { CONFIG } from '@/global-config'
+import { LocaleSwitcher } from '@/i18n/components'
 import { ViewTransitions } from 'next-view-transitions'
 
-import { inter } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
-import LocaleSwitcher from '@/components/LocaleSwitcher'
 import ScrollYIndicator from '@/components/motion/ScrollYIndicator'
+import { inter } from '@/styles/fonts'
 
 import Footer from './_components/footer'
 

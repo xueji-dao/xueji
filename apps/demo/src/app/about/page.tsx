@@ -1,8 +1,13 @@
 import styles from './styles.module.scss'
+import { Metadata } from 'next'
 import Link from 'next/link'
-import { useFormatter, useNow, useTranslations } from 'next-intl'
+import { CONFIG } from '@/global-config'
+import { LocaleSwitcher } from '@/i18n/components'
+import { useFormatter, useLocale, useNow, useTranslations } from 'next-intl'
 
-import LocaleSwitcher from '@/components/LocaleSwitcher'
+import DayjsInfo from './DayjsInfo'
+
+export const metadata: Metadata = { title: `About - ${CONFIG.appName}` }
 
 type CodeProps = {
   children: React.ReactNode
@@ -19,6 +24,7 @@ export default function About() {
   const t = useTranslations('AboutPage') // t('About.title');
   const format = useFormatter()
   const now = useNow()
+  const locale = useLocale()
   const dateTime = new Date('2024-09-04T07:12:52.516Z')
   const items = ['HTML', 'CSS', 'JavaScript']
   return (
@@ -58,6 +64,13 @@ export default function About() {
         </h2>
         <h2>{format.dateTimeRange(dateTime, now, 'long')}</h2>
         <h2>{format.list(items, { type: 'disjunction' })}</h2>
+
+        {/* dayjs 语言检测 */}
+        <hr className={styles.hr} />
+        <h2>
+          Current Locale: <Code>{locale}</Code>
+        </h2>
+        <DayjsInfo dateTime={dateTime} />
 
         <hr className={styles.hr} />
         <p>

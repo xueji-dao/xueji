@@ -1,11 +1,11 @@
 import { redirect } from 'next/navigation'
+import { LocaleSwitcher } from '@/i18n/components'
 import { UsersIcon } from '@heroicons/react/24/outline'
 import { useLocale, useTranslations } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import { z } from 'zod'
 
 import Button from '@/components/Button'
-import LocaleSwitcher from '@/components/LocaleSwitcher'
 
 import FormField from './FormField'
 import LoginForm from './LoginForm'

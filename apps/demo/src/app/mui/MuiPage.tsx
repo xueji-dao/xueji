@@ -34,7 +34,7 @@ const Page = () => {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
+        <Typography variant="h1" component="h1" sx={{ mb: 2 }}>
           示例: Material UI
         </Typography>
         <Slider

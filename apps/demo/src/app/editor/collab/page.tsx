@@ -2,7 +2,6 @@
 
 import { Fragment, useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { useSearchParams } from 'next/navigation'
 import { LexicalCollaboration } from '@lexical/react/LexicalCollaborationContext'
 import { CollaborationPlugin } from '@lexical/react/LexicalCollaborationPlugin'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
@@ -10,6 +9,7 @@ import type { Provider } from '@lexical/yjs'
 import * as Y from 'yjs'
 
 import ExampleTheme from '@/lib/editor/ExampleTheme'
+import { useSearchParams } from '@/lib/routes'
 
 import Editor from './Editor'
 import { getRandomUserProfile, UserProfile } from './getRandomUserProfile'

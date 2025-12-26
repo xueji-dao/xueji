@@ -1,11 +1,10 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { CONFIG } from '@/global-config'
 import { safeReturnUrl } from 'minimal-shared/utils'
 
-import { useRouter } from '@/lib/routes'
 import { SplashScreen } from '@/components/loading-screen'
 
 import { useAuth } from '../hooks'

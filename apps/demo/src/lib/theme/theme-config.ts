@@ -32,7 +32,7 @@ export const themeConfig: ThemeConfig = {
    * Css variables
    *************************************** */
   cssVariables: {
-    cssVarPrefix: 'mui',
+    cssVarPrefix: '', // 影响生成的 css 变量前缀，不能随便改
     colorSchemeSelector: 'data-color-scheme',
   },
   /** **************************************

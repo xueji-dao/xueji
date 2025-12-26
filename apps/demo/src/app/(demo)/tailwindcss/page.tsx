@@ -1,8 +1,10 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 
-import { geistMono, geistSans } from '@/styles/fonts'
+import { useSettingsContext } from '@/components/settings'
 
 const ArrowRight = () => (
   <svg
@@ -16,32 +18,44 @@ const ArrowRight = () => (
   </svg>
 )
 
-const PageLink = ({ href, title, desc }: any) => (
-  <Link
-    href={href}
-    className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-    target="_blank"
-    rel="noopener noreferrer">
-    <h2 className="mb-3 text-2xl font-semibold">
-      {title} <ArrowRight />
-    </h2>
-    <p className="m-0 max-w-[30ch] text-sm opacity-50">{desc}</p>
-  </Link>
-)
+const PageLink = ({ href, title, desc }: any) => {
+  const settings = useSettingsContext()
+
+  // 字体大小映射到 Tailwind 类名
+  const fontSizeMap: Record<number, string> = {
+    12: 'text-xs',
+    14: 'text-sm',
+    16: 'text-base',
+    18: 'text-lg',
+    20: 'text-xl',
+  }
+
+  return (
+    <Link
+      href={href}
+      className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+      target="_blank"
+      rel="noopener noreferrer">
+      <h2 className="mb-3 text-2xl font-semibold dark:text-4xl">
+        {title} <ArrowRight />
+      </h2>
+      <p className={`m-0 max-w-[30ch] opacity-50 ${fontSizeMap[settings.state.fontSize] || 'text-sm'}`}>{desc}</p>
+    </Link>
+  )
+}
 
 // 示例：Tailwindcss
 export default function Home() {
   const t = useTranslations('HomePage')
 
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${geistSans.variable} ${geistMono.variable}`}>
+    <main className={`flex min-h-screen flex-col items-center justify-between p-24`}>
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed top-0 left-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pt-8 pb-6 backdrop-blur-2xl lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200  lg:p-4 dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:dark:bg-zinc-800/30">
+        <p className="fixed top-0 left-0 flex w-full justify-center border-b border-gray-300 bg-linear-to-b from-zinc-200 pt-8 pb-6 backdrop-blur-2xl lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200  lg:p-4 dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:dark:bg-zinc-800/30">
           Get started by editing&nbsp;
           <code className="font-mono font-bold">app/page.tsx</code>
         </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white lg:static lg:size-auto lg:bg-none dark:from-black dark:via-black">
+        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-linear-to-t from-white via-white lg:static lg:size-auto lg:bg-none dark:from-black dark:via-black">
           <a
             className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
             href="https://xuejiai.com"
@@ -51,7 +65,7 @@ export default function Home() {
           </a>
         </div>
       </div>
-      <div className="before:bg-gradient-radial after:bg-gradient-conic relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40">
+      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px] before:dark:bg-linear-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40">
         <Image
           className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
           src="/next.svg"
