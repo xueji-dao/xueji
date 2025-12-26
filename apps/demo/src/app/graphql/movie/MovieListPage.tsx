@@ -5,27 +5,33 @@ import Link from 'next/link'
 import { useQuery } from '@tanstack/react-query'
 
 import { graphql } from '@/lib/graphql/movie'
+import { execute } from '@/lib/graphql/movie/execute'
 
-import type { Movies } from '../../../types'
-
-const GET_MOVIES = graphql`
+const AllMoviesQuery = graphql(`
   query GetMovies {
     allMovies {
       title
       tagline
       released
       actors {
-        name
-      }
-      directors {
-        name
+        person {
+          born
+          name
+        }
       }
     }
   }
-`
+`)
 
 export default function Page() {
-  const { isLoading: loading, error, data } = useQuery<{ movies: Movies }>(GET_MOVIES)
+  const {
+    isLoading: loading,
+    error,
+    data,
+  } = useQuery({
+    queryKey: ['movie'],
+    queryFn: () => execute(AllMoviesQuery),
+  })
 
   if (loading) return <div className="flex min-h-screen items-center justify-center">Loading...</div>
   if (error)
@@ -48,24 +54,27 @@ export default function Page() {
                 <th className="border border-gray-300 px-3 py-2 text-left">Movie Title</th>
                 <th className="border border-gray-300 px-3 py-2 text-left">Released</th>
                 <th className="border border-gray-300 px-3 py-2 text-left">Tagline</th>
-                <th className="border border-gray-300 px-3 py-2 text-left">Directed</th>
+                {/* <th className="border border-gray-300 px-3 py-2 text-left">Directed</th> */}
                 <th className="border border-gray-300 px-3 py-2 text-left">Actors</th>
               </tr>
             </thead>
             <tbody>
-              {data?.movies.map((movie, index) => (
-                <tr key={movie.title} className="hover:bg-gray-50">
-                  <td className="border border-gray-300 px-3 py-2 font-medium">{index + 1}</td>
-                  <td className="border border-gray-300 px-3 py-2">
-                    <Link
-                      href={`/demo/movie/${encodeURIComponent(movie.title || '')}`}
-                      className="text-blue-600 underline hover:text-blue-800">
-                      {movie.title}
-                    </Link>
-                  </td>
-                  <td className="border border-gray-300 px-3 py-2">{movie.released}</td>
-                  <td className="border border-gray-300 px-3 py-2">{movie.tagline}</td>
-                  <td className="border border-gray-300 px-3 py-2">
+              {data?.allMovies?.map((movie, index) => {
+                if (!movie) return null
+
+                return (
+                  <tr key={movie.title} className="hover:bg-gray-50">
+                    <td className="border border-gray-300 px-3 py-2 font-medium">{index + 1}</td>
+                    <td className="border border-gray-300 px-3 py-2">
+                      <Link
+                        href={`/graphql/movie/${encodeURIComponent(movie.title || '')}`}
+                        className="text-blue-600 underline hover:text-blue-800">
+                        {movie.title}
+                      </Link>
+                    </td>
+                    <td className="border border-gray-300 px-3 py-2">{movie.released}</td>
+                    <td className="border border-gray-300 px-3 py-2">{movie.tagline}</td>
+                    {/* <td className="border border-gray-300 px-3 py-2">
                     <ul className="space-y-1">
                       {movie?.directors?.map((director) => (
                         <li key={director.name} className="text-sm">
@@ -73,22 +82,27 @@ export default function Page() {
                         </li>
                       ))}
                     </ul>
-                  </td>
-                  <td className="border border-gray-300 px-3 py-2">
-                    <ul className="space-y-1">
-                      {movie?.actors?.map((actor) => (
-                        <li key={actor.name} className="text-sm">
-                          <Link
-                            href={`/demo/movie/actor/${encodeURIComponent(actor.name || '')}`}
-                            className="text-blue-600 underline hover:text-blue-800">
-                            {actor.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </td>
-                </tr>
-              ))}
+                  </td> */}
+                    <td className="border border-gray-300 px-3 py-2">
+                      <ul className="space-y-1">
+                        {movie.actors?.map((actor) => {
+                          if (!actor || !actor.person) return null
+
+                          return (
+                            <li key={actor.person.name} className="text-sm">
+                              <Link
+                                href={`/graphql/movie/actor/${encodeURIComponent(actor.person.name || '')}`}
+                                className="text-blue-600 underline hover:text-blue-800">
+                                {actor.person.name}
+                              </Link>
+                            </li>
+                          )
+                        })}
+                      </ul>
+                    </td>
+                  </tr>
+                )
+              })}
             </tbody>
           </table>
         </div>

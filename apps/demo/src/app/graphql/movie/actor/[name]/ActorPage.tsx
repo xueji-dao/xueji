@@ -7,17 +7,17 @@ import { graphql } from '@/lib/graphql/movie'
 
 import { Actors } from '../../../../../types'
 
-const GET_ACTOR = graphql`
-  query GetActor($actorName: String) {
-    people(where: { name: $actorName }) {
-      name
-      born
-      movies {
-        title
-      }
-    }
-  }
-`
+// const GET_ACTOR = graphql`
+//   query GetActor($actorName: String) {
+//     people(where: { name: $actorName }) {
+//       name
+//       born
+//       movies {
+//         title
+//       }
+//     }
+//   }
+// `
 
 export default function Actor({ name }: { name: string }) {
   const {

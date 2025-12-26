@@ -1,0 +1,143 @@
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+"""Indicates a Bean Validation constraint"""
+directive @constraint(format: String, max: BigInteger, maxFloat: BigDecimal, maxLength: Int, min: BigInteger, minFloat: BigDecimal, minLength: Int, pattern: String) on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
+
+"""
+Used to specify the role required to execute a given field or operation.
+"""
+directive @rolesAllowed(value: String) on FIELD_DEFINITION
+
+type Actor {
+  person: Person
+  role: String
+}
+
+"""Scalar for BigDecimal"""
+scalar BigDecimal
+
+"""Scalar for BigInteger"""
+scalar BigInteger
+
+input CreateMovieInput {
+  """ISO-8601"""
+  released: DateTime
+  tagline: String
+  title: String
+}
+
+"""Scalar for Date"""
+scalar Date
+
+"""Scalar for DateTime"""
+scalar DateTime
+
+type Film {
+  director: String
+  episodeID: Int
+  heroes: [Hero]
+  """ISO-8601"""
+  releaseDate: Date
+  title: String
+}
+
+type Hero {
+  darkSide: Boolean
+  episodeIds: [Int]
+  height: Float
+  lightSaber: LightSaber
+  mass: Int
+  name: String
+  surname: String
+}
+
+input HeroInput {
+  darkSide: Boolean
+  episodeIds: [Int]
+  height: Float
+  lightSaber: LightSaber
+  mass: Int
+  name: String
+  surname: String
+}
+
+type Legume {
+  id: BigInteger
+  name: String
+}
+
+input LegumeInput {
+  id: BigInteger
+  name: String
+}
+
+enum LightSaber {
+  BLUE
+  GREEN
+  PURPLE
+  RED
+}
+
+type Movie {
+  actors: [Actor]
+  id: BigInteger
+  """ISO-8601"""
+  released: DateTime
+  tagline: String
+  title: String
+}
+
+"""Mutation root"""
+type Mutation {
+  createHero(hero: HeroInput): Hero
+  createLegume(legume: LegumeInput): Legume
+  """Create a movie"""
+  createMovie(movie: CreateMovieInput): String
+  deleteHero(id: Int!): Hero
+  deleteLegume(id: BigInteger): Boolean
+  """Delete a movie"""
+  deleteMovie(id: BigInteger): Boolean
+}
+
+"""
+A person has some information about themselves and maybe played in a movie or is an author and wrote books.
+"""
+type Person {
+  actedIn: [Movie]
+  """ISO-8601"""
+  born: DateTime
+  name: ID
+}
+
+"""Query root"""
+type Query {
+  """Get all Films from a galaxy far far away"""
+  allFilms: [Film]
+  """Get all Legume"""
+  allLegume: [Legume]
+  """Get all Movies"""
+  allMovies: [Movie]
+  """Get a Films from a galaxy far far away"""
+  film(filmId: Int!): Film
+  heroesWithSurname(surname: String = "Skywalker"): [Hero]
+  legume(legumeId: BigInteger): Legume
+  legumesWithName(name: String = "Carrot"): Legume
+  """Get a movie by Id"""
+  movie(id: BigInteger): Movie
+  """Get a movie by title"""
+  movieByTitle(title: String): Movie
+  multiMovies: [Movie]
+  """Say hello"""
+  sayHello(name: String = "World"): String
+}
+
+"""Subscription root"""
+type Subscription {
+  heroCreated: Hero
+  legumeCreated: Legume
+  movieCreated: Movie
+}

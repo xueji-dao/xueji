@@ -5,41 +5,41 @@ import Link from 'next/link'
 import { useQuery } from '@tanstack/react-query'
 
 import { graphql } from '@/lib/graphql/movie'
+import { execute } from '@/lib/graphql/movie/execute'
 
-import type { Movies } from '../../../../types'
-
-const GET_MOVIE = graphql`
+const GET_MOVIE = graphql(`
   query GetMovie($movieTitle: String) {
-    movies(where: { title: $movieTitle }) {
+    movieByTitle(title: $movieTitle) {
       title
       tagline
       released
       actors {
-        name
-      }
-      directors {
-        name
+        person {
+          born
+          name
+        }
       }
     }
   }
-`
+`)
 
 export default function Movie({ title }: { title: string }) {
   const {
     isLoading: loading,
     error,
     data,
-  } = useQuery<{ movies: Movies }>(GET_MOVIE, {
-    variables: { movieTitle: title },
+  } = useQuery({
+    queryKey: ['movie', title],
+    queryFn: () => execute(GET_MOVIE, { movieTitle: title }),
   })
 
   if (loading) return <div className="flex min-h-screen items-center justify-center">Loading...</div>
   if (error)
     return <div className="flex min-h-screen items-center justify-center text-red-500">Error! {error.message}</div>
-  if (data?.movies.length === 0)
+  if (!data?.movieByTitle)
     return <div className="flex min-h-screen items-center justify-center text-gray-500">未找到 {title}</div>
 
-  const movie = data?.movies[0]
+  const movie = data.movieByTitle
 
   return (
     <div className="mx-auto flex min-h-screen w-4/5 flex-col items-center justify-center px-2">
@@ -69,20 +69,24 @@ export default function Movie({ title }: { title: string }) {
           <div className="rounded-lg bg-white p-6 shadow-md">
             <h2 className="mb-4 text-xl font-bold text-gray-800">Actors</h2>
             <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
-              {movie?.actors?.map((actor) => (
-                <div key={actor.name} className="rounded-md bg-gray-50 p-3">
-                  <Link
-                    href={`/demo/movie/actor/${encodeURIComponent(actor.name || '')}`}
-                    className="text-blue-600 underline hover:text-blue-800">
-                    {actor.name}
-                  </Link>
-                </div>
-              ))}
+              {movie?.actors?.map((actor) => {
+                if (!actor || !actor.person) return null
+
+                return (
+                  <div key={actor.person.name} className="rounded-md bg-gray-50 p-3">
+                    <Link
+                      href={`/demo/movie/actor/${encodeURIComponent(actor.person.name || '')}`}
+                      className="text-blue-600 underline hover:text-blue-800">
+                      {actor.person.name}
+                    </Link>
+                  </div>
+                )
+              })}
             </div>
           </div>
 
           {/* 导演列表 */}
-          <div className="rounded-lg bg-white p-6 shadow-md">
+          {/* <div className="rounded-lg bg-white p-6 shadow-md">
             <h2 className="mb-4 text-xl font-bold text-gray-800">Directors</h2>
             <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
               {movie?.directors?.map((director) => (
@@ -91,13 +95,13 @@ export default function Movie({ title }: { title: string }) {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* 返回按钮 */}
         <div className="mt-8">
           <Link
-            href="/demo/movie/"
+            href="/graphql/movie/"
             className="inline-flex items-center rounded-md bg-blue-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-blue-700">
             🔙 Back to Movies
           </Link>
