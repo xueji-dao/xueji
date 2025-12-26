@@ -1,7 +1,8 @@
 import type { CodegenConfig } from '@graphql-codegen/cli'
 
+// 主配置文件 - 默认使用 Star Wars API
 const config: CodegenConfig = {
-  schema: 'https://swapi-graphql.netlify.app/graphql', //'./src/lib/graphql/schema.graphql',
+  schema: 'https://swapi-graphql.netlify.app/graphql',
   documents: ['src/**/*.{ts,tsx}'],
   ignoreNoDocuments: true,
   generates: {

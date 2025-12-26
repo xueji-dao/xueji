@@ -108,6 +108,7 @@ export const metadata: Metadata = {
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  // https://github.com/amannn/next-intl/issues/2068
   const locale = await getLocale()
   const settings = await detectSettings()
   console.log('App Settings:', settings, themeConfig.defaultMode)

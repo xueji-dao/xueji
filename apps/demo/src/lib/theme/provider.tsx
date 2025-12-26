@@ -20,6 +20,7 @@ export type ThemeProviderProps = Partial<MuiThemeProviderProps<Theme>> & {
 export function ThemeProvider({ themeOverrides, children, ...other }: ThemeProviderProps) {
   const settings = useSettingsContext()
   useThemeSync()
+  // 有警告：https://github.com/amannn/next-intl/issues/2068
   const locale = useLocale()
 
   const muiTheme = useMemo(() => {
