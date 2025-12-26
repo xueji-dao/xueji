@@ -1,5 +1,5 @@
 import { Button, Card, CardContent, Typography } from '@mui/material'
-import { motion, useAnimation } from 'framer-motion'
+import { m, useAnimation } from 'framer-motion'
 
 // 推荐方案 2: Framer Motion + MUI
 export const MotionMuiCard = () => {
@@ -11,7 +11,7 @@ export const MotionMuiCard = () => {
   }
 
   return (
-    <motion.div animate={controls} whileHover={{ y: -4, scale: 1.02 }} transition={{ duration: 0.2 }}>
+    <m.div animate={controls} whileHover={{ y: -4, scale: 1.02 }} transition={{ duration: 0.2 }}>
       <Card className="m-4 p-4">
         <CardContent>
           <Typography variant="h5">Framer Motion + MUI</Typography>
@@ -21,6 +21,6 @@ export const MotionMuiCard = () => {
           </Button>
         </CardContent>
       </Card>
-    </motion.div>
+    </m.div>
   )
 }

@@ -11,7 +11,7 @@ export function CacheControls() {
     setMessage('')
 
     try {
-      const response = await fetch('/api/cache/invalidate', {
+      const response = await fetch('/api/public/cache/invalidate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ tag }),
@@ -64,7 +64,7 @@ export function CacheControls() {
       {message && <div className="mt-4 rounded bg-gray-100 p-3 text-sm">{message}</div>}
 
       <div className="mt-4 text-xs text-gray-500">
-        <p>• 点击"清除缓存"按钮会使特定用户的缓存失效</p>
+        <p>• 点击&quot;清除缓存&quot;按钮会使特定用户的缓存失效</p>
         <p>• 页面会自动刷新以显示更新后的时间戳</p>
       </div>
     </div>

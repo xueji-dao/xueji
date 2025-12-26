@@ -1,4 +1,8 @@
+import { headers } from 'next/headers'
+
 export async function DynamicTime() {
+  // 访问当前时间之前先读取了请求头数据，符合 Next.js 16 的服务端组件要求
+  await headers()
   const time = new Date().toISOString()
 
   return (

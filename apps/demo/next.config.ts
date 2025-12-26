@@ -14,6 +14,7 @@ const withSerwist = withSerwistInit({
 const nextConfig: NextConfig = {
   // See: https://nx.dev/recipes/next/next-config-setup
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
+  cacheComponents: true,
   experimental: {
     mdxRs: true,
   },

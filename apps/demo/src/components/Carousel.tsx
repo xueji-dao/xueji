@@ -10,7 +10,7 @@ import {
   ChevronRightIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
-import { AnimatePresence, motion, MotionConfig } from 'framer-motion'
+import { AnimatePresence, m, MotionConfig } from 'framer-motion'
 
 // import { useSwipeable } from 'react-swipeable'
 import Twitter from './Icons/Twitter'
@@ -109,7 +109,7 @@ export default function Carousel() {
     return newVal
   }
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  function closeModal() { }
+  function closeModal() {}
   const handlers = {}
   const currentPhoto = {}
   // const handlers = useSwipeable({
@@ -155,7 +155,7 @@ export default function Carousel() {
           <div className="w-full overflow-hidden">
             <div className="relative flex aspect-[3/2] items-center justify-center">
               <AnimatePresence initial={false} custom={direction}>
-                <motion.div
+                <m.div
                   key={index}
                   custom={direction}
                   variants={variants}
@@ -171,7 +171,7 @@ export default function Carousel() {
                     alt="Next.js Conf image"
                     onLoad={() => setLoaded(true)}
                   />
-                </motion.div>
+                </m.div>
               </AnimatePresence>
             </div>
           </div>
@@ -245,10 +245,10 @@ export default function Carousel() {
             {/* Bottom Nav bar */}
             {navigation && (
               <div className="fixed inset-x-0 bottom-0 z-40 overflow-hidden bg-gradient-to-b from-black/0 to-black/60">
-                <motion.div initial={false} className="mx-auto my-6 flex aspect-[3/2] h-14">
+                <m.div initial={false} className="mx-auto my-6 flex aspect-[3/2] h-14">
                   <AnimatePresence initial={false}>
                     {filteredImages.map(({ public_id, format, id }) => (
-                      <motion.button
+                      <m.button
                         initial={{
                           width: '0%',
                           x: `${Math.max((index - 1) * -100, 15 * -100)}%`,
@@ -261,23 +261,26 @@ export default function Carousel() {
                         exit={{ width: '0%' }}
                         onClick={() => changePhotoId(id)}
                         key={id}
-                        className={`${id === index ? 'z-20 rounded-md shadow shadow-black/50' : 'z-10'
-                          } ${id === 0 ? 'rounded-l-md' : ''} ${id === images.length - 1 ? 'rounded-r-md' : ''
-                          } relative inline-block w-full shrink-0 transform-gpu overflow-hidden focus:outline-none`}>
+                        className={`${
+                          id === index ? 'z-20 rounded-md shadow shadow-black/50' : 'z-10'
+                        } ${id === 0 ? 'rounded-l-md' : ''} ${
+                          id === images.length - 1 ? 'rounded-r-md' : ''
+                        } relative inline-block w-full shrink-0 transform-gpu overflow-hidden focus:outline-none`}>
                         <Image
                           alt="small photos on the bottom"
                           width={180}
                           height={120}
-                          className={`${id === index
+                          className={`${
+                            id === index
                               ? 'brightness-110 hover:brightness-110'
                               : 'brightness-50 contrast-125 hover:brightness-75'
-                            } h-full object-cover transition`}
+                          } h-full object-cover transition`}
                           src="/images/mountains.jpg"
                         />
-                      </motion.button>
+                      </m.button>
                     ))}
                   </AnimatePresence>
-                </motion.div>
+                </m.div>
               </div>
             )}
           </div>

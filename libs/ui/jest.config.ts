@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   displayName: 'semantic-ui',
   preset: '../../jest.preset.js',
   transform: {

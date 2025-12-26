@@ -2,12 +2,25 @@ import { Suspense } from 'react'
 
 import { lusitana } from '@/styles/fonts'
 
+import { CachedTime } from './_components/cached-time'
+import { DynamicTime } from './_components/dynamic-time'
+
 export default function Index() {
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="mx-auto max-w-4xl px-4">
         <div id="welcome" className="mb-8 text-center">
           <h1 className={`${lusitana.className} mb-4 text-4xl font-bold text-blue-600`}>Welcome XueJi 👋</h1>
+        </div>
+
+        <div className="mb-8 grid gap-6 md:grid-cols-2">
+          <Suspense fallback={<div className="rounded-lg border bg-gray-100 p-4">加载中...</div>}>
+            <CachedTime />
+          </Suspense>
+
+          <Suspense fallback={<div className="rounded-lg border bg-gray-100 p-4">加载中...</div>}>
+            <DynamicTime />
+          </Suspense>
         </div>
 
         <div className="rounded-lg bg-white p-6 shadow-sm">
@@ -19,6 +32,15 @@ export default function Index() {
         </div>
 
         <div className="mt-8 space-y-4 text-center">
+          <div className="rounded-lg bg-white p-4 shadow-sm">
+            <h3 className="mb-2 font-semibold">演示页面</h3>
+            <a
+              href="/cache/more"
+              className="inline-block rounded bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700">
+              查看完整 Cache Components 演示
+            </a>
+          </div>
+
           <p className="flex items-center justify-center gap-2 text-gray-500">
             Carefully crafted with
             <svg className="h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 24 24">

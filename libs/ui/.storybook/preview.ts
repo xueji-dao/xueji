@@ -1,4 +1,5 @@
-import type { Preview } from '@storybook/react'
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import type { Preview } from '@storybook/nextjs'
 
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import '../../../apps/webui/src/styles/global.css'

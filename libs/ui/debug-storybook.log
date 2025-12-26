@@ -1,0 +1,34 @@
+[15:58:13.567] [INFO] storybook v10.1.10
+[15:58:13.858] [ERROR] [38;2;241;97;97mSB_CORE-SERVER_0007 (MainFileEvaluationError): Storybook couldn't evaluate your [33m.storybook\main.ts[39m file.
+
+Original error:
+[37mError [ERR_MODULE_NOT_FOUND]: Cannot find package '@storybook/nextjs' imported from \.storybook\main.ts
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:266:9)
+    at packageResolve (node:internal/modules/esm/resolve:767:81)
+    at moduleResolve (node:internal/modules/esm/resolve:853:18)
+    at defaultResolve (node:internal/modules/esm/resolve:983:11)
+    at nextResolve (node:internal/modules/esm/hooks:748:28)
+    at Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+    at handleMessage (node:internal/modules/esm/worker:199:24)
+    at checkForMessages (node:internal/modules/esm/worker:141:28)
+    at process.<anonymous> (node:internal/modules/esm/worker:160:5)
+    at process.emit (node:events:519:28)[39m[39m
+    at loadMainConfig (file:///D:/code/nextjs/xueji/node_modules/.pnpm/storybook@10.1.10_@testing-_fd7f2e665df58fe994c152c374705d85/node_modules/storybook/dist/_node-chunks/chunk-LLCTWVOB.js:11701:11)
+    at async buildDevStandalone (file:///D:/code/nextjs/xueji/node_modules/.pnpm/storybook@10.1.10_@testing-_fd7f2e665df58fe994c152c374705d85/node_modules/storybook/dist/core-server/index.js:7149:16)
+    at async withTelemetry (file:///D:/code/nextjs/xueji/node_modules/.pnpm/storybook@10.1.10_@testing-_fd7f2e665df58fe994c152c374705d85/node_modules/storybook/dist/_node-chunks/chunk-PGCRO4IZ.js:209:12)
+    at async dev (file:///D:/code/nextjs/xueji/node_modules/.pnpm/storybook@10.1.10_@testing-_fd7f2e665df58fe994c152c374705d85/node_modules/storybook/dist/bin/core.js:2734:3)
+    at async _Command.<anonymous> (file:///D:/code/nextjs/xueji/node_modules/.pnpm/storybook@10.1.10_@testing-_fd7f2e665df58fe994c152c374705d85/node_modules/storybook/dist/bin/core.js:2801:92)
+[15:58:13.862] [WARN] Broken build, fix the error above.
+You may need to refresh the browser.
+[15:58:13.870] [WARN]   Failed to load preset: "D:/code/nextjs/xueji/libs/ui/.storybook/main.ts"
+[15:58:13.871] [ERROR] Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@storybook/nextjs' imported from .\.storybook\main.ts
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:266:9)
+    at packageResolve (node:internal/modules/esm/resolve:767:81)
+    at moduleResolve (node:internal/modules/esm/resolve:853:18)
+    at defaultResolve (node:internal/modules/esm/resolve:983:11)
+    at nextResolve (node:internal/modules/esm/hooks:748:28)
+    at Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+    at handleMessage (node:internal/modules/esm/worker:199:24)
+    at checkForMessages (node:internal/modules/esm/worker:141:28)
+    at process.<anonymous> (node:internal/modules/esm/worker:160:5)
+    at process.emit (node:events:519:28)

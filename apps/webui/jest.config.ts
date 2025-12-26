@@ -1,14 +1,12 @@
-import type { Config } from 'jest'
-
 const { pathsToModuleNameMapper } = require('ts-jest')
 const { compilerOptions } = require('./tsconfig.json')
 
-const config: Config = {
+const config = {
   displayName: '@xueji/webui',
   preset: '../../jest.preset.js',
   transform: {
     '^(?!.*\\.(js|jsx|ts|tsx|css|json)$)': '@nx/react/plugins/jest',
-    '^.+\\.[tj]sx?$': ['babel-jest', { presets: ['@nx/next/babel'] }],
+    '^.+\\.[tj]sx?$': ['babel-jest', { presets: [['@nx/next/babel', { 'preset-react': { runtime: 'automatic' } }]] }],
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   moduleNameMapper: {
@@ -19,4 +17,4 @@ const config: Config = {
   coverageDirectory: 'test-output/jest/coverage',
 }
 
-export default config
+module.exports = config

@@ -6,9 +6,7 @@ import { composePlugins, withNx } from '@nx/next'
 
 const nextConfig: NextConfig = {
   // Enable Cache Components for advanced caching strategies
-  experimental: {
-    cacheComponents: true,
-  },
+  cacheComponents: true,
   rewrites: async () => [
     { source: '/health', destination: '/api/health' },
     { source: '/ping', destination: '/api/health' },

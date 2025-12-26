@@ -1,9 +1,9 @@
 import { Suspense } from 'react'
 
-import { AdvancedCache } from '../components/advanced-cache'
-import { CacheControls } from '../components/cache-controls'
-import { CachedTime } from '../components/cached-time'
-import { DynamicTime } from '../components/dynamic-time'
+import { AdvancedCache } from '../_components/advanced-cache'
+import { CacheControls } from '../_components/cache-controls'
+import { CachedTime } from '../_components/cached-time'
+import { DynamicTime } from '../_components/dynamic-time'
 
 export default function CacheDemoPage() {
   return (

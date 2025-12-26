@@ -1,5 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { expect, within } from '@storybook/test'
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import type { Meta, StoryObj } from '@storybook/nextjs'
+import { expect, within } from 'storybook/test'
 
 import { Button } from './Button'
 
