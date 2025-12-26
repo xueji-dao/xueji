@@ -1,12 +1,12 @@
 'use client'
 
 import { useEffect, useMemo } from 'react'
-import { getCurrentLang } from '@/i18n'
 import CssBaseline from '@mui/material/CssBaseline'
 import type { ThemeProviderProps as MuiThemeProviderProps, Theme } from '@mui/material/styles'
 import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles'
 import { useLocale } from 'next-intl'
 
+import { getCurrentLang } from '@/lib/i18n'
 import { useSettingsContext } from '@/components/settings'
 
 import { createTheme } from './create-theme'

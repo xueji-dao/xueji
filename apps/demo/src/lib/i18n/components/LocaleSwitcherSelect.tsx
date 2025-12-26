@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useTransition } from 'react'
-import { getCurrentLang, Locale, setUserLocale } from '@/i18n'
 import { CheckIcon } from '@heroicons/react/24/solid'
 import Box from '@mui/material/Box'
 import FormControl from '@mui/material/FormControl'
@@ -9,6 +8,8 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import dayjs from 'dayjs'
+
+import { getCurrentLang, Locale, setUserLocale } from '@/lib/i18n'
 
 import 'dayjs/locale/zh-cn'
 import 'dayjs/locale/en'
@@ -42,9 +43,7 @@ export default function LocaleSwitcherSelect({ defaultValue, items, label }: Pro
     })
     const lang = getCurrentLang(locale)
     if (lang.adapterLocale) {
-      console.log('Setting dayjs locale to:', lang.adapterLocale)
       dayjs.locale(lang.adapterLocale)
-      console.log('Current dayjs locale:', dayjs.locale())
     }
   }
 
@@ -64,7 +63,7 @@ export default function LocaleSwitcherSelect({ defaultValue, items, label }: Pro
             <MenuItem value={item.value} key={item.value}>
               <div className="flex">
                 <div className="mr-2 w-4">
-                  {item.value === defaultValue && <CheckIcon className="size-5 text-slate-600 dark:text-slate-400" />}
+                  {item.value === defaultValue && <CheckIcon className="size-4 text-slate-600 dark:text-slate-400" />}
                 </div>
                 <span className="text-slate-900 dark:text-slate-100">{item.label}</span>
               </div>

@@ -1,9 +1,9 @@
 'use server'
 
 import { cookies, headers } from 'next/headers'
-import { defaultLocale, Locale, locales } from '@/i18n/config'
-// eslint-disable-next-line @nx/enforce-module-boundaries
 import acceptLanguage from 'accept-language'
+
+import { defaultLocale, Locale, locales } from '@/lib/i18n/config'
 
 /**
  * 用户语言偏好管理

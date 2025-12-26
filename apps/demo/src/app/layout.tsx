@@ -5,9 +5,8 @@ import { getLocale } from 'next-intl/server'
 
 import '@/lib/api/request' // 引入拦截器
 
-import { LocalizationProvider } from '@/i18n/localization-provider'
-
 import { QueryProvider } from '@/lib/api/query-provider'
+import { LocalizationProvider } from '@/lib/i18n/localization-provider'
 import { JotaiProvider } from '@/lib/store/jotai-provider'
 import { themeConfig, ThemeProvider, ThemeSwitcher } from '@/lib/theme'
 import { UIProvider } from '@/components/UIProvider'

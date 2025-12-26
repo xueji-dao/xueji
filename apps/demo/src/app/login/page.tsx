@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { LocaleSwitcher } from '@/i18n/components'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
 import {
   Alert,
@@ -19,6 +18,7 @@ import { useTranslations } from 'next-intl'
 import { z } from 'zod'
 
 import { useAuth } from '@/lib/auth'
+import { LocaleSwitcher } from '@/lib/i18n/components'
 import { useRouter } from '@/lib/routes'
 
 const loginSchema = z.object({

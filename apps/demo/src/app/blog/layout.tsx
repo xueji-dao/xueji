@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { CONFIG } from '@/global-config'
-import { LocaleSwitcher } from '@/i18n/components'
 import { ViewTransitions } from 'next-view-transitions'
 
+import { LocaleSwitcher } from '@/lib/i18n/components'
 import { cn } from '@/lib/utils'
 import ScrollYIndicator from '@/components/motion/ScrollYIndicator'
 import { inter } from '@/styles/fonts'

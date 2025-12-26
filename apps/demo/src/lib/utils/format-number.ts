@@ -1,4 +1,4 @@
-import type { LocaleConfig } from '@/i18n/number-format-locale'
+import type { LocaleConfig } from '@/lib/i18n/number-format-locale'
 
 // ----------------------------------------------------------------------
 

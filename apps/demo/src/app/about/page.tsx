@@ -2,8 +2,9 @@ import styles from './styles.module.scss'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { CONFIG } from '@/global-config'
-import { LocaleSwitcher } from '@/i18n/components'
 import { useFormatter, useLocale, useNow, useTranslations } from 'next-intl'
+
+import { LocaleSwitcher } from '@/lib/i18n/components'
 
 import DayjsInfo from './DayjsInfo'
 
