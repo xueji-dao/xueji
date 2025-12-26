@@ -1,3 +1,5 @@
+import { RouterLink, usePathname } from '@/routes'
+import { paths } from '@/routes/paths'
 import Box from '@mui/material/Box'
 import Divider from '@mui/material/Divider'
 import type { IconButtonProps } from '@mui/material/IconButton'
@@ -8,8 +10,6 @@ import Typography from '@mui/material/Typography'
 import { usePopover } from 'minimal-shared/hooks'
 import { useMockedUser } from 'src/auth/hooks'
 
-import { RouterLink, usePathname } from '@/lib/routes'
-import { paths } from '@/lib/routes/paths'
 import { CustomPopover } from '@/components/custom-popover'
 import { Label } from '@/components/label'
 

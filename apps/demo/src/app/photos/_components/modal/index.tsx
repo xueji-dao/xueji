@@ -1,8 +1,7 @@
 'use client'
 
 import { ReactNode, useCallback, useEffect, useRef } from 'react'
-
-import { useRouter } from '@/lib/routes'
+import { useRouter } from '@/routes'
 
 export default function Modal({ children }: { children: ReactNode }) {
   const overlay = useRef<HTMLDivElement>(null)

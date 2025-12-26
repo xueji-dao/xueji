@@ -1,7 +1,7 @@
+import { RouterLink } from '@/routes'
 import type { LinkProps } from '@mui/material/Link'
 import Link from '@mui/material/Link'
 
-import { RouterLink } from '@/lib/routes'
 import { Iconify } from '@/components/iconify'
 
 // ----------------------------------------------------------------------

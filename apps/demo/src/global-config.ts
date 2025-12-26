@@ -10,8 +10,9 @@
  * - 重构友好
  */
 
+import { paths } from '@/routes/paths'
+
 import packageJson from '../package.json'
-import { paths } from './lib/routes/paths'
 
 export const CONFIG = {
   appName: '学记智能',

@@ -1,4 +1,5 @@
 import { _socials } from '@/_mock'
+import { paths, RouterLink } from '@/routes'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Divider from '@mui/material/Divider'
@@ -9,7 +10,6 @@ import type { Breakpoint } from '@mui/material/styles'
 import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 
-import { paths, RouterLink } from '@/lib/routes'
 import { Iconify } from '@/components/iconify'
 import { Logo } from '@/components/logo'
 

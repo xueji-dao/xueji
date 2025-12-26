@@ -1,12 +1,12 @@
 'use client'
 
+import { paths, RouterLink } from '@/routes'
 import Alert from '@mui/material/Alert'
 import Box from '@mui/material/Box'
 import Link from '@mui/material/Link'
 import type { Breakpoint } from '@mui/material/styles'
 import { merge } from 'es-toolkit'
 
-import { paths, RouterLink } from '@/lib/routes'
 import { Logo } from '@/components/logo'
 
 import { SettingsButton } from '../components/settings-button'

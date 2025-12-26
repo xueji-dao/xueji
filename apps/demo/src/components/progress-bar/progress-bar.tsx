@@ -3,10 +3,9 @@
 import './styles.css'
 
 import { useEffect, useRef } from 'react'
+import { usePathname } from '@/routes'
 import { isEqualPath } from 'minimal-shared/utils'
 import NProgress from 'nprogress'
-
-import { usePathname } from '@/lib/routes'
 
 // ----------------------------------------------------------------------
 

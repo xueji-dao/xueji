@@ -1,4 +1,5 @@
 import { CONFIG } from '@/global-config'
+import { paths } from '@/routes/paths'
 import Avatar from '@mui/material/Avatar'
 import type { BoxProps } from '@mui/material/Box'
 import Box from '@mui/material/Box'
@@ -8,7 +9,6 @@ import { m } from 'framer-motion'
 import { varAlpha } from 'minimal-shared/utils'
 import { useMockedUser } from 'src/auth/hooks'
 
-import { paths } from '@/lib/routes/paths'
 import { Label } from '@/components/label'
 
 // ----------------------------------------------------------------------

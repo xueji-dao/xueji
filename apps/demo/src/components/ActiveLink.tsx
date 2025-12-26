@@ -2,8 +2,7 @@
 
 import { PropsWithChildren, useEffect, useState } from 'react'
 import Link, { LinkProps } from 'next/link'
-
-import { usePathname } from '@/lib/routes'
+import { usePathname } from '@/routes'
 
 const getLinkUrl = (href: LinkProps['href'], as?: LinkProps['as']): string => {
   // Dynamic route will be matched via props.as

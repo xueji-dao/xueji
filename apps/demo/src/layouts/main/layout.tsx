@@ -1,12 +1,12 @@
 'use client'
 
+import { paths, usePathname } from '@/routes'
 import Alert from '@mui/material/Alert'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import type { Breakpoint } from '@mui/material/styles'
 import { useBoolean } from 'minimal-shared/hooks'
 
-import { paths, usePathname } from '@/lib/routes'
 import { Logo } from '@/components/logo'
 
 import { MenuButton } from '../components/menu-button'

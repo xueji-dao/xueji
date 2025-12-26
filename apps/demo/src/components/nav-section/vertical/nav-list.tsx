@@ -1,10 +1,9 @@
 'use client'
 
 import { useCallback, useEffect, useRef } from 'react'
+import { usePathname } from '@/routes'
 import { useBoolean } from 'minimal-shared/hooks'
 import { isActiveLink, isExternalLink } from 'minimal-shared/utils'
-
-import { usePathname } from '@/lib/routes'
 
 import { NavCollapse, NavLi, NavUl } from '../components'
 import { navSectionClasses } from '../styles'

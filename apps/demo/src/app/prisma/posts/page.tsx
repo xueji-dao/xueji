@@ -2,8 +2,7 @@
 
 import { Suspense, useEffect, useState } from 'react'
 import Link from 'next/link'
-
-import { useSearchParams } from '@/lib/routes'
+import { useSearchParams } from '@/routes'
 
 interface Post {
   id: number

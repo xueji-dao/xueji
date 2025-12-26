@@ -1,11 +1,11 @@
 import { CONFIG } from '@/global-config'
+import { RouterLink } from '@/routes'
 import type { BoxProps } from '@mui/material/Box'
 import Box from '@mui/material/Box'
 import Link from '@mui/material/Link'
 import { m } from 'framer-motion'
 import { varAlpha } from 'minimal-shared/utils'
 
-import { RouterLink } from '@/lib/routes'
 import { transitionTap, varHover, varTap } from '@/components/animate'
 
 // ----------------------------------------------------------------------

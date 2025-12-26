@@ -1,6 +1,6 @@
 import { CONFIG } from '@/global-config'
+import { paths } from '@/routes'
 
-import { paths } from '@/lib/routes'
 import { Iconify } from '@/components/iconify'
 
 import type { NavMainProps } from './main/nav/types'

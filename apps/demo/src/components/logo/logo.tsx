@@ -1,12 +1,11 @@
 'use client'
 
 import { useId } from 'react'
+import { RouterLink } from '@/routes'
 import type { LinkProps } from '@mui/material/Link'
 import Link from '@mui/material/Link'
 import { styled, useTheme } from '@mui/material/styles'
 import { mergeClasses } from 'minimal-shared/utils'
-
-import { RouterLink } from '@/lib/routes'
 
 import { logoClasses } from './classes'
 

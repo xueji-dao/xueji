@@ -1,9 +1,9 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from '@/routes'
 
 import { i18n, type Locale } from '@/lib/lang/i18n-config'
-import { usePathname } from '@/lib/routes'
 
 export default function LocaleSwitcher() {
   const pathname = usePathname()

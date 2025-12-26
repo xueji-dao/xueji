@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useRouter } from '@/routes'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
 import {
   Alert,
@@ -19,7 +20,6 @@ import { z } from 'zod'
 
 import { useAuth } from '@/lib/auth'
 import { LocaleSwitcher } from '@/lib/i18n/components'
-import { useRouter } from '@/lib/routes'
 
 const loginSchema = z.object({
   email: z.string().min(1).email(),

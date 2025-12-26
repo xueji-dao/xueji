@@ -1,9 +1,8 @@
 'use client'
 
+import { RouterLink } from '@/routes'
+import { paths } from '@/routes/paths'
 import Link from '@mui/material/Link'
-
-import { RouterLink } from '@/lib/routes'
-import { paths } from '@/lib/routes/paths'
 
 export function LoginLink() {
   return (

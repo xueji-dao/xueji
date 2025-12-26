@@ -1,8 +1,7 @@
 'use client'
 
+import { useRouter } from '@/routes'
 import dayjs from 'dayjs'
-
-import { useRouter } from '@/lib/routes'
 
 import 'dayjs/locale/zh-cn'
 import 'dayjs/locale/en'

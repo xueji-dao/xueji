@@ -1,6 +1,6 @@
 'use client'
 
-import { usePathname } from '@/lib/routes'
+import { usePathname } from '@/routes'
 
 import Header from './Header'
 

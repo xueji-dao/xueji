@@ -1,11 +1,11 @@
 'use client'
 
+import { RouterLink } from '@/routes'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 
 import { MaintenanceIllustration } from '@/lib/assets/illustrations'
-import { RouterLink } from '@/lib/routes'
 
 // ----------------------------------------------------------------------
 

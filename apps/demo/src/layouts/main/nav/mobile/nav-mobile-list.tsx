@@ -1,10 +1,10 @@
 import { useCallback, useRef } from 'react'
 import { CONFIG } from '@/global-config'
+import { paths, usePathname } from '@/routes'
 import Collapse from '@mui/material/Collapse'
 import { useBoolean } from 'minimal-shared/hooks'
 import { isActiveLink, isExternalLink, varAlpha } from 'minimal-shared/utils'
 
-import { paths, usePathname } from '@/lib/routes'
 import { navSectionClasses, NavSectionVertical } from '@/components/nav-section'
 
 import { NavLi } from '../components'

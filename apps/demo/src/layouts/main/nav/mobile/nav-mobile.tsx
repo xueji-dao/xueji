@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
+import { paths, usePathname } from '@/routes'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Drawer from '@mui/material/Drawer'
 
-import { paths, usePathname } from '@/lib/routes'
 import { Logo } from '@/components/logo'
 import { Scrollbar } from '@/components/scrollbar'
 

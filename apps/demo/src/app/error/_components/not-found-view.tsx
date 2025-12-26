@@ -1,13 +1,13 @@
 'use client'
 
 import { SimpleLayout } from '@/layouts/simple'
+import { RouterLink } from '@/routes'
 import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import { m } from 'framer-motion'
 
 import { PageNotFoundIllustration } from '@/lib/assets/illustrations'
-import { RouterLink } from '@/lib/routes'
 import { MotionContainer, varBounce } from '@/components/animate'
 
 // ----------------------------------------------------------------------

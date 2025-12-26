@@ -1,6 +1,8 @@
 'use client'
 
 import { _mock } from '@/_mock'
+import { RouterLink, usePathname } from '@/routes'
+import { paths } from '@/routes/paths'
 import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
@@ -15,8 +17,6 @@ import { useBoolean } from 'minimal-shared/hooks'
 import { varAlpha } from 'minimal-shared/utils'
 
 import { useMockedUser } from '@/lib/auth/hooks'
-import { RouterLink, usePathname } from '@/lib/routes'
-import { paths } from '@/lib/routes/paths'
 import { AnimateBorder } from '@/components/animate'
 import { Iconify } from '@/components/iconify'
 import { Label } from '@/components/label'

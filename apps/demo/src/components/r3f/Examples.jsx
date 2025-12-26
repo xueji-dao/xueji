@@ -5,7 +5,7 @@ import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import { useMemo, useRef, useState } from 'react'
 
-import { useRouter } from '@/lib/routes'
+import { useRouter } from '@/routes'
 
 export const Blob = ({ route = '/demo/threejs/demo/', ...props }) => {
   const router = useRouter()

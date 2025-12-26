@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useRef } from 'react'
+import { usePathname } from '@/routes'
 import { useBoolean } from 'minimal-shared/hooks'
 import { isActiveLink, isEqualPath, isExternalLink } from 'minimal-shared/utils'
-
-import { usePathname } from '@/lib/routes'
 
 import { Nav, NavDropdown, NavLi, NavUl } from '../components'
 import type { NavListProps, NavSubListProps } from '../types'

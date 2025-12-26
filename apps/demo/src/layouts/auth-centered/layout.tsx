@@ -1,14 +1,14 @@
 'use client'
 
 import { CONFIG } from '@/global-config'
+import { RouterLink } from '@/routes'
+import { paths } from '@/routes/paths'
 import Alert from '@mui/material/Alert'
 import Box from '@mui/material/Box'
 import Link from '@mui/material/Link'
 import { Breakpoint, CSSObject, Theme, useTheme } from '@mui/material/styles'
 import { merge } from 'es-toolkit'
 
-import { RouterLink } from '@/lib/routes'
-import { paths } from '@/lib/routes/paths'
 import { Logo } from '@/components/logo'
 
 import { SettingsButton } from '../components/settings-button'
