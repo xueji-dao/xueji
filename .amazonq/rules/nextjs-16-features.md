@@ -62,6 +62,8 @@ export default async function Page() {
 
 ### 服务端组件 (默认)
 
+默认情况下，布局和页面属于“服务器组件”，这使您能够在服务器端获取数据并渲染用户界面的某些部分，还可以选择缓存结果，并将其流式传输至客户端。当您需要交互性或浏览器 API 时，以使用“客户端组件”，以逐步增加功能的方式进行。
+
 ```typescript
 // 默认是服务端组件，可以直接使用异步
 export default async function UserPage({ 
@@ -72,24 +74,6 @@ export default async function UserPage({
   const { id } = await params
   const user = await fetchUser(id)
   return <UserProfile user={user} />
-}
-```
-
-### 客户端组件
-
-```typescript
-'use client'
-
-import { useState } from 'react'
-
-export default function InteractiveComponent() {
-  const [count, setCount] = useState(0)
-  
-  return (
-    <button onClick={() => setCount(count + 1)}>
-      Count: {count}
-    </button>
-  )
 }
 ```
 
@@ -110,6 +94,14 @@ export default async function MixedPage() {
   )
 }
 ```
+
+## 关键原则
+
+将尽可能多的逻辑和静态内容放在服务端组件中，以减少发送到客户端的 JavaScript 代码量，提升初始加载速度。
+仅在需要交互性的叶子组件（组件树末端的组件）中使用客户端组件。这样，包裹它们的大量服务端组件内容都能被高效地静态化
+
+1. 服务端组件可以直接导入和使用客户端组件
+2. 可以把服务器组件作为 props 传递给客户端组件，以在客户端组件中可视化地嵌套服务器呈现的UI。
 
 ## 数据获取
 
