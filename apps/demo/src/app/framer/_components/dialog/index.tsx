@@ -1,0 +1,42 @@
+import { useCallback, useState } from 'react'
+import Box from '@mui/material/Box'
+import Card from '@mui/material/Card'
+import { useBoolean } from 'minimal-shared/hooks'
+
+import type { ControlPanelProps } from '../control-panel'
+import { ControlPanel } from '../control-panel'
+import { ContainerView } from './container'
+
+// ----------------------------------------------------------------------
+
+export function AnimateDialog({ options }: Pick<ControlPanelProps, 'options'>) {
+  const openDialog = useBoolean()
+
+  const [selectedVariant, setSelectedVariant] = useState('slideInUp')
+
+  const handleChangeVariant = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedVariant(event.target.value)
+  }, [])
+
+  return (
+    <Card sx={{ height: 640, display: 'flex' }}>
+      <Box
+        sx={{
+          p: 2.5,
+          gap: 2.5,
+          display: 'flex',
+          flex: '1 1 auto',
+          flexDirection: 'column',
+        }}>
+        <ContainerView
+          open={openDialog.value}
+          onOpen={openDialog.onTrue}
+          onClose={openDialog.onFalse}
+          selectedVariant={selectedVariant}
+        />
+      </Box>
+
+      <ControlPanel options={options} selectedVariant={selectedVariant} onChangeVariant={handleChangeVariant} />
+    </Card>
+  )
+}

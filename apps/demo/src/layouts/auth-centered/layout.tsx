@@ -1,6 +1,5 @@
 'use client'
 
-import RouterLink from 'next/link'
 import { CONFIG } from '@/global-config'
 import Alert from '@mui/material/Alert'
 import Box from '@mui/material/Box'
@@ -8,6 +7,7 @@ import Link from '@mui/material/Link'
 import { Breakpoint, CSSObject, Theme, useTheme } from '@mui/material/styles'
 import { merge } from 'es-toolkit'
 
+import { RouterLink } from '@/lib/routes'
 import { paths } from '@/lib/routes/paths'
 import { Logo } from '@/components/logo'
 

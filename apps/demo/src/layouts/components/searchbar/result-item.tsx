@@ -1,10 +1,10 @@
-import RouterLink from 'next/link'
 import Box from '@mui/material/Box'
 import type { ListItemButtonProps } from '@mui/material/ListItemButton'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import { isExternalLink, varAlpha } from 'minimal-shared/utils'
 
+import { RouterLink } from '@/lib/routes'
 import { Label } from '@/components/label'
 
 // ----------------------------------------------------------------------

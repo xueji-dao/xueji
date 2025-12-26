@@ -2,7 +2,7 @@
 
 import styles from '../../gallery.module.scss'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
 import { images } from '../../constants'
 
@@ -27,12 +27,12 @@ const backVariants = {
 
 const SingleImage = ({ index }: any) => (
   <>
-    <motion.div className={styles.single} initial="exit" animate="enter" exit="exit">
-      <motion.img variants={imageVariants} src={images[index]} alt="The Barbican" />
-      <motion.div className={styles.back} variants={backVariants}>
+    <m.div className={styles.single} initial="exit" animate="enter" exit="exit">
+      <m.img variants={imageVariants} src={images[index]} alt="The Barbican" />
+      <m.div className={styles.back} variants={backVariants}>
         <Link href="/framer">← Back</Link>
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   </>
 )
 

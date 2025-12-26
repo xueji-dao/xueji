@@ -11,10 +11,10 @@ import MenuList from '@mui/material/MenuList'
 import Typography from '@mui/material/Typography'
 import { m } from 'framer-motion'
 import { usePopover } from 'minimal-shared/hooks'
-import { transitionTap, varHover, varTap } from 'src/components/animate'
-import { CustomPopover } from 'src/components/custom-popover'
 import { fToNow } from 'src/utils/format-time'
 
+import { transitionTap, varHover, varTap } from '@/components/animate'
+import { CustomPopover } from '@/components/custom-popover'
 import { Iconify } from '@/components/iconify'
 import { Scrollbar } from '@/components/scrollbar'
 

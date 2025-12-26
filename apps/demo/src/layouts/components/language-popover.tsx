@@ -1,44 +1,41 @@
-'use client';
+'use client'
 
-import type { IconButtonProps } from '@mui/material/IconButton';
-import type { LangCode } from 'src/locales';
+import { useCallback } from 'react'
+import type { IconButtonProps } from '@mui/material/IconButton'
+import IconButton from '@mui/material/IconButton'
+import MenuItem from '@mui/material/MenuItem'
+import MenuList from '@mui/material/MenuList'
+import { m } from 'framer-motion'
+import { usePopover } from 'minimal-shared/hooks'
+import type { LangCode } from 'src/locales'
+import { useTranslate } from 'src/locales'
 
-import { m } from 'framer-motion';
-import { useCallback } from 'react';
-import { usePopover } from 'minimal-shared/hooks';
-
-import MenuList from '@mui/material/MenuList';
-import MenuItem from '@mui/material/MenuItem';
-import IconButton from '@mui/material/IconButton';
-
-import { useTranslate } from 'src/locales';
-
-import { FlagIcon } from 'src/components/flag-icon';
-import { CustomPopover } from 'src/components/custom-popover';
-import { varTap, varHover, transitionTap } from 'src/components/animate';
+import { transitionTap, varHover, varTap } from '@/components/animate'
+import { CustomPopover } from '@/components/custom-popover'
+import { FlagIcon } from '@/components/flag-icon'
 
 // ----------------------------------------------------------------------
 
 export type LanguagePopoverProps = IconButtonProps & {
   data?: {
-    value: string;
-    label: string;
-    countryCode: string;
-  }[];
-};
+    value: string
+    label: string
+    countryCode: string
+  }[]
+}
 
 export function LanguagePopover({ data = [], sx, ...other }: LanguagePopoverProps) {
-  const { open, anchorEl, onClose, onOpen } = usePopover();
+  const { open, anchorEl, onClose, onOpen } = usePopover()
 
-  const { onChangeLang, currentLang } = useTranslate();
+  const { onChangeLang, currentLang } = useTranslate()
 
   const handleChangeLang = useCallback(
     (lang: LangCode) => {
-      onChangeLang(lang);
-      onClose();
+      onChangeLang(lang)
+      onClose()
     },
-    [onChangeLang, onClose]
-  );
+    [onChangeLang, onClose],
+  )
 
   const renderMenuList = () => (
     <CustomPopover open={open} anchorEl={anchorEl} onClose={onClose}>
@@ -47,15 +44,14 @@ export function LanguagePopover({ data = [], sx, ...other }: LanguagePopoverProp
           <MenuItem
             key={option.value}
             selected={option.value === currentLang.value}
-            onClick={() => handleChangeLang(option.value as LangCode)}
-          >
+            onClick={() => handleChangeLang(option.value as LangCode)}>
             <FlagIcon code={option.countryCode} />
             {option.label}
           </MenuItem>
         ))}
       </MenuList>
     </CustomPopover>
-  );
+  )
 
   return (
     <>
@@ -75,12 +71,11 @@ export function LanguagePopover({ data = [], sx, ...other }: LanguagePopoverProp
           }),
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
-        {...other}
-      >
+        {...other}>
         <FlagIcon code={currentLang.countryCode} />
       </IconButton>
 
       {renderMenuList()}
     </>
-  );
+  )
 }

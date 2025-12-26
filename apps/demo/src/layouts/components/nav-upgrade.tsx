@@ -1,3 +1,4 @@
+import { CONFIG } from '@/global-config'
 import Avatar from '@mui/material/Avatar'
 import type { BoxProps } from '@mui/material/Box'
 import Box from '@mui/material/Box'
@@ -6,7 +7,6 @@ import Typography from '@mui/material/Typography'
 import { m } from 'framer-motion'
 import { varAlpha } from 'minimal-shared/utils'
 import { useMockedUser } from 'src/auth/hooks'
-import { CONFIG } from 'src/global-config'
 
 import { paths } from '@/lib/routes/paths'
 import { Label } from '@/components/label'
@@ -100,7 +100,7 @@ export function UpgradeBlock({ sx, ...other }: BoxProps) {
           repeatDelay: 0,
         }}
         alt="Small Rocket"
-        src={`${CONFIG.assetsUrl}/assets/illustrations/illustration-rocket-small.webp`}
+        src={`${CONFIG.assetsUrl}/illustrations/illustration-rocket-small.webp`}
         sx={{
           right: 0,
           width: 112,

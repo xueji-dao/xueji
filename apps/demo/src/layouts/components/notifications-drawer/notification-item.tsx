@@ -5,9 +5,9 @@ import ListItemAvatar from '@mui/material/ListItemAvatar'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import SvgIcon from '@mui/material/SvgIcon'
-import { FileThumbnail } from 'src/components/file-thumbnail'
 import { fToNow } from 'src/utils/format-time'
 
+import { FileThumbnail } from '@/components/file-thumbnail'
 import { Label } from '@/components/label'
 
 import { notificationIcons } from './icons'

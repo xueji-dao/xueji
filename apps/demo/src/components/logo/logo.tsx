@@ -1,11 +1,12 @@
 'use client'
 
 import { useId } from 'react'
-import RouterLink from 'next/link'
 import type { LinkProps } from '@mui/material/Link'
 import Link from '@mui/material/Link'
 import { styled, useTheme } from '@mui/material/styles'
 import { mergeClasses } from 'minimal-shared/utils'
+
+import { RouterLink } from '@/lib/routes'
 
 import { logoClasses } from './classes'
 
@@ -20,6 +21,13 @@ export function Logo({ sx, disabled, className, href = '/', isSingle = true, ...
   const theme = useTheme()
 
   const uniqueId = useId()
+
+  // 服务端和客户端都会打印
+  if (typeof window === 'undefined') {
+    console.log('SERVER Iconify render:', uniqueId)
+  } else {
+    console.log('CLIENT Iconify render:', uniqueId)
+  }
 
   const TEXT_PRIMARY = theme.vars.palette.text.primary
   const PRIMARY_LIGHT = theme.vars.palette.primary.light

@@ -2,7 +2,7 @@
 
 import styles from './gallery.module.scss'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
 import { images } from './constants'
 
@@ -28,13 +28,13 @@ const imageVariants = {
 
 const Thumbnail = ({ id, i }) => (
   <>
-    <motion.div className={styles.thumbnail} variants={thumbnailVariants}>
-      <motion.div className={styles.frame} whileHover="hover" variants={frameVariants} transition={transition}>
+    <m.div className={styles.thumbnail} variants={thumbnailVariants}>
+      <m.div className={styles.frame} whileHover="hover" variants={frameVariants} transition={transition}>
         <Link href={`/framer/image/${i}`} scroll={false}>
-          <motion.img src={id} alt="The Barbican" variants={imageVariants} transition={transition} />
+          <m.img src={id} alt="The Barbican" variants={imageVariants} transition={transition} />
         </Link>
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   </>
 )
 
@@ -43,7 +43,7 @@ const Gallery = () => {
     <>
       <h3 className={styles.title}>Motion</h3>
       <div className={styles.gallery}>
-        <motion.div
+        <m.div
           className={styles.thumbnails}
           initial="initial"
           animate="enter"
@@ -52,7 +52,7 @@ const Gallery = () => {
           {images.map((id, i) => (
             <Thumbnail key={id} id={id} i={i} />
           ))}
-        </motion.div>
+        </m.div>
       </div>
     </>
   )

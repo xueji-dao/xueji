@@ -1,4 +1,3 @@
-import RouterLink from 'next/link'
 import Box from '@mui/material/Box'
 import Divider from '@mui/material/Divider'
 import type { IconButtonProps } from '@mui/material/IconButton'
@@ -8,10 +7,10 @@ import MenuList from '@mui/material/MenuList'
 import Typography from '@mui/material/Typography'
 import { usePopover } from 'minimal-shared/hooks'
 import { useMockedUser } from 'src/auth/hooks'
-import { CustomPopover } from 'src/components/custom-popover'
-import { usePathname } from 'src/routes/hooks'
 
+import { RouterLink, usePathname } from '@/lib/routes'
 import { paths } from '@/lib/routes/paths'
+import { CustomPopover } from '@/components/custom-popover'
 import { Label } from '@/components/label'
 
 import { AccountButton } from './account-button'

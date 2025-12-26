@@ -1,7 +1,8 @@
-import RouterLink from 'next/link'
 import { CONFIG } from '@/global-config'
 import type { ButtonProps } from '@mui/material/Button'
 import Button from '@mui/material/Button'
+
+import { RouterLink } from '@/lib/routes'
 
 // ----------------------------------------------------------------------
 
