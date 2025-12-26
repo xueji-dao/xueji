@@ -36,6 +36,7 @@ export function Iconify({ className, icon, width = 20, height, sx, ...other }: I
     <IconRoot
       ssr
       id={uniqueId}
+      suppressHydrationWarning
       icon={icon}
       className={mergeClasses([iconifyClasses.root, className])}
       sx={[

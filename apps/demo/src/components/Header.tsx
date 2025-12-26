@@ -12,12 +12,12 @@ export default function Header() {
   const [isLoading, setIsLoading] = useState(true)
 
   // TODO 模拟 isLoading
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 1000)
-    return () => clearTimeout(timer)
-  }, [])
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setIsLoading(false)
+  //   }, 1000)
+  //   return () => clearTimeout(timer)
+  // }, [])
 
   return (
     <header>
@@ -25,8 +25,7 @@ export default function Header() {
         <style>{`.no-js-show { opacity: 1; top: 0; }`}</style>
       </noscript>
       <div className={styles.signedInStatus}>
-        <p
-          className={`no-js-show ${!user && (isLoading || isChecking || loadingUser) ? styles.loading : styles.loaded}`}>
+        <p className={`no-js-show ${!user && (isChecking || loadingUser) ? styles.loading : styles.loaded}`}>
           {!isAuthenticated && (
             <>
               <span className={styles.notSignedInText}>当前未登录</span>

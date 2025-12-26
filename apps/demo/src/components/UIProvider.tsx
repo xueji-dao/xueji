@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 import { UIContext } from '@/lib/context'
 
-interface GlobalStateProps {
+interface UIProviderProps {
   children: React.ReactNode
 }
 
@@ -12,7 +12,7 @@ interface GlobalStateProps {
 // 1. createContext() - 创建 Context 对象，定义默认值
 // 2. Provider 组件 - 提供状态值，包装需要共享状态的组件树
 // 3. useContext() - 在子组件中消费 Context 值
-export const GlobalState = ({ children }: GlobalStateProps) => {
+export const UIProvider = ({ children }: UIProviderProps) => {
   // 创建本地状态，将通过 Context 共享给子组件
   const [isDemo, setIsDemo] = useState<boolean | null>(true)
 
