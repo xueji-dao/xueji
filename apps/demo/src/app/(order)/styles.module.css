@@ -1,0 +1,59 @@
+.demo {
+  view-transition-name: demo-title;
+}
+
+.dashboard {
+  view-transition-name: dashboard-title;
+}
+
+.shape {
+  height: 0;
+  width: 0;
+  border-bottom: 30px solid black;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+}
+
+.demo-box {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  width: 600px;
+  max-width: 100%;
+  border-radius: 3px;
+}
+
+.demo-box h2:first-child {
+  margin-top: 0;
+}
+
+.container {
+  view-transition-name: container-move;
+}
+
+.support span {
+  font-size: small;
+  padding: 4px 6px;
+  border-radius: 8px;
+  box-decoration-break: clone;
+  line-height: 2;
+}
+
+.support .no {
+  color: rgba(200, 0, 0, 1);
+  background-color: rgba(200, 0, 0, 0.1);
+}
+
+.support .yes {
+  display: none;
+  color: rgb(0, 120, 0);
+  background-color: rgba(0, 120, 0, 0.1);
+}
+
+@supports (view-transition-name: figure-caption) {
+  .support .yes {
+    display: inline;
+  }
+  .support .no {
+    display: none;
+  }
+}

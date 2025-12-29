@@ -1,20 +1,19 @@
-'use client';
+'use client'
 
-import { mergeClasses } from 'minimal-shared/utils';
+import { styled } from '@mui/material/styles'
+import { mergeClasses } from 'minimal-shared/utils'
 
-import { styled } from '@mui/material/styles';
-
-import { flagIconClasses } from './classes';
+import { flagIconClasses } from './classes'
 
 // ----------------------------------------------------------------------
 
 export type FlagIconProps = React.ComponentProps<typeof FlagRoot> & {
-  code?: string;
-};
+  code?: string
+}
 
 export function FlagIcon({ code, className, sx, ...other }: FlagIconProps) {
   if (!code) {
-    return null;
+    return null
   }
 
   return (
@@ -26,7 +25,7 @@ export function FlagIcon({ code, className, sx, ...other }: FlagIconProps) {
         className={flagIconClasses.img}
       />
     </FlagRoot>
-  );
+  )
 }
 
 // ----------------------------------------------------------------------
@@ -41,11 +40,11 @@ const FlagRoot = styled('span')(({ theme }) => ({
   display: 'inline-flex',
   justifyContent: 'center',
   backgroundColor: theme.vars.palette.background.neutral,
-}));
+}))
 
 const FlagImg = styled('img')(() => ({
   width: '100%',
   height: '100%',
   maxWidth: 'unset',
   objectFit: 'cover',
-}));
+}))

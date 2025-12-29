@@ -1,3 +1,4 @@
+/* 优先级从低到高 */
 @layer theme, base, mui, components, utilities;
 @import 'tailwindcss';
 
@@ -21,7 +22,7 @@
   --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
   --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
   --grid-13: repeat(13, minmax(0, 1fr));
-  --spacing: 0.25rem;
+  --spacing: 8px;
 
   @keyframes shimmer {
     100% {

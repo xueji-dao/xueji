@@ -19,6 +19,7 @@ import { applySettingsToComponents, applySettingsToTheme } from './with-settings
 // ----------------------------------------------------------------------
 
 export const baseTheme: ThemeOptions = {
+  spacing: 8,
   colorSchemes: {
     light: {
       palette: palette.light,

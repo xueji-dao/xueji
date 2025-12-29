@@ -19,7 +19,6 @@ import InitColorSchemeScript from '@mui/material/InitColorSchemeScript'
 
 import { AuthProvider } from '@/lib/auth/components'
 import { MotionLazy } from '@/components/animate/motion-lazy'
-import { ConditionalHeader } from '@/components/ConditionalHeader'
 import { ProgressBar } from '@/components/progress-bar'
 import { defaultSettings, SettingsDrawer, SettingsProvider } from '@/components/settings'
 import { detectSettings } from '@/components/settings/server'
@@ -157,7 +156,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                           defaultMode={themeConfig.defaultMode}>
                           {/* 懒加载 Framer Motion 功能以减少初始包大小 */}
                           <MotionLazy>
-                            <ConditionalHeader />
                             <ThemeSwitcher initialTheme={settings.mode} />
                             <ProgressBar />
                             <SettingsDrawer defaultSettings={defaultSettings} />

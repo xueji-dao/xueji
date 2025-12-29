@@ -1,9 +1,57 @@
-import { PrismaClient } from './generated/prisma-client'
+// import bcryptjs from 'bcryptjs'
 
-const prisma = new PrismaClient()
+import prisma from './index'
+import { customers, invoices, revenue, users } from './placeholder-data'
 
 async function main() {
-  // Create 5 users
+  // Seed demo data
+  // Seed users with hashed passwords
+  for (const user of users) {
+    // const hashedPassword = bcryptjs.hashSync(user.password, 10)
+    await prisma.user.upsert({
+      where: { email: user.email },
+      update: {},
+      create: {
+        name: user.name,
+        email: user.email,
+        password: user.password,
+      },
+    })
+  }
+
+  // Seed customers
+  for (const customer of customers) {
+    await prisma.customer.upsert({
+      where: { id: customer.id },
+      update: {},
+      create: customer,
+    })
+  }
+
+  // Seed invoices
+  for (const invoice of invoices) {
+    await prisma.invoice.create({
+      data: {
+        customer_id: invoice.customer_id,
+        amount: invoice.amount,
+        status: invoice.status,
+        date: new Date(invoice.date),
+      },
+    })
+  }
+
+  // Seed revenue
+  for (const rev of revenue) {
+    await prisma.revenue.upsert({
+      where: { month: rev.month },
+      update: {},
+      create: rev,
+    })
+  }
+
+  console.log('Demo data seeded successfully')
+
+  // Original data
   await prisma.user.createMany({
     data: [
       { email: 'alice@example.com', name: 'Alice' },

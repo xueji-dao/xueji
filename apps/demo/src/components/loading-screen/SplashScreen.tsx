@@ -27,8 +27,8 @@ export function SplashScreen({ portal = true, slots, slotProps, sx, ...other }: 
 
   return (
     <PortalWrapper>
-      <LoadingWrapper {...slotProps?.wrapper}>
-        <LoadingContent sx={sx} {...other}>
+      <LoadingWrapper className="flex grow flex-col" {...slotProps?.wrapper}>
+        <LoadingContent className="fixed inset-0 z-9998 flex grow items-center justify-center" sx={sx} {...other}>
           {slots?.logo ?? <AnimateLogoZoom {...slotProps?.logo} />}
         </LoadingContent>
       </LoadingWrapper>
@@ -38,22 +38,18 @@ export function SplashScreen({ portal = true, slots, slotProps, sx, ...other }: 
 
 // ----------------------------------------------------------------------
 
-const LoadingWrapper = styled('div')({
-  flexGrow: 1,
-  display: 'flex',
-  flexDirection: 'column',
-}) as React.ComponentType<React.ComponentProps<'div'>>
+const LoadingWrapper = styled('div')``
 
 const LoadingContent = styled('div')(({ theme }) => ({
-  right: 0,
-  bottom: 0,
-  zIndex: 9998,
-  flexGrow: 1,
-  width: '100%',
-  height: '100%',
-  display: 'flex',
-  position: 'fixed',
-  alignItems: 'center',
-  justifyContent: 'center',
+  // right: 0,
+  // bottom: 0,
+  // zIndex: 9998,
+  // flexGrow: 1,
+  // width: '100%',
+  // height: '100%',
+  // display: 'flex',
+  // position: 'fixed',
+  // alignItems: 'center',
+  // justifyContent: 'center',
   backgroundColor: theme.vars?.palette.background.default,
 }))

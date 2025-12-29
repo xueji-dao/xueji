@@ -1,14 +1,14 @@
 import styles from './styles.module.scss'
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { CONFIG } from '@/global-config'
+import { utils } from '@xueji/utils'
 import { useFormatter, useLocale, useNow, useTranslations } from 'next-intl'
 
 import { LocaleSwitcher } from '@/lib/i18n/components'
 
 import DayjsInfo from './DayjsInfo'
 
-export const metadata: Metadata = { title: `About - ${CONFIG.appName}` }
+export const metadata: Metadata = { title: `About` }
 
 type CodeProps = {
   children: React.ReactNode
@@ -38,7 +38,7 @@ export default function About() {
         </div>
       </div>
       <div className={styles.card}>
-        <h1>Path: /about</h1>
+        <h1>Path: /about, {utils()}</h1>
         <hr className={styles.hr} />
         <h2>{t('message', { name: 'Jane' })}</h2>
         <h2>{t('followers', { count: 1000 })}</h2>

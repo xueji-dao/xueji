@@ -1,12 +1,11 @@
 import type { Metadata } from 'next'
-import { CONFIG } from '@/global-config'
 
 import { FormDivider, FormHead, FormSocials, SignUpTerms } from '@/lib/auth/components'
 import { AnimateLogoRotate } from '@/components/animate/animate-logo'
 
 import { LoginLink, RegisterForm } from './_components'
 
-export const metadata: Metadata = { title: `Sign up | Layout centered - ${CONFIG.appName}` }
+export const metadata: Metadata = { title: `注册` }
 
 export default function Page() {
   return (

@@ -22,8 +22,8 @@ export const navData: NavMainProps['data'] = [
       {
         subheader: 'Other',
         items: [
-          { title: 'About us', path: paths.about },
-          { title: 'Contact us', path: paths.contact },
+          { title: 'About', path: paths.about },
+          { title: 'Contact', path: paths.contact },
           { title: 'Pricing', path: paths.pricing },
           { title: 'Payment', path: paths.payment },
           { title: 'Maintenance', path: paths.maintenance },

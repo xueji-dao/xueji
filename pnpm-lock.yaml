@@ -465,6 +465,9 @@ importers:
       '@lexical/yjs':
         specifier: ^0.38.1
         version: 0.38.2(yjs@13.6.28)
+      '@mui/system':
+        specifier: ^7.3.6
+        version: 7.3.6(@emotion/react@11.14.0(@types/react@19.2.7)(react@19.2.3))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.7)(react@19.2.3))(@types/react@19.2.7)(react@19.2.3))(@types/react@19.2.7)(react@19.2.3)
       '@next/mdx':
         specifier: ^15.5.6
         version: 15.5.9(@mdx-js/loader@3.1.0(webpack@5.104.1(@swc/core@1.5.29(@swc/helpers@0.5.18))(esbuild@0.27.2)))(@mdx-js/react@3.1.1(@types/react@19.2.7)(react@19.2.3))
@@ -492,6 +495,9 @@ importers:
       '@tsparticles/slim':
         specifier: ^3.9.1
         version: 3.9.1
+      '@types/react':
+        specifier: ^19.2.7
+        version: 19.2.7
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
@@ -567,6 +573,9 @@ importers:
       unified:
         specifier: ^11.0.5
         version: 11.0.5
+      use-debounce:
+        specifier: ^10.0.6
+        version: 10.0.6(react@19.2.3)
       y-webrtc:
         specifier: ^10.3.0
         version: 10.3.0(yjs@13.6.28)
@@ -14465,6 +14474,12 @@ packages:
 
   urlpattern-polyfill@10.1.0:
     resolution: {integrity: sha512-IGjKp/o0NL3Bso1PymYURCJxMPNAf/ILOpendP9f5B6e1rTJgdgiOvgfoT8VxCAdY+Wisb9uhGaJJf3yZ2V9nw==}
+
+  use-debounce@10.0.6:
+    resolution: {integrity: sha512-C5OtPyhAZgVoteO9heXMTdW7v/IbFI+8bSVKYCJrSmiWWCLsbUxiBSp4t9v0hNBTGY97bT72ydDIDyGSFWfwXg==}
+    engines: {node: '>= 16.0.0'}
+    peerDependencies:
+      react: '*'
 
   use-intl@4.6.1:
     resolution: {integrity: sha512-mUIj6QvJZ7Rk33mLDxRziz1YiBBAnIji8YW4TXXMdYHtaPEbVucrXD3iKQGAqJhbVn0VnjrEtIKYO1B18mfSJw==}
@@ -31750,6 +31765,10 @@ snapshots:
       qs: 6.14.0
 
   urlpattern-polyfill@10.1.0: {}
+
+  use-debounce@10.0.6(react@19.2.3):
+    dependencies:
+      react: 19.2.3
 
   use-intl@4.6.1(react@19.2.3):
     dependencies:

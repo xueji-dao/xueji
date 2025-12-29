@@ -11,13 +11,6 @@ export function pi(n: number) {
   return 4 * v // apply the factor at last
 }
 
-async function fetcher<JSON = any>(input: RequestInfo, init?: RequestInit): Promise<JSON> {
-  const res = await fetch(input, init)
-  return res.json()
-}
-
-export { fetcher }
-
 export function isChinese(value: string) {
   return /^[\u4e00-\u9fa5]*$/.test(value)
 }

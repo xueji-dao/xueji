@@ -19,8 +19,8 @@ const LINKS = [
   {
     headline: 'Minimal',
     children: [
-      { name: 'About us', href: paths.about },
-      { name: 'Contact us', href: paths.contact },
+      { name: 'About', href: paths.about },
+      { name: 'Contact', href: paths.contact },
       { name: 'FAQs', href: paths.faqs },
     ],
   },
@@ -31,7 +31,7 @@ const LINKS = [
       { name: 'Privacy policy', href: '#' },
     ],
   },
-  { headline: 'Contact', children: [{ name: 'support@minimals.cc', href: '#' }] },
+  { headline: 'Contact', children: [{ name: 'support@xuejiai.com', href: '#' }] },
 ]
 
 // ----------------------------------------------------------------------
@@ -74,8 +74,8 @@ export function Footer({ sx, layoutQuery = 'md', ...other }: FooterProps & { lay
                 maxWidth: 280,
                 [theme.breakpoints.up(layoutQuery)]: { mx: 'unset' },
               })}>
-              The starting point for your next project with Minimal UI Kit, built on the newest version of Material-UI
-              ©, ready to be customized to your style.
+              The starting point for your next project built on the newest version of Material-UI ©, ready to be
+              customized to your style.
             </Typography>
 
             <Box
@@ -132,7 +132,7 @@ export function Footer({ sx, layoutQuery = 'md', ...other }: FooterProps & { lay
         </Grid>
 
         <Typography variant="body2" sx={{ mt: 10 }}>
-          © All rights reserved.
+          ©2025 学记智能.
         </Typography>
       </Container>
     </FooterRoot>
@@ -155,9 +155,7 @@ export function HomeFooter({ sx, ...other }: FooterProps) {
       <Container>
         <Logo />
         <Box sx={{ mt: 1, typography: 'caption' }}>
-          © All rights reserved.
-          <br /> made by
-          <Link href="https://minimals.cc/"> minimals.cc </Link>
+          © 2025 <Link href="https://xuejiai.com/"> xuejiai.com </Link>
         </Box>
       </Container>
     </FooterRoot>

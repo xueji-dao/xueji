@@ -10,7 +10,7 @@ import { inter } from '@/styles/fonts'
 import Footer from './_components/footer'
 
 export const metadata: Metadata = {
-  title: `Blog Example with ${CONFIG.site}`,
+  title: `Blog Example`,
   description: `A statically generated blog example using Next.js and ${CONFIG.appName}.`,
   openGraph: {
     images: [CONFIG.site.ogImageUrl],
