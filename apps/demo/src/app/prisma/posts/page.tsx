@@ -14,9 +14,6 @@ interface Post {
   }
 }
 
-// Disable static generation
-export const dynamic = 'force-dynamic'
-
 function PostsList() {
   const searchParams = useSearchParams()
   const page = parseInt(searchParams.get('page') || '1')
@@ -29,7 +26,7 @@ function PostsList() {
     async function fetchPosts() {
       setIsLoading(true)
       try {
-        const res = await fetch(`/api/posts?page=${page}`)
+        const res = await fetch(`/api/public/posts?page=${page}`)
         if (!res.ok) {
           throw new Error('Failed to fetch posts')
         }

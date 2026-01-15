@@ -1,11 +1,12 @@
+import { headers } from 'next/headers'
 import Link from 'next/link'
 
 import prisma from '@/lib/prisma'
 
-// Prisma 查询不会自动变成动态，需要显式配置
-export const dynamic = 'force-dynamic'
-
+// 访问 headers() 会自动变成动态渲染
 export default async function Home() {
+  // 这行代码让页面自动变成动态的
+  await headers()
   const posts = await prisma.post.findMany({
     orderBy: {
       createdAt: 'desc',

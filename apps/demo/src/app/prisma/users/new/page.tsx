@@ -1,12 +1,16 @@
 import Form from 'next/form'
+import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 import prisma from '@/lib/prisma'
 
-// Prisma 查询不会自动变成动态，需要显式配置
-export const dynamic = 'force-dynamic'
+// ❌ 与 cacheComponents 不兼容，已移除
+// export const dynamic = 'force-dynamic'
+// 原因：此页面需要动态渲染以确保 Server Action 正常工作和表单提交处理
 
-export default function NewUser() {
+export default async function NewUser() {
+  // 访问 headers() 自动触发动态渲染（替代 dynamic = 'force-dynamic'）
+  await headers()
   async function createUser(formData: FormData) {
     'use server'
 

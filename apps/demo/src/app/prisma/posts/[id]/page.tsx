@@ -1,12 +1,17 @@
+import { headers } from 'next/headers'
 import { notFound } from 'next/navigation'
 
 import prisma from '@/lib/prisma'
 
 import { deletePostAction } from '../../actions'
 
-export const dynamic = 'force-dynamic'
+// ❌ 与 cacheComponents 不兼容，已移除
+// export const dynamic = 'force-dynamic'
+// 原因：此页面需要动态渲染以确保数据库查询实时性和 Server Action 正常工作
 
 export default async function Post({ params }: { params: Promise<{ id: string }> }) {
+  // 访问 headers() 自动触发动态渲染（替代 dynamic = 'force-dynamic'）
+  await headers()
   const { id } = await params
   const postId = parseInt(id)
 

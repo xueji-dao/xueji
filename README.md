@@ -49,12 +49,8 @@ BREAKING CHANGE: use JavaScript features not available in Node 6.
 
 ### Demo 示例
 
-- apollo client
-- react-hook-form
-- 服务端渲染、流式传输，组件组合模式
 - react-flow
 - AG-UI CopilotKit
-- authjs
 - excalidraw
 
 ### AutoDev
