@@ -8,6 +8,7 @@
 @import '../components/scrollbar/styles.css';
 /* next-view-transitions */
 @import './transitions.css';
+@import '@xyflow/react/dist/style.css';
 
 /** **************************************
 * Baseline

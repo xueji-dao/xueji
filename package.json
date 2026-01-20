@@ -33,6 +33,7 @@
     "@tanstack/react-query-devtools": "^5.91.1",
     "@types/three": "^0.180.0",
     "@wojtekmaj/react-hooks": "^2.0.4",
+    "@xyflow/react": "^12.10.0",
     "accept-language": "^3.0.20",
     "axios": "^1.13.2",
     "class-variance-authority": "^0.7.1",
